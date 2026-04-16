@@ -1,0 +1,188 @@
+/* ==========================================================================
+   HERO SECTION STYLES
+   Section ID: 69e09e3cc2426d72a3b2a97b
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. SECTION BACKGROUND
+   Linear gradient from dark teal (#005461) to green (#008070)
+   Covers the entire hero section as a full-bleed background
+   -------------------------------------------------------------------------- */
+[data-section-id="69e09e3cc2426d72a3b2a97b"] {
+  background: linear-gradient(to right, #005461 0%, #008070 100%) !important;
+}
+
+/* Remove any existing background image/color on inner wrappers */
+[data-section-id="69e09e3cc2426d72a3b2a97b"] .section-background {
+  background: transparent !important;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. HERO HEADING (H1)
+   "We believe in better healthcare for everyone."
+   Font: MNKY Banana Grotesk, Extrabold (800), 70px, white
+   -------------------------------------------------------------------------- */
+[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328236739_12108 h1,
+[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328236739_12108 h1 strong {
+  font-family: 'MNKY Banana Grotesk', sans-serif !important;
+  font-weight: 800 !important;           /* Extrabold */
+  font-size: 70px !important;
+  line-height: normal !important;         /* Auto line height */
+  letter-spacing: 0em !important;         /* 0% letter spacing */
+  color: #FFFFFF !important;
+}
+
+/* Scale down the hero heading on mobile for readability */
+@media (max-width: 767px) {
+  [data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328236739_12108 h1,
+  [data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328236739_12108 h1 strong {
+    font-size: 40px !important;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   3. SUBHEADING (H3)
+   "The trusted intelligence behind healthcare payment accuracy."
+   White text to sit on the gradient background
+   -------------------------------------------------------------------------- */
+[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-8ac7ea9e05837f2db4f4 h3,
+[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-8ac7ea9e05837f2db4f4 h3 strong {
+  color: #FFFFFF !important;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. BODY PARAGRAPH
+   Description text below the subheading - white with slight transparency
+   -------------------------------------------------------------------------- */
+[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-0f7370d5819d960dc21c p {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. "LEARN MORE" BUTTON
+   White outline button style to contrast against the teal gradient
+   -------------------------------------------------------------------------- */
+[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328236739_12791 .sqs-block-button-element {
+  background-color: transparent !important;
+  border: 2px solid #FFFFFF !important;
+  color: #FFFFFF !important;
+}
+
+[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328236739_12791 .sqs-block-button-element:hover {
+  background-color: #FFFFFF !important;
+  color: #005461 !important;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. HORIZONTAL RULE / DIVIDER
+   Thin white line separating hero content from the stats grid
+   -------------------------------------------------------------------------- */
+[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_10925 hr {
+  border: none !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+
+/* --------------------------------------------------------------------------
+   7. SUMMARY STATS GRID (4 items)
+   Block: block-yui_3_17_2_1_1776328203793_11360
+   Layout: 4 equal columns with icon, large stat number, divider, description
+   All text white on the teal gradient background
+   -------------------------------------------------------------------------- */
+
+/* Hide the "Featured" header text - not needed for stats display */
+[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-heading {
+  display: none !important;
+}
+
+/* Hide the carousel pager arrows - stats are static, not a slider */
+[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-carousel-pager {
+  display: none !important;
+}
+
+/* Force 4-column grid layout for the summary items */
+[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-item-list {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  justify-content: space-between !important;
+  gap: 30px !important;
+  margin-bottom: 0 !important;
+}
+
+/* Each stat item takes equal width, centered text */
+[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-item {
+  width: 25% !important;
+  margin-right: 0 !important;
+  margin-bottom: 0 !important;
+  text-align: center !important;
+  flex: 1 !important;
+}
+
+/* Thumbnail/icon styling - smaller circular icons above the stat number */
+[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-thumbnail-outer-container {
+  max-width: 60px !important;
+  margin: 0 auto 20px auto !important;
+}
+
+[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-thumbnail {
+  padding-bottom: 100% !important;
+  border-radius: 50% !important;
+}
+
+/* Stat number (title) - large, bold, white */
+[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-title {
+  margin-top: 10px !important;
+}
+
+[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-title-link {
+  font-size: 48px !important;
+  font-weight: 800 !important;
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+  pointer-events: none !important;       /* Disable click since these are stats, not links */
+}
+
+/* Thin divider line between the stat number and description text */
+[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-metadata-container--below-title {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+  padding-bottom: 15px !important;
+  margin-bottom: 15px !important;
+  margin-left: 20% !important;
+  margin-right: 20% !important;
+}
+
+/* Description text below the divider - white, smaller */
+[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-excerpt p {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+}
+
+/* Hide metadata containers that aren't being used */
+[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-metadata-container--above-title,
+[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-metadata-container--below-content {
+  display: none !important;
+}
+
+/* Stack summary items vertically on mobile (2 columns) */
+@media (max-width: 767px) {
+  [data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-item-list {
+    flex-wrap: wrap !important;
+    gap: 20px !important;
+  }
+
+  [data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-item {
+    width: 45% !important;
+    flex: 0 0 45% !important;
+  }
+
+  [data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-title-link {
+    font-size: 36px !important;
+  }
+}
