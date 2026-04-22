@@ -1,188 +1,1032 @@
 /* ==========================================================================
-   HERO SECTION STYLES
-   Section ID: 69e09e3cc2426d72a3b2a97b
+   LYRIC — HOMEPAGE STYLES
+   One scoped block per section. Add rules inside each.
    ========================================================================== */
 
+:root {
+  --teal-dark: #005461;
+  --teal-mid: #008070;
+  --teal-light: #7ACAB7;
+  --white: #FFFFFF;
+  --white-soft: rgba(255, 255, 255, 0.85);
+  --white-line: rgba(255, 255, 255, 0.3);
+  --hero-gradient: linear-gradient(to bottom, var(--teal-dark) 0%, var(--teal-mid) 100%);
+}
 
-/* --------------------------------------------------------------------------
-   1. SECTION BACKGROUND
-   Linear gradient from dark teal (#005461) to green (#008070)
-   Covers the entire hero section as a full-bleed background
-   -------------------------------------------------------------------------- */
+
+/* ==========================================================================
+   HERO — Section ID: 69e09e3cc2426d72a3b2a97b
+
+   Block map:
+     #block-yui_3_17_2_1_1776328236739_12108 — H1 hero headline
+         ("We believe in better healthcare for everyone.")
+     #block-8ac7ea9e05837f2db4f4           — H3 subheading
+         ("The trusted intelligence behind healthcare payment accuracy.")
+     #block-0f7370d5819d960dc21c           — body paragraph
+     #block-yui_3_17_2_1_1776328236739_12791 — "Learn More" button
+     #block-yui_3_17_2_1_1776328203793_10925 — horizontal rule divider
+     #block-yui_3_17_2_1_1776328203793_11360 — Summary Block (autogrid, 4 items,
+                                               currently placeholder content)
+   ========================================================================== */
+
 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
-  background: linear-gradient(to right, #005461 0%, #008070 100%) !important;
-}
+  background: var(--hero-gradient) !important;
+  position: relative !important;
+  overflow: hidden !important;
 
-/* Remove any existing background image/color on inner wrappers */
-[data-section-id="69e09e3cc2426d72a3b2a97b"] .section-background {
-  background: transparent !important;
-}
+  .section-background,
+  .section-background > * {
+    background: var(--hero-gradient) !important;
+  }
 
+  .section-background-image,
+  .section-background-overlay {
+    opacity: 0 !important;
+  }
 
-/* --------------------------------------------------------------------------
-   2. HERO HEADING (H1)
-   "We believe in better healthcare for everyone."
-   Font: MNKY Banana Grotesk, Extrabold (800), 70px, white
-   -------------------------------------------------------------------------- */
-[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328236739_12108 h1,
-[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328236739_12108 h1 strong {
-  font-family: 'MNKY Banana Grotesk', sans-serif !important;
-  font-weight: 800 !important;           /* Extrabold */
-  font-size: 70px !important;
-  line-height: normal !important;         /* Auto line height */
-  letter-spacing: 0em !important;         /* 0% letter spacing */
-  color: #FFFFFF !important;
-}
+  /* H1 — hero headline */
+  #block-yui_3_17_2_1_1776328236739_12108 h1,
+  #block-yui_3_17_2_1_1776328236739_12108 h1 strong {
+    font-family: 'MNKY Banana Grotesk', sans-serif !important;
+    font-size: 4.375rem !important; /* 70px */
+    font-weight: 800 !important;
+    line-height: normal !important;
+    letter-spacing: 0 !important;
+  }
 
-/* Scale down the hero heading on mobile for readability */
-@media (max-width: 767px) {
-  [data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328236739_12108 h1,
-  [data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328236739_12108 h1 strong {
-    font-size: 40px !important;
+  /* H3 — hero subheading */
+  #block-8ac7ea9e05837f2db4f4 h3,
+  #block-8ac7ea9e05837f2db4f4 h3 strong {
+    font-family: 'MNKY Banana Grotesk', sans-serif !important;
+    font-size: 2.0625rem !important; /* 33px */
+    font-weight: 800 !important;
+    line-height: normal !important;
+  }
+
+  /* Body paragraph */
+  #block-0f7370d5819d960dc21c p {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1rem !important; /* 16px */
+    font-weight: 400 !important;
+  }
+
+  /* Learn More button — reduced vertical spacing */
+  #block-yui_3_17_2_1_1776328236739_12791 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Learn More button — keep text dark on hover */
+  #block-yui_3_17_2_1_1776328236739_12791 .sqs-block-button-element:hover,
+  #block-yui_3_17_2_1_1776328236739_12791 a.sqs-block-button-element:hover {
+    color: var(--teal-dark) !important;
+  }
+
+  /* Hero stats — big numbers (190m / 65% / 99% / 35+) */
+  #block-yui_3_17_2_1_1776864865938_11136 :is(h3, p, strong, span),
+  #block-a082f825d59daf49cae2          :is(h3, p, strong, span),
+  #block-e75ee00756497475a772          :is(h3, p, strong, span),
+  #block-a72fa5a4e72dfea00345          :is(h3, p, strong, span) {
+    font-family: 'MNKY Banana Grotesk', sans-serif !important;
+    font-size: clamp(2rem, 4.5vw, 3rem) !important; /* 32px → 48px */
+    font-weight: 800 !important;
+    line-height: normal !important;
+    letter-spacing: 0 !important;
+    overflow-wrap: break-word !important;
+  }
+
+  /* Hero stats — captions under each number */
+  #block-5ea15080769699813280 :is(h1, h2, h3, h4, p, strong, span),
+  #block-8f1219799a2ed2996084 :is(h1, h2, h3, h4, p, strong, span),
+  #block-b2b45c0413eb15af6d97 :is(h1, h2, h3, h4, p, strong, span),
+  #block-3029ab41fe6eaa182f66 :is(h1, h2, h3, h4, p, strong, span) {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1.25rem !important; /* 20px */
+    font-weight: 400 !important;
+    line-height: normal !important;
+    letter-spacing: 0 !important;
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    /* H1 — mobile step-down */
+    #block-yui_3_17_2_1_1776328236739_12108 h1,
+    #block-yui_3_17_2_1_1776328236739_12108 h1 strong {
+      font-size: 2.5rem !important; /* 40px */
+    }
+
+    /* H3 — mobile step-down */
+    #block-8ac7ea9e05837f2db4f4 h3,
+    #block-8ac7ea9e05837f2db4f4 h3 strong {
+      font-size: 1.5rem !important; /* 24px */
+    }
+
+    /* Stat captions — mobile step-down */
+    #block-5ea15080769699813280 :is(h1, h2, h3, h4, p, strong, span),
+    #block-8f1219799a2ed2996084 :is(h1, h2, h3, h4, p, strong, span),
+    #block-b2b45c0413eb15af6d97 :is(h1, h2, h3, h4, p, strong, span),
+    #block-3029ab41fe6eaa182f66 :is(h1, h2, h3, h4, p, strong, span) {
+      font-size: 1rem !important; /* 16px */
+    }
+
+    /* Hide horizontal rule dividers on mobile */
+    hr,
+    .sqs-block-horizontalrule {
+      display: none !important;
+    }
   }
 }
 
 
-/* --------------------------------------------------------------------------
-   3. SUBHEADING (H3)
-   "The trusted intelligence behind healthcare payment accuracy."
-   White text to sit on the gradient background
-   -------------------------------------------------------------------------- */
-[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-8ac7ea9e05837f2db4f4 h3,
-[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-8ac7ea9e05837f2db4f4 h3 strong {
-  color: #FFFFFF !important;
+/* ==========================================================================
+   WHY LYRIC EXISTS — Section ID: 69e63e83126fbf28f74a40c8
+
+   Block map:
+     #block-yui_3_17_2_1_1776695389595_14584 — H2 heading ("Why Lyric exists")
+     #block-fb77cbc0c669ad827d77            — body paragraph
+     #block-yui_3_17_2_1_1776856272387_17722 — button
+     #block-yui_3_17_2_1_1776695389595_14334 — image (Bill Miller)
+   ========================================================================== */
+
+[data-section-id="69e63e83126fbf28f74a40c8"] {
+
+  /* H2 — section heading */
+  #block-yui_3_17_2_1_1776695389595_14584 h2,
+  #block-yui_3_17_2_1_1776695389595_14584 h2 strong {
+    font-family: 'MNKY Banana Grotesk', sans-serif !important;
+    font-size: 3.125rem !important; /* 50px */
+    font-weight: 800 !important;
+    line-height: normal !important;
+    letter-spacing: 0 !important;
+  }
+
+  /* Body paragraph */
+  #block-fb77cbc0c669ad827d77 p,
+  #block-fb77cbc0c669ad827d77 p strong,
+  #block-fb77cbc0c669ad827d77 p span {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1.25rem !important; /* 20px */
+    font-weight: 400 !important;
+    line-height: normal !important;
+    letter-spacing: 0 !important;
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    #block-yui_3_17_2_1_1776695389595_14584 h2,
+    #block-yui_3_17_2_1_1776695389595_14584 h2 strong {
+      font-size: 2rem !important; /* 32px */
+    }
+    #block-fb77cbc0c669ad827d77 :is(p, strong, span) {
+      font-size: 1rem !important; /* 16px */
+    }
+  }
 }
 
 
-/* --------------------------------------------------------------------------
-   4. BODY PARAGRAPH
-   Description text below the subheading - white with slight transparency
-   -------------------------------------------------------------------------- */
-[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-0f7370d5819d960dc21c p {
-  color: rgba(255, 255, 255, 0.85) !important;
+/* ==========================================================================
+   TAGLINE — Section ID: 69e8af425391a643aa100653
+   "Accurate payments. Explainable findings. More confidence."
+
+   Block map:
+     #block-yui_3_17_2_1_1776856272387_22888 — H2 heading
+     #block-eca3bf84bcfd62a67441             — body paragraph
+   ========================================================================== */
+
+[data-section-id="69e8af425391a643aa100653"] {
+
+  /* H2 — section heading */
+  #block-yui_3_17_2_1_1776856272387_22888 h2,
+  #block-yui_3_17_2_1_1776856272387_22888 h2 strong {
+    font-family: 'MNKY Banana Grotesk', sans-serif !important;
+    font-size: 3.125rem !important; /* 50px */
+    font-weight: 800 !important;
+    line-height: normal !important;
+    letter-spacing: 0 !important;
+  }
+
+  /* Body paragraph */
+  #block-eca3bf84bcfd62a67441 p,
+  #block-eca3bf84bcfd62a67441 p strong,
+  #block-eca3bf84bcfd62a67441 p span {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1.25rem !important; /* 20px */
+    font-weight: 400 !important;
+    line-height: normal !important;
+    letter-spacing: 0 !important;
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    #block-yui_3_17_2_1_1776856272387_22888 h2,
+    #block-yui_3_17_2_1_1776856272387_22888 h2 strong {
+      font-size: 2rem !important; /* 32px */
+    }
+    #block-eca3bf84bcfd62a67441 :is(p, strong, span) {
+      font-size: 1rem !important; /* 16px */
+    }
+  }
 }
 
 
-/* --------------------------------------------------------------------------
-   5. "LEARN MORE" BUTTON
-   White outline button style to contrast against the teal gradient
-   -------------------------------------------------------------------------- */
-[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328236739_12791 .sqs-block-button-element {
-  background-color: transparent !important;
-  border: 2px solid #FFFFFF !important;
-  color: #FFFFFF !important;
+/* ==========================================================================
+   PROOF BAR — Section ID: 69e8afbfef8ec45f9ce23921
+   Intro line + three concept columns (Accurate / Explainable / Trusted)
+
+   Block map:
+     #block-09d6bfbb3514b72b504d — H2 intro ("Accurate payments. ...")
+     #block-79ccced73c161be2b773 — P intro ("No one has processed more claims...")
+     #block-ec20108b69a0d8d87fcd — H2 "Accurate"
+     #block-aa70b591c8a0e909c477 — P (We believe in a single standard...)
+     #block-b8708677ad55d80adc64 — H2 "Explainable"
+     #block-ba971b79e4a8c7eac9c9 — P (We believe in transparency...)
+     #block-ae44a3cd8c6efc0afc93 — H2 "Trusted"
+     #block-13886badbffad8cc1060 — P (We believe you earn trust...)
+   ========================================================================== */
+
+[data-section-id="69e8afbfef8ec45f9ce23921"] {
+
+  /* All H2 headings — 50px extrabold */
+  #block-09d6bfbb3514b72b504d h2, #block-09d6bfbb3514b72b504d h2 strong,
+  #block-ec20108b69a0d8d87fcd h2, #block-ec20108b69a0d8d87fcd h2 strong,
+  #block-b8708677ad55d80adc64 h2, #block-b8708677ad55d80adc64 h2 strong,
+  #block-ae44a3cd8c6efc0afc93 h2, #block-ae44a3cd8c6efc0afc93 h2 strong {
+    font-family: 'MNKY Banana Grotesk', sans-serif !important;
+    font-size: 3.125rem !important; /* 50px */
+    font-weight: 800 !important;
+    line-height: normal !important;
+    letter-spacing: 0 !important;
+  }
+
+  /* All body paragraphs — 20px Inter regular */
+  #block-79ccced73c161be2b773 :is(p, strong, span),
+  #block-aa70b591c8a0e909c477 :is(p, strong, span),
+  #block-ba971b79e4a8c7eac9c9 :is(p, strong, span),
+  #block-13886badbffad8cc1060 :is(p, strong, span) {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1.25rem !important; /* 20px */
+    font-weight: 400 !important;
+    line-height: normal !important;
+    letter-spacing: 0 !important;
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    #block-09d6bfbb3514b72b504d h2, #block-09d6bfbb3514b72b504d h2 strong,
+    #block-ec20108b69a0d8d87fcd h2, #block-ec20108b69a0d8d87fcd h2 strong,
+    #block-b8708677ad55d80adc64 h2, #block-b8708677ad55d80adc64 h2 strong,
+    #block-ae44a3cd8c6efc0afc93 h2, #block-ae44a3cd8c6efc0afc93 h2 strong {
+      font-size: 2rem !important; /* 32px */
+    }
+    #block-79ccced73c161be2b773 :is(p, strong, span),
+    #block-aa70b591c8a0e909c477 :is(p, strong, span),
+    #block-ba971b79e4a8c7eac9c9 :is(p, strong, span),
+    #block-13886badbffad8cc1060 :is(p, strong, span) {
+      font-size: 1rem !important; /* 16px */
+    }
+
+    /* Hide any hr dividers on mobile */
+    hr,
+    .sqs-block-horizontalrule {
+      display: none !important;
+    }
+  }
 }
 
-[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328236739_12791 .sqs-block-button-element:hover {
-  background-color: #FFFFFF !important;
+
+/* ==========================================================================
+   HOW WE USE AI — Section ID: 69e8a392ef8ec45f9cde5abc
+   "The intelligence is in how it's built."
+   ========================================================================== */
+
+[data-section-id="69e8a392ef8ec45f9cde5abc"] {
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    /* Hide horizontal rule dividers */
+    hr,
+    .sqs-block-horizontalrule {
+      display: none !important;
+    }
+  }
+}
+
+
+/* ==========================================================================
+   IMAGE BANNER — Section ID: 69e8b1aeef8ec45f9ce2ed07
+   Full-bleed office image
+   ========================================================================== */
+
+[data-section-id="69e8b1aeef8ec45f9ce2ed07"] {
+
+  /* Mobile */
+  @media (max-width: 767px) {
+
+  }
+}
+
+
+/* ==========================================================================
+   NEWS & MEDIA — Section ID: 69e09e260b9a7c1143d68dda
+   "See Lyric in the news, driving innovation and excitement."
+
+   Block map:
+     #block-6698767737f1eef3da3f — heading block (eyebrow + H2)
+     #block-32a56de911a08243d291 — Summary Block (News feed)
+     #block-d7f7dd117f77835c731a — Summary Block (Leadership Insights)
+     #block-24532b1a81f5900282bc — Summary Block (White Papers)
+   ========================================================================== */
+
+[data-section-id="69e09e260b9a7c1143d68dda"] {
+
+  /* Hide "News and Media" eyebrow label above H2 */
+  #block-6698767737f1eef3da3f p.sqsrte-small {
+    display: none !important;
+  }
+
+  /* News cards — transparent bg + teal-dark border + equal heights */
+  #block-32a56de911a08243d291 .summary-item,
+  #block-d7f7dd117f77835c731a .summary-item,
+  #block-24532b1a81f5900282bc .summary-item {
+    background: transparent !important;
+    border: 1px solid var(--teal-dark) !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+  }
+
+  /* Card body fills remaining height so rows align */
+  #block-32a56de911a08243d291 .summary-item .summary-content,
+  #block-d7f7dd117f77835c731a .summary-item .summary-content,
+  #block-24532b1a81f5900282bc .summary-item .summary-content {
+    flex: 1 1 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* Row container — stretch all items to tallest */
+  #block-32a56de911a08243d291 .summary-item-list,
+  #block-d7f7dd117f77835c731a .summary-item-list,
+  #block-24532b1a81f5900282bc .summary-item-list {
+    align-items: stretch !important;
+  }
+
+  /* Card titles — 22px */
+  #block-32a56de911a08243d291 .summary-title,
+  #block-32a56de911a08243d291 .summary-title a,
+  #block-d7f7dd117f77835c731a .summary-title,
+  #block-d7f7dd117f77835c731a .summary-title a,
+  #block-24532b1a81f5900282bc .summary-title,
+  #block-24532b1a81f5900282bc .summary-title a {
+    font-size: 1.375rem !important; /* 22px */
+  }
+
+  #block-32a56de911a08243d291 .summary-item *,
+  #block-d7f7dd117f77835c731a .summary-item *,
+  #block-24532b1a81f5900282bc .summary-item * {
+    background-color: transparent !important;
+  }
+
+  /* Category pills — teal-dark background, white text */
+  #block-32a56de911a08243d291 .summary-item .summary-metadata-item--cats,
+  #block-32a56de911a08243d291 .summary-item .summary-metadata-item--cats a,
+  #block-d7f7dd117f77835c731a .summary-item .summary-metadata-item--cats,
+  #block-d7f7dd117f77835c731a .summary-item .summary-metadata-item--cats a,
+  #block-24532b1a81f5900282bc .summary-item .summary-metadata-item--cats,
+  #block-24532b1a81f5900282bc .summary-item .summary-metadata-item--cats a {
+    background-color: var(--teal-dark) !important;
+    color: var(--white) !important;
+  }
+
+  #block-32a56de911a08243d291 .summary-item .summary-metadata-item--cats,
+  #block-d7f7dd117f77835c731a .summary-item .summary-metadata-item--cats,
+  #block-24532b1a81f5900282bc .summary-item .summary-metadata-item--cats {
+    display: inline-block !important;
+    padding: 4px 12px !important;
+    border-radius: 999px !important;
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+
+  }
+}
+
+
+/* ==========================================================================
+   CTA — Section ID: 69e09e260b9a7c1143d68ddd
+   "Ready to unlock value and payment accuracy?"
+   ========================================================================== */
+
+[data-section-id="69e09e260b9a7c1143d68ddd"],
+[data-section-id="69e09e260b9a7c1143d68ddd"] .section-border,
+[data-section-id="69e09e260b9a7c1143d68ddd"] .section-background {
+  background-color: var(--teal-light) !important;
+  background-image: none !important;
+}
+
+[data-section-id="69e09e260b9a7c1143d68ddd"] {
+
+  .section-background-image,
+  .section-background-overlay,
+  .section-background img {
+    opacity: 0 !important;
+    display: none !important;
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+
+  }
+}
+
+
+/* ==========================================================================
+   FOOTER MENU — Section ID: 6657604ce0a22937b8d04762
+   White logo + product / nav link columns
+   ========================================================================== */
+
+[data-section-id="6657604ce0a22937b8d04762"] {
+
+  /* Mobile */
+  @media (max-width: 767px) {
+
+  }
+}
+
+
+/* ==========================================================================
+   LYRIC 42 — Section ID: 69e8c799d278121d8d40dc76
+   "Lyric 42" product spotlight — H2 + body paragraph + right-pinned image
+
+   Block map:
+     #block-a61a3c66d5baeefec41c             — H2 "Lyric 42"
+     #block-b8fed555b51213c22798             — body paragraph
+     #block-yui_3_17_2_1_1776863276072_11431 — image (Mask group)
+   ========================================================================== */
+
+[data-section-id="69e8c799d278121d8d40dc76"],
+[data-section-id="69e8c799d278121d8d40dc76"] .section-border,
+[data-section-id="69e8c799d278121d8d40dc76"] .section-background {
+  background-color: var(--teal-light) !important;
+  background-image: none !important;
+}
+
+[data-section-id="69e8c799d278121d8d40dc76"] {
+  position: relative !important;
+  overflow: hidden !important;
+
+  .section-background-image,
+  .section-background-overlay {
+    opacity: 0 !important;
+  }
+
+  /* H2 — section heading */
+  #block-a61a3c66d5baeefec41c h2,
+  #block-a61a3c66d5baeefec41c h2 strong {
+    font-family: 'MNKY Banana Grotesk', sans-serif !important;
+    font-size: 3.125rem !important; /* 50px */
+    font-weight: 800 !important;
+    line-height: normal !important;
+    letter-spacing: 0 !important;
+  }
+
+  /* Image — pinned flush to right edge, 50vw wide, full section height,
+     showing the LEFT half of the source image via object-position */
+  .fe-block-yui_3_17_2_1_1776863276072_11431 {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 50vw !important;
+    max-width: none !important;
+    height: 100% !important;
+    z-index: 1 !important;
+  }
+
+  #block-yui_3_17_2_1_1776863276072_11431,
+  #block-yui_3_17_2_1_1776863276072_11431 .sqs-block-content,
+  #block-yui_3_17_2_1_1776863276072_11431 .fluid-image-component-root,
+  #block-yui_3_17_2_1_1776863276072_11431 .fluid-image-animation-wrapper,
+  #block-yui_3_17_2_1_1776863276072_11431 .fluid-image-container,
+  #block-yui_3_17_2_1_1776863276072_11431 .js-content-mode-element-wrapper,
+  #block-yui_3_17_2_1_1776863276072_11431 .js-content-mode-element {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+  }
+
+  #block-yui_3_17_2_1_1776863276072_11431 {
+    --image-component-object-fit: cover !important;
+    --image-component-container-width: 100% !important;
+    --image-component-container-height: 100% !important;
+  }
+
+  #block-yui_3_17_2_1_1776863276072_11431 img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: left center !important;
+  }
+
+  /* Mobile — stack image below content */
+  @media (max-width: 767px) {
+    .fe-block-yui_3_17_2_1_1776863276072_11431 {
+      position: static !important;
+      width: 100% !important;
+      height: auto !important;
+    }
+    #block-yui_3_17_2_1_1776863276072_11431 img {
+      height: auto !important;
+      object-position: center !important;
+    }
+    #block-a61a3c66d5baeefec41c h2,
+    #block-a61a3c66d5baeefec41c h2 strong {
+      font-size: 2rem !important; /* 32px */
+    }
+    #block-b8fed555b51213c22798 :is(p, strong, span) {
+      font-size: 1rem !important; /* 16px */
+    }
+  }
+}
+
+
+/* ==========================================================================
+   OUR SOLUTIONS — Section ID: 666aedda921ca01d6c442c7e
+   "Our Solutions" header + Lyric42 Platform + module descriptions
+   (Pre-Pay Editing, Diagnostics, Concept Libraries, Coordination of Benefits,
+    KnowledgePacks, Replay, Replay COB, Virtuoso, EDP)
+   ========================================================================== */
+
+[data-section-id="666aedda921ca01d6c442c7e"] {
+
+  /* Mobile */
+  @media (max-width: 767px) {
+
+  }
+}
+
+
+/* ==========================================================================
+   LEADERSHIP & IN THE NEWS — Section ID: 666af531a6b8672071aa1192
+   Teaser cards for Leadership Insights and In the News
+   ========================================================================== */
+
+[data-section-id="666af531a6b8672071aa1192"] {
+
+  /* Mobile */
+  @media (max-width: 767px) {
+
+  }
+}
+
+
+/* ==========================================================================
+   WHO WE ARE — Section ID: 6720f76bd6638820f6880f0d
+   Careers / Leadership / Board of Directors teasers
+   ========================================================================== */
+
+[data-section-id="6720f76bd6638820f6880f0d"] {
+
+  /* Mobile */
+  @media (max-width: 767px) {
+
+  }
+}
+
+
+/* ##########################################################################
+   CAREERS PAGE
+   Scoped section blocks for the careers page. Sections shared with the
+   homepage (footer, Our Solutions, Leadership, Who We Are) inherit their
+   styles from above — no duplication needed here.
+   ########################################################################## */
+
+
+/* All headings on careers-page sections use teal-dark */
+:is(
+  [data-section-id="69e902e00701ed0ac1cb8154"],
+  [data-section-id="69e90210d49cfe289df15348"],
+  [data-section-id="69e90210d49cfe289df1534b"],
+  [data-section-id="69e90210d49cfe289df15351"],
+  [data-section-id="69e904499dbdcb3b40f87abf"],
+  [data-section-id="69e906cc9dbdcb3b40f9a9a1"],
+  [data-section-id="69e90210d49cfe289df15357"],
+  [data-section-id="69e904e5d857433cc0dc6887"],
+  [data-section-id="69e90210d49cfe289df1535d"]
+) :is(h1, h2, h3, h4, h5, h6),
+:is(
+  [data-section-id="69e902e00701ed0ac1cb8154"],
+  [data-section-id="69e90210d49cfe289df15348"],
+  [data-section-id="69e90210d49cfe289df1534b"],
+  [data-section-id="69e90210d49cfe289df15351"],
+  [data-section-id="69e904499dbdcb3b40f87abf"],
+  [data-section-id="69e906cc9dbdcb3b40f9a9a1"],
+  [data-section-id="69e90210d49cfe289df15357"],
+  [data-section-id="69e904e5d857433cc0dc6887"],
+  [data-section-id="69e90210d49cfe289df1535d"]
+) :is(h1, h2, h3, h4, h5, h6) :is(strong, em, span) {
+  color: var(--teal-dark) !important;
+}
+
+
+/* ==========================================================================
+   CAREERS — HERO — Section ID: 69e902e00701ed0ac1cb8154
+   "Come build better healthcare"
+
+   Block map:
+     #block-yui_3_17_2_1_1776878137813_7526 — H1 "Come build better healthcare"
+     #block-yui_3_17_2_1_1776878137813_7797 — body paragraph
+     #block-bd63645a4e0e98b8a30c             — image
+     #block-yui_3_17_2_1_1776878137813_8111 — image
+   ========================================================================== */
+
+[data-section-id="69e902e00701ed0ac1cb8154"],
+[data-section-id="69e902e00701ed0ac1cb8154"] .section-border,
+[data-section-id="69e902e00701ed0ac1cb8154"] .section-background {
+  background: linear-gradient(to bottom, #EDF5F3 0%, #7AC8B5 100%) !important;
+  background-image: linear-gradient(to bottom, #EDF5F3 0%, #7AC8B5 100%) !important;
+}
+
+[data-section-id="69e902e00701ed0ac1cb8154"] {
+
+  .section-background-image,
+  .section-background-overlay {
+    opacity: 0 !important;
+  }
+
+  /* H1 — hero headline */
+  #block-yui_3_17_2_1_1776878137813_7526 h1,
+  #block-yui_3_17_2_1_1776878137813_7526 h1 strong {
+    font-family: 'MNKY Banana Grotesk', sans-serif !important;
+    font-size: 4.375rem !important; /* 70px */
+    font-weight: 800 !important;
+    line-height: 0.5 !important;
+    letter-spacing: 0 !important;
+  }
+
+  /* Body paragraph */
+  #block-yui_3_17_2_1_1776878137813_7797 :is(p, strong, span) {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1.25rem !important; /* 20px */
+    font-weight: 400 !important;
+    line-height: normal !important;
+    letter-spacing: 0 !important;
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    #block-yui_3_17_2_1_1776878137813_7526 h1,
+    #block-yui_3_17_2_1_1776878137813_7526 h1 strong {
+      font-size: 2.5rem !important; /* 40px */
+    }
+    #block-yui_3_17_2_1_1776878137813_7797 :is(p, strong, span) {
+      font-size: 1rem !important; /* 16px */
+    }
+  }
+}
+
+
+/* ==========================================================================
+   CAREERS — COME WORK WITH US — Section ID: 69e90210d49cfe289df15348
+   ========================================================================== */
+
+[data-section-id="69e90210d49cfe289df15348"] {
+
+  /* Mobile */
+  @media (max-width: 767px) {
+
+  }
+}
+
+
+/* ==========================================================================
+   CAREERS — JOIN OUR TALENT COMMUNITY — Section ID: 69e90210d49cfe289df1534b
+   ========================================================================== */
+
+[data-section-id="69e90210d49cfe289df1534b"] {
+
+  /* Mobile */
+  @media (max-width: 767px) {
+
+  }
+}
+
+
+/* ==========================================================================
+   CAREERS — BENEFITS — Section ID: 69e90210d49cfe289df15351
+   "Supporting you beyond the 9-5" — Health / PTO / Financial benefits
+   ========================================================================== */
+
+[data-section-id="69e90210d49cfe289df15351"] {
+
+  /* Hide "Benefits" eyebrow label above H2 */
+  #block-2dfda079b00a3ae14e36 p.sqsrte-small {
+    display: none !important;
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+
+  }
+}
+
+
+/* ==========================================================================
+   CAREERS — EOE STATEMENT — Section ID: 69e904499dbdcb3b40f87abf
+   Equal Opportunity Employer statement
+   ========================================================================== */
+
+[data-section-id="69e904499dbdcb3b40f87abf"] {
+
+  /* Mobile */
+  @media (max-width: 767px) {
+
+  }
+}
+
+
+/* ==========================================================================
+   CAREERS — COME THRIVE AT LYRIC — Section ID: 69e906cc9dbdcb3b40f9a9a1
+   6-column grid of values (Teamwork / ...), each with H3 + paragraph.
+   ========================================================================== */
+
+[data-section-id="69e906cc9dbdcb3b40f9a9a1"] {
+
+  /* Headings white (override the careers-wide teal-dark rule) */
+  :is(h1, h2, h3, h4, h5, h6),
+  :is(h1, h2, h3, h4, h5, h6) :is(strong, em, span) {
+    color: var(--white) !important;
+  }
+
+  /* White divider lines above and below each value heading */
+  .sqs-html-content h3::before,
+  .sqs-html-content h3::after {
+    content: "" !important;
+    display: block !important;
+    width: 40px !important;
+    height: 1px !important;
+    background: var(--white) !important;
+  }
+
+  .sqs-html-content h3::before {
+    margin: 0 auto 24px !important;
+  }
+
+  .sqs-html-content h3::after {
+    margin: 24px auto 0 !important;
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+
+  }
+}
+
+
+/* ==========================================================================
+   CAREERS — AWARDS — Section ID: 69e90210d49cfe289df15357
+   CandE Award Winner Badge 2025
+   ========================================================================== */
+
+[data-section-id="69e90210d49cfe289df15357"] {
+
+  /* Mobile */
+  @media (max-width: 767px) {
+
+  }
+}
+
+
+/* ==========================================================================
+   CAREERS — HOW HIRING WORKS — Section ID: 69e904e5d857433cc0dc6887
+   "How hiring works at Lyric" — accordion of hiring stages
+
+   Block map:
+     #block-9a781cf043ade32d5e14 — Squarespace accordion block (5+ items)
+   ========================================================================== */
+
+[data-section-id="69e904e5d857433cc0dc6887"] {
+
+  /* Accordion — generous padding, bold question typography,
+     arrow rotates 180° when an item is open. */
+  #block-9a781cf043ade32d5e14 {
+
+    .accordion-item__click-target {
+      padding-top: 32px !important;
+      padding-bottom: 32px !important;
+    }
+
+    .accordion-item__title {
+      font-family: 'MNKY Banana Grotesk', sans-serif !important;
+      font-size: 1.5rem !important; /* 24px */
+      font-weight: 800 !important;
+      line-height: normal !important;
+      letter-spacing: 0 !important;
+    }
+
+    /* Replace the default plus icon with a down arrow */
+    .accordion-icon-container .plus,
+    .accordion-icon-container svg {
+      display: none !important;
+    }
+
+    .accordion-icon-container {
+      width: auto !important;
+      height: auto !important;
+      background: transparent !important;
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      transition: transform 0.25s ease !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    .accordion-icon-container::after {
+      content: "↓";
+      font-family: Arial, 'Helvetica Neue', sans-serif;
+      font-size: 1.5rem;
+      line-height: 1;
+      color: currentColor;
+    }
+
+    .accordion-item__click-target[aria-expanded="true"] .accordion-icon-container {
+      transform: rotate(180deg) !important;
+    }
+
+    /* Remove hover / focus outline border on items */
+    .accordion-item,
+    .accordion-item:hover,
+    .accordion-item:focus,
+    .accordion-item:focus-within,
+    .accordion-item__click-target,
+    .accordion-item__click-target:hover,
+    .accordion-item__click-target:focus,
+    .accordion-item__click-target:focus-visible,
+    .accordion-item__click-target:active {
+      outline: none !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    #block-9a781cf043ade32d5e14 .accordion-item__title {
+      font-size: 1.5rem !important; /* 24px */
+    }
+    #block-9a781cf043ade32d5e14 .accordion-item__click-target {
+      padding-top: 24px !important;
+      padding-bottom: 24px !important;
+    }
+  }
+}
+
+
+/* ==========================================================================
+   CAREERS — SEE OPEN ROLES — Section ID: 69e90210d49cfe289df1535d
+   ========================================================================== */
+
+[data-section-id="69e90210d49cfe289df1535d"],
+[data-section-id="69e90210d49cfe289df1535d"] .section-border,
+[data-section-id="69e90210d49cfe289df1535d"] .section-background {
+  background-color: #7AC8B5 !important;
+  background-image: none !important;
+}
+
+[data-section-id="69e90210d49cfe289df1535d"] {
+
+  .section-background-image,
+  .section-background-overlay {
+    opacity: 0 !important;
+  }
+
+  /* Headings white (override the careers-wide teal-dark rule) */
+  :is(h1, h2, h3, h4, h5, h6),
+  :is(h1, h2, h3, h4, h5, h6) :is(strong, em, span) {
+    color: var(--white) !important;
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+
+  }
+}
+
+
+/* ##########################################################################
+   LEADERSHIP PAGE
+   Migrated from the previous site's leadership page. IDs updated to match
+   the current page's Squarespace section / block IDs.
+   ########################################################################## */
+
+
+/* ==========================================================================
+   LEADERSHIP — BANNER — Section ID: 69e914650701ed0ac1d35dae
+   "Meet the Lyric…" — top banner with gradient + top-right image
+   ========================================================================== */
+
+[data-section-id="69e914650701ed0ac1d35dae"] .section-background {
+  background: linear-gradient(135deg, #005461 0%, #008070 100%) !important;
+}
+
+[data-section-id="69e914650701ed0ac1d35dae"] h1 {
+  line-height: 0.9 !important;
+  margin: 0 !important;
+}
+
+[data-section-id="69e914650701ed0ac1d35dae"] .sqsrte-large {
+  line-height: 1.4 !important;
+}
+
+/* Top-right image */
+[data-section-id="69e914650701ed0ac1d35dae"] .fe-block-a136c92b58e664e11926 {
+  z-index: 10 !important;
+}
+
+@media (min-width: 768px) {
+  [data-section-id="69e914650701ed0ac1d35dae"] .fe-block-a136c92b58e664e11926 {
+    transform: translateY(-40px);
+  }
+}
+
+@media (max-width: 767px) {
+  [data-section-id="69e914650701ed0ac1d35dae"] .fe-block-a136c92b58e664e11926 {
+    display: none !important;
+  }
+}
+
+
+/* ==========================================================================
+   LEADERSHIP — TEAM GRID — Section ID: 69e914650701ed0ac1d35db2
+   Card grid with teal-hover overlay + injected "Read Bio" hover button
+   (button is added by the companion JS in page-level Code Injection).
+   ========================================================================== */
+
+.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item-media {
+  margin: 0 !important;
+  width: 100% !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #005461;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item:hover .list-item-media::after {
+  opacity: 0.85;
+}
+
+.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item-media-inner::after,
+.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item-media-inner::before {
+  display: none !important;
+}
+
+.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item-content {
+  padding: 12px 16px 16px 16px;
+}
+
+.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item-content__title,
+.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item-content__description,
+.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item-content__description * {
   color: #005461 !important;
 }
 
-
-/* --------------------------------------------------------------------------
-   6. HORIZONTAL RULE / DIVIDER
-   Thin white line separating hero content from the stats grid
-   -------------------------------------------------------------------------- */
-[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_10925 hr {
-  border: none !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
-}
-
-
-/* --------------------------------------------------------------------------
-   7. SUMMARY STATS GRID (4 items)
-   Block: block-yui_3_17_2_1_1776328203793_11360
-   Layout: 4 equal columns with icon, large stat number, divider, description
-   All text white on the teal gradient background
-   -------------------------------------------------------------------------- */
-
-/* Hide the "Featured" header text - not needed for stats display */
-[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-heading {
-  display: none !important;
-}
-
-/* Hide the carousel pager arrows - stats are static, not a slider */
-[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-carousel-pager {
-  display: none !important;
-}
-
-/* Force 4-column grid layout for the summary items */
-[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-item-list {
-  display: flex !important;
-  flex-wrap: nowrap !important;
-  justify-content: space-between !important;
-  gap: 30px !important;
+.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item-content__title {
   margin-bottom: 0 !important;
 }
 
-/* Each stat item takes equal width, centered text */
-[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-item {
-  width: 25% !important;
-  margin-right: 0 !important;
-  margin-bottom: 0 !important;
-  text-align: center !important;
-  flex: 1 !important;
+.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item-content__description {
+  margin-top: 4px !important;
 }
 
-/* Thumbnail/icon styling - smaller circular icons above the stat number */
-[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-thumbnail-outer-container {
-  max-width: 60px !important;
-  margin: 0 auto 20px auto !important;
-}
-
-[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-thumbnail {
-  padding-bottom: 100% !important;
-  border-radius: 50% !important;
-}
-
-/* Stat number (title) - large, bold, white */
-[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-title {
-  margin-top: 10px !important;
-}
-
-[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-title-link {
-  font-size: 48px !important;
-  font-weight: 800 !important;
-  color: #FFFFFF !important;
-  text-decoration: none !important;
-  pointer-events: none !important;       /* Disable click since these are stats, not links */
-}
-
-/* Thin divider line between the stat number and description text */
-[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-metadata-container--below-title {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
-  padding-bottom: 15px !important;
-  margin-bottom: 15px !important;
-  margin-left: 20% !important;
-  margin-right: 20% !important;
-}
-
-/* Description text below the divider - white, smaller */
-[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-excerpt p {
-  color: rgba(255, 255, 255, 0.85) !important;
-  font-size: 14px !important;
-  line-height: 1.5 !important;
-}
-
-/* Hide metadata containers that aren't being used */
-[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-metadata-container--above-title,
-[data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-metadata-container--below-content {
+.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item-content__button-wrapper {
   display: none !important;
 }
 
-/* Stack summary items vertically on mobile (2 columns) */
+.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item {
+  position: relative;
+}
+
+
+/* ==========================================================================
+   GLOBAL MOBILE RULES
+   Apply to every section except where explicitly excluded.
+   ========================================================================== */
+
 @media (max-width: 767px) {
-  [data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-item-list {
-    flex-wrap: wrap !important;
-    gap: 20px !important;
-  }
-
-  [data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-item {
-    width: 45% !important;
-    flex: 0 0 45% !important;
-  }
-
-  [data-section-id="69e09e3cc2426d72a3b2a97b"] #block-yui_3_17_2_1_1776328203793_11360 .summary-title-link {
-    font-size: 36px !important;
+  /* Center all text content on mobile — except the Hero (keep left-aligned) */
+  section[data-section-id]:not([data-section-id="69e09e3cc2426d72a3b2a97b"]) .sqs-html-content,
+  section[data-section-id]:not([data-section-id="69e09e3cc2426d72a3b2a97b"]) .sqs-html-content :is(h1, h2, h3, h4, h5, h6, p, li) {
+    text-align: center !important;
   }
 }
