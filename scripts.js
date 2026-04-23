@@ -7,17 +7,35 @@
 
 
 /* --------------------------------------------------------------------------
-   LEADERSHIP — TEAM GRID
-   Section: 69e914650701ed0ac1d35db2
+   LEADERSHIP — TEAM / BOARD GRIDS
+   Sections:
+     69e914650701ed0ac1d35db2 — main leadership page
+     69e9c86cbcadb033d1aa85a0 — member detail page (Board Members grid)
    Wraps each card in an invisible overlay link and injects a "Read Bio"
    hover button over the card image. Matches the CSS hover-overlay treatment.
    -------------------------------------------------------------------------- */
 
 (function () {
-  const SECTION_ID = '69e914650701ed0ac1d35db2';
+  const SECTION_IDS = [
+    '69e914650701ed0ac1d35db2',
+    '69e9c86cbcadb033d1aa85a0',
+    '69e9d1675857fb4682c045dc',
+    '69e9ddab092ff56fc51b5459',
+    '69e9e060ef8ec45f9c564d93',
+    '69e9e1ee9a2cee6840e5f00e',
+    '69e9e48725a62208b4d590fc',
+    '69e9e55fd857433cc028dcd6',
+    '69e9dce099ffba0c330640c8',
+    '69e9e9841351db6792e17611',
+    '69e9e992c2072a18995aa4ed',
+    '69e9e9a2d857433cc02a310a',
+  ];
 
   function init() {
-    const cards = document.querySelectorAll('[data-section-id="' + SECTION_ID + '"] .list-item');
+    const selector = SECTION_IDS
+      .map(function (id) { return '[data-section-id="' + id + '"] .list-item'; })
+      .join(',');
+    const cards = document.querySelectorAll(selector);
     if (!cards.length) return;
 
     cards.forEach(function (card) {
@@ -63,6 +81,84 @@
       card.addEventListener('mouseenter', function () { hoverBtn.style.opacity = '1'; });
       card.addEventListener('mouseleave', function () { hoverBtn.style.opacity = '0'; });
     });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
+
+/* --------------------------------------------------------------------------
+   HOMEPAGE HERO — STAT COUNTERS
+   Section: 69e09e3cc2426d72a3b2a97b
+   Animates the four hero stats (190m / 65% / 99% / 35+) from 0 up to their
+   target value when the hero scrolls into view. Preserves any trailing
+   suffix (m, %, +). Runs once per block.
+   -------------------------------------------------------------------------- */
+
+(function () {
+  const STAT_BLOCK_IDS = [
+    'block-yui_3_17_2_1_1776864865938_11136', // 190m
+    'block-a082f825d59daf49cae2',             // 65%
+    'block-e75ee00756497475a772',             // 99%
+    'block-a72fa5a4e72dfea00345',             // 35+
+  ];
+  const DURATION = 1600; // ms
+
+  function animateStat(el) {
+    if (el.dataset.lyricCounted === '1') return;
+    el.dataset.lyricCounted = '1';
+
+    const raw = (el.textContent || '').trim();
+    const match = raw.match(/^([0-9]+(?:\.[0-9]+)?)(.*)$/);
+    if (!match) return;
+
+    const finalStr = match[1];
+    const suffix = match[2];
+    const target = parseFloat(finalStr);
+    const decimals = finalStr.includes('.') ? finalStr.split('.')[1].length : 0;
+
+    const start = performance.now();
+    function frame(now) {
+      const progress = Math.min((now - start) / DURATION, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      const value = target * eased;
+      el.textContent = value.toFixed(decimals) + suffix;
+      if (progress < 1) {
+        requestAnimationFrame(frame);
+      } else {
+        el.textContent = finalStr + suffix; // snap to exact final value
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function init() {
+    const targets = [];
+    STAT_BLOCK_IDS.forEach(function (id) {
+      const block = document.getElementById(id);
+      if (!block) return;
+      const strong = block.querySelector('strong') || block.querySelector('h1, h2, h3, h4, p');
+      if (strong) targets.push(strong);
+    });
+    if (!targets.length) return;
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animateStat(entry.target);
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      targets.forEach(function (t) { io.observe(t); });
+    } else {
+      targets.forEach(animateStat);
+    }
   }
 
   if (document.readyState === 'loading') {

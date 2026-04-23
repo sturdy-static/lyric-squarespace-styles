@@ -13,6 +13,27 @@
   --hero-gradient: linear-gradient(to bottom, var(--teal-dark) 0%, var(--teal-mid) 100%);
 }
 
+/* Hero image fade-in (opacity only, no upward slide) */
+@keyframes lyric-hero-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Hero image floating-parallax loops — two staggered paths so
+   the nurse photo and the line graphic drift independently. */
+@keyframes lyric-hero-float-a {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, -12px, 0); }
+}
+@keyframes lyric-hero-float-b {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, 10px, 0); }
+}
+@keyframes lyric-hero-float-c {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, -8px, 0); }
+}
+
 
 /* ==========================================================================
    HERO — Section ID: 69e09e3cc2426d72a3b2a97b
@@ -107,8 +128,46 @@
     letter-spacing: 0 !important;
   }
 
+  /* Right-side hero images (nurse + flowing line):
+     - replace Squarespace's slide-up fade with an opacity-only fade-in
+     - then loop a gentle floating parallax on the inner container
+     - hidden on mobile below */
+  #block-yui_3_17_2_1_1776942559033_13324 {
+    animation: lyric-hero-fade 1.2s ease-out 0.1s both !important;
+    transition: none !important;
+  }
+  #block-db981ef2ff9d18ccd965 {
+    animation: lyric-hero-fade 1.4s ease-out 0.5s both !important;
+    transition: none !important;
+  }
+  #block-yui_3_17_2_1_1776942559033_13324 .fluid-image-animation-wrapper,
+  #block-db981ef2ff9d18ccd965 .fluid-image-animation-wrapper,
+  #block-yui_3_17_2_1_1776942559033_13324 img,
+  #block-db981ef2ff9d18ccd965 img {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  #block-yui_3_17_2_1_1776942559033_13324 .fluid-image-container {
+    animation: lyric-hero-float-a 7s ease-in-out infinite !important;
+    will-change: transform;
+  }
+  #block-db981ef2ff9d18ccd965 .fluid-image-container {
+    animation: lyric-hero-float-b 9s ease-in-out infinite !important;
+    animation-delay: -2s !important;
+    will-change: transform;
+  }
+
   /* Mobile */
   @media (max-width: 767px) {
+    /* Hide the two right-side hero images on mobile */
+    #block-yui_3_17_2_1_1776942559033_13324,
+    #block-db981ef2ff9d18ccd965 {
+      display: none !important;
+    }
+
     /* H1 — mobile step-down */
     #block-yui_3_17_2_1_1776328236739_12108 h1,
     #block-yui_3_17_2_1_1776328236739_12108 h1 strong {
@@ -246,6 +305,11 @@
 
 [data-section-id="69e8afbfef8ec45f9ce23921"] {
 
+  /* Stack this section above the "How we use AI" section below it,
+     so the tucked-up images from that section sit behind. */
+  position: relative !important;
+  z-index: 2 !important;
+
   /* All H2 headings — 50px extrabold */
   #block-09d6bfbb3514b72b504d h2, #block-09d6bfbb3514b72b504d h2 strong,
   #block-ec20108b69a0d8d87fcd h2, #block-ec20108b69a0d8d87fcd h2 strong,
@@ -300,6 +364,90 @@
    ========================================================================== */
 
 [data-section-id="69e8a392ef8ec45f9cde5abc"] {
+
+  /* z-index:1 so the Accurate section (z-index:2) sits on top
+     of the images that translate up out of this section. */
+  position: relative !important;
+  z-index: 1 !important;
+  overflow: visible !important;
+
+  /* Top two images (nurse photo + line graphic) —
+     staggered fade-in on load, then gentle floating loop.
+     Starting position nudged up -5px so they tuck behind
+     the section above. */
+  #block-yui_3_17_2_1_1776853087754_34556,
+  #block-cdcb86dcac6f27b37b8c {
+    transform: translateY(-5px) !important;
+    transition: none !important;
+  }
+  #block-yui_3_17_2_1_1776853087754_34556 {
+    animation: lyric-hero-fade 1.2s ease-out 0.1s both !important;
+  }
+  #block-cdcb86dcac6f27b37b8c {
+    animation: lyric-hero-fade 1.4s ease-out 0.5s both !important;
+  }
+  /* Kill Squarespace's slide-up on inner wrappers */
+  #block-yui_3_17_2_1_1776853087754_34556 .fluid-image-animation-wrapper,
+  #block-cdcb86dcac6f27b37b8c .fluid-image-animation-wrapper,
+  #block-yui_3_17_2_1_1776853087754_34556 img,
+  #block-cdcb86dcac6f27b37b8c img {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  /* Floating loops on inner containers */
+  #block-yui_3_17_2_1_1776853087754_34556 .fluid-image-container {
+    animation: lyric-hero-float-a 7s ease-in-out infinite !important;
+    will-change: transform;
+  }
+  #block-cdcb86dcac6f27b37b8c .fluid-image-container {
+    animation: lyric-hero-float-b 9s ease-in-out infinite !important;
+    animation-delay: -2s !important;
+    will-change: transform;
+  }
+
+  /* Three stacked photo cards below the top pair —
+     staggered fade-in then gentle floating loop. */
+  #block-yui_3_17_2_1_1776853087754_37379 {
+    animation: lyric-hero-fade 1.2s ease-out 0.1s both !important;
+    transition: none !important;
+  }
+  #block-c9f790750fa40a2d7eb4 {
+    animation: lyric-hero-fade 1.3s ease-out 0.35s both !important;
+    transition: none !important;
+  }
+  #block-17f4dd96e5ae8200df45 {
+    animation: lyric-hero-fade 1.4s ease-out 0.6s both !important;
+    transition: none !important;
+  }
+  /* Kill Squarespace's slide-up on inner wrappers */
+  #block-yui_3_17_2_1_1776853087754_37379 .fluid-image-animation-wrapper,
+  #block-c9f790750fa40a2d7eb4 .fluid-image-animation-wrapper,
+  #block-17f4dd96e5ae8200df45 .fluid-image-animation-wrapper,
+  #block-yui_3_17_2_1_1776853087754_37379 img,
+  #block-c9f790750fa40a2d7eb4 img,
+  #block-17f4dd96e5ae8200df45 img {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  /* Independent floating loops */
+  #block-yui_3_17_2_1_1776853087754_37379 .fluid-image-container {
+    animation: lyric-hero-float-a 8s ease-in-out infinite !important;
+    will-change: transform;
+  }
+  #block-c9f790750fa40a2d7eb4 .fluid-image-container {
+    animation: lyric-hero-float-c 7s ease-in-out infinite !important;
+    animation-delay: -3s !important;
+    will-change: transform;
+  }
+  #block-17f4dd96e5ae8200df45 .fluid-image-container {
+    animation: lyric-hero-float-b 9s ease-in-out infinite !important;
+    animation-delay: -5s !important;
+    will-change: transform;
+  }
 
   /* Mobile */
   @media (max-width: 767px) {
@@ -518,16 +666,34 @@
   }
 
   #block-yui_3_17_2_1_1776863276072_11431 {
-    --image-component-object-fit: cover !important;
+    --image-component-object-fit: contain !important;
     --image-component-container-width: 100% !important;
     --image-component-container-height: 100% !important;
   }
 
+  /* Image stays still (no zoom/crop on resize) — full shape visible,
+     pinned to the right edge of the 50vw container */
   #block-yui_3_17_2_1_1776863276072_11431 img {
     width: 100% !important;
     height: 100% !important;
-    object-fit: cover !important;
-    object-position: left center !important;
+    object-fit: contain !important;
+    object-position: right center !important;
+  }
+
+  /* Button — white background, dark teal text (hover keeps contrast) */
+  #block-yui_3_17_2_1_1776946358501_14022 .sqs-block-button-element,
+  #block-yui_3_17_2_1_1776946358501_14022 a.sqs-block-button-element {
+    background-color: var(--white) !important;
+    background-image: none !important;
+    color: var(--teal-dark) !important;
+    border-color: var(--white) !important;
+  }
+  #block-yui_3_17_2_1_1776946358501_14022 .sqs-block-button-element:hover,
+  #block-yui_3_17_2_1_1776946358501_14022 a.sqs-block-button-element:hover {
+    background-color: var(--white) !important;
+    color: var(--teal-dark) !important;
+    border-color: var(--white) !important;
+    opacity: 0.9;
   }
 
   /* Mobile — stack image below content */
@@ -675,6 +841,37 @@
     letter-spacing: 0 !important;
   }
 
+  /* Hero images — staggered fade-in, then gentle floating loop.
+     No position change. */
+  #block-bd63645a4e0e98b8a30c {
+    animation: lyric-hero-fade 1.2s ease-out 0.1s both !important;
+    transition: none !important;
+  }
+  #block-yui_3_17_2_1_1776878137813_8111 {
+    animation: lyric-hero-fade 1.4s ease-out 0.5s both !important;
+    transition: none !important;
+  }
+  /* Kill Squarespace's slide-up on inner wrappers */
+  #block-bd63645a4e0e98b8a30c .fluid-image-animation-wrapper,
+  #block-yui_3_17_2_1_1776878137813_8111 .fluid-image-animation-wrapper,
+  #block-bd63645a4e0e98b8a30c img,
+  #block-yui_3_17_2_1_1776878137813_8111 img {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  /* Floating loops on inner containers */
+  #block-bd63645a4e0e98b8a30c .fluid-image-container {
+    animation: lyric-hero-float-a 7s ease-in-out infinite !important;
+    will-change: transform;
+  }
+  #block-yui_3_17_2_1_1776878137813_8111 .fluid-image-container {
+    animation: lyric-hero-float-b 9s ease-in-out infinite !important;
+    animation-delay: -2s !important;
+    will-change: transform;
+  }
+
   /* Mobile */
   @media (max-width: 767px) {
     #block-yui_3_17_2_1_1776878137813_7526 h1,
@@ -726,9 +923,46 @@
     display: none !important;
   }
 
+  /* Column headings (Health benefits / PTO / Financial benefits / ...) */
+  .sqs-html-content h3,
+  .sqs-html-content h3 :is(strong, em, span) {
+    font-family: 'MNKY Banana Grotesk', sans-serif !important;
+    font-size: 1.5rem !important; /* 24px */
+    font-weight: 800 !important;
+    line-height: normal !important;
+    letter-spacing: 0 !important;
+  }
+
+  /* Teal-dark divider line between H3 and body copy */
+  .sqs-html-content h3::after {
+    content: "" !important;
+    display: block !important;
+    width: 64px !important;
+    height: 1px !important;
+    background: var(--teal-dark) !important;
+    margin: 20px auto !important;
+  }
+
+  /* Column body copy */
+  .sqs-html-content p,
+  .sqs-html-content p :is(strong, em, span) {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1.25rem !important; /* 20px */
+    font-weight: 400 !important;
+    line-height: normal !important;
+    letter-spacing: 0 !important;
+  }
+
   /* Mobile */
   @media (max-width: 767px) {
-
+    .sqs-html-content h3,
+    .sqs-html-content h3 :is(strong, em, span) {
+      font-size: 1.5rem !important; /* 24px */
+    }
+    .sqs-html-content p,
+    .sqs-html-content p :is(strong, em, span) {
+      font-size: 1rem !important; /* 16px */
+    }
   }
 }
 
@@ -752,7 +986,19 @@
    6-column grid of values (Teamwork / ...), each with H3 + paragraph.
    ========================================================================== */
 
+[data-section-id="69e906cc9dbdcb3b40f9a9a1"],
+[data-section-id="69e906cc9dbdcb3b40f9a9a1"] .section-border,
+[data-section-id="69e906cc9dbdcb3b40f9a9a1"] .section-background {
+  background: var(--hero-gradient) !important;
+  background-image: var(--hero-gradient) !important;
+}
+
 [data-section-id="69e906cc9dbdcb3b40f9a9a1"] {
+
+  .section-background-image,
+  .section-background-overlay {
+    opacity: 0 !important;
+  }
 
   /* Headings white (override the careers-wide teal-dark rule) */
   :is(h1, h2, h3, h4, h5, h6),
@@ -760,22 +1006,47 @@
     color: var(--white) !important;
   }
 
-  /* White divider lines above and below each value heading */
+  /* H3 is a relative flex box; absolute-positioned ::before / ::after pin
+     lines to exactly the top and bottom of the box, so they align across
+     every column regardless of whether the heading wraps to 2 lines.
+     margin-bottom opens up space between the bottom line and the body copy. */
+  .sqs-html-content h3 {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 80px !important;
+    padding: 12px 0 !important;
+    margin-bottom: 32px !important;
+  }
+
+  /* White divider lines pinned to top and bottom edges of each h3 box */
   .sqs-html-content h3::before,
   .sqs-html-content h3::after {
     content: "" !important;
-    display: block !important;
-    width: 40px !important;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 72px !important;
     height: 1px !important;
     background: var(--white) !important;
+    margin: 0 !important;
+  }
+  .sqs-html-content h3::before { top: 0 !important; }
+  .sqs-html-content h3::after  { bottom: 0 !important; }
+
+  /* Value headings — reduce size so they breathe in narrow columns */
+  .sqs-html-content h3,
+  .sqs-html-content h3 :is(strong, em, span) {
+    font-size: 1.25rem !important; /* 20px */
+    line-height: normal !important;
   }
 
-  .sqs-html-content h3::before {
-    margin: 0 auto 24px !important;
-  }
-
-  .sqs-html-content h3::after {
-    margin: 24px auto 0 !important;
+  /* Body copy — add horizontal breathing room inside each column */
+  .sqs-html-content p,
+  .sqs-html-content p :is(strong, em, span) {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
   }
 
   /* Mobile */
@@ -791,6 +1062,12 @@
    ========================================================================== */
 
 [data-section-id="69e90210d49cfe289df15357"] {
+
+  /* All headings white (override careers-wide teal-dark rule) */
+  :is(h1, h2, h3, h4, h5, h6),
+  :is(h1, h2, h3, h4, h5, h6) :is(strong, em, span) {
+    color: var(--white) !important;
+  }
 
   /* Mobile */
   @media (max-width: 767px) {
@@ -961,19 +1238,40 @@
 
 
 /* ==========================================================================
-   LEADERSHIP — TEAM GRID — Section ID: 69e914650701ed0ac1d35db2
+   LEADERSHIP — TEAM / BOARD GRIDS
+     Main leadership page — Section ID: 69e914650701ed0ac1d35db2
+     Member detail page — Section ID: 69e9c86cbcadb033d1aa85a0 (Board Members)
    Card grid with teal-hover overlay + injected "Read Bio" hover button
-   (button is added by the companion JS in page-level Code Injection).
+   (button is added by the companion scripts.js file).
    ========================================================================== */
 
-.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item-media {
+
+/* Bio header section on member detail pages — tighter bottom padding.
+   Add each new member page's bio-header section ID to this list. */
+:is(
+  [data-section-id="69e9c86cbcadb033d1aa859c"],
+  [data-section-id="69e9d1675857fb4682c045d8"],
+  [data-section-id="69e9ddab092ff56fc51b5455"],
+  [data-section-id="69e9e060ef8ec45f9c564d8f"],
+  [data-section-id="69e9e1ee9a2cee6840e5f00a"],
+  [data-section-id="69e9e48725a62208b4d590f8"],
+  [data-section-id="69e9e55fd857433cc028dcd2"],
+  [data-section-id="69e9dce099ffba0c330640c4"],
+  [data-section-id="69e9e9841351db6792e1760d"],
+  [data-section-id="69e9e992c2072a18995aa4e9"],
+  [data-section-id="69e9e9a2d857433cc02a3106"]
+) .content-wrapper {
+  padding-bottom: 14px !important;
+}
+
+.user-items-list-item-container:is([data-section-id="69e914650701ed0ac1d35db2"], [data-section-id="69e9c86cbcadb033d1aa85a0"], [data-section-id="69e9d1675857fb4682c045dc"], [data-section-id="69e9ddab092ff56fc51b5459"], [data-section-id="69e9e060ef8ec45f9c564d93"], [data-section-id="69e9e1ee9a2cee6840e5f00e"], [data-section-id="69e9e48725a62208b4d590fc"], [data-section-id="69e9e55fd857433cc028dcd6"], [data-section-id="69e9dce099ffba0c330640c8"], [data-section-id="69e9e9841351db6792e17611"], [data-section-id="69e9e992c2072a18995aa4ed"], [data-section-id="69e9e9a2d857433cc02a310a"]) .list-item-media {
   margin: 0 !important;
   width: 100% !important;
   position: relative;
   overflow: hidden;
 }
 
-.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item-media::after {
+.user-items-list-item-container:is([data-section-id="69e914650701ed0ac1d35db2"], [data-section-id="69e9c86cbcadb033d1aa85a0"], [data-section-id="69e9d1675857fb4682c045dc"], [data-section-id="69e9ddab092ff56fc51b5459"], [data-section-id="69e9e060ef8ec45f9c564d93"], [data-section-id="69e9e1ee9a2cee6840e5f00e"], [data-section-id="69e9e48725a62208b4d590fc"], [data-section-id="69e9e55fd857433cc028dcd6"], [data-section-id="69e9dce099ffba0c330640c8"], [data-section-id="69e9e9841351db6792e17611"], [data-section-id="69e9e992c2072a18995aa4ed"], [data-section-id="69e9e9a2d857433cc02a310a"]) .list-item-media::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -982,39 +1280,111 @@
   transition: opacity 0.3s ease;
 }
 
-.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item:hover .list-item-media::after {
+.user-items-list-item-container:is([data-section-id="69e914650701ed0ac1d35db2"], [data-section-id="69e9c86cbcadb033d1aa85a0"], [data-section-id="69e9d1675857fb4682c045dc"], [data-section-id="69e9ddab092ff56fc51b5459"], [data-section-id="69e9e060ef8ec45f9c564d93"], [data-section-id="69e9e1ee9a2cee6840e5f00e"], [data-section-id="69e9e48725a62208b4d590fc"], [data-section-id="69e9e55fd857433cc028dcd6"], [data-section-id="69e9dce099ffba0c330640c8"], [data-section-id="69e9e9841351db6792e17611"], [data-section-id="69e9e992c2072a18995aa4ed"], [data-section-id="69e9e9a2d857433cc02a310a"]) .list-item:hover .list-item-media::after {
   opacity: 0.85;
 }
 
-.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item-media-inner::after,
-.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item-media-inner::before {
+.user-items-list-item-container:is([data-section-id="69e914650701ed0ac1d35db2"], [data-section-id="69e9c86cbcadb033d1aa85a0"], [data-section-id="69e9d1675857fb4682c045dc"], [data-section-id="69e9ddab092ff56fc51b5459"], [data-section-id="69e9e060ef8ec45f9c564d93"], [data-section-id="69e9e1ee9a2cee6840e5f00e"], [data-section-id="69e9e48725a62208b4d590fc"], [data-section-id="69e9e55fd857433cc028dcd6"], [data-section-id="69e9dce099ffba0c330640c8"], [data-section-id="69e9e9841351db6792e17611"], [data-section-id="69e9e992c2072a18995aa4ed"], [data-section-id="69e9e9a2d857433cc02a310a"]) .list-item-media-inner::after,
+.user-items-list-item-container:is([data-section-id="69e914650701ed0ac1d35db2"], [data-section-id="69e9c86cbcadb033d1aa85a0"], [data-section-id="69e9d1675857fb4682c045dc"], [data-section-id="69e9ddab092ff56fc51b5459"], [data-section-id="69e9e060ef8ec45f9c564d93"], [data-section-id="69e9e1ee9a2cee6840e5f00e"], [data-section-id="69e9e48725a62208b4d590fc"], [data-section-id="69e9e55fd857433cc028dcd6"], [data-section-id="69e9dce099ffba0c330640c8"], [data-section-id="69e9e9841351db6792e17611"], [data-section-id="69e9e992c2072a18995aa4ed"], [data-section-id="69e9e9a2d857433cc02a310a"]) .list-item-media-inner::before {
   display: none !important;
 }
 
-.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item-content {
+.user-items-list-item-container:is([data-section-id="69e914650701ed0ac1d35db2"], [data-section-id="69e9c86cbcadb033d1aa85a0"], [data-section-id="69e9d1675857fb4682c045dc"], [data-section-id="69e9ddab092ff56fc51b5459"], [data-section-id="69e9e060ef8ec45f9c564d93"], [data-section-id="69e9e1ee9a2cee6840e5f00e"], [data-section-id="69e9e48725a62208b4d590fc"], [data-section-id="69e9e55fd857433cc028dcd6"], [data-section-id="69e9dce099ffba0c330640c8"], [data-section-id="69e9e9841351db6792e17611"], [data-section-id="69e9e992c2072a18995aa4ed"], [data-section-id="69e9e9a2d857433cc02a310a"]) .list-item-content {
   padding: 12px 16px 16px 16px;
 }
 
-.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item-content__title,
-.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item-content__description,
-.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item-content__description * {
+.user-items-list-item-container:is([data-section-id="69e914650701ed0ac1d35db2"], [data-section-id="69e9c86cbcadb033d1aa85a0"], [data-section-id="69e9d1675857fb4682c045dc"], [data-section-id="69e9ddab092ff56fc51b5459"], [data-section-id="69e9e060ef8ec45f9c564d93"], [data-section-id="69e9e1ee9a2cee6840e5f00e"], [data-section-id="69e9e48725a62208b4d590fc"], [data-section-id="69e9e55fd857433cc028dcd6"], [data-section-id="69e9dce099ffba0c330640c8"], [data-section-id="69e9e9841351db6792e17611"], [data-section-id="69e9e992c2072a18995aa4ed"], [data-section-id="69e9e9a2d857433cc02a310a"]) .list-item-content__title,
+.user-items-list-item-container:is([data-section-id="69e914650701ed0ac1d35db2"], [data-section-id="69e9c86cbcadb033d1aa85a0"], [data-section-id="69e9d1675857fb4682c045dc"], [data-section-id="69e9ddab092ff56fc51b5459"], [data-section-id="69e9e060ef8ec45f9c564d93"], [data-section-id="69e9e1ee9a2cee6840e5f00e"], [data-section-id="69e9e48725a62208b4d590fc"], [data-section-id="69e9e55fd857433cc028dcd6"], [data-section-id="69e9dce099ffba0c330640c8"], [data-section-id="69e9e9841351db6792e17611"], [data-section-id="69e9e992c2072a18995aa4ed"], [data-section-id="69e9e9a2d857433cc02a310a"]) .list-item-content__description,
+.user-items-list-item-container:is([data-section-id="69e914650701ed0ac1d35db2"], [data-section-id="69e9c86cbcadb033d1aa85a0"], [data-section-id="69e9d1675857fb4682c045dc"], [data-section-id="69e9ddab092ff56fc51b5459"], [data-section-id="69e9e060ef8ec45f9c564d93"], [data-section-id="69e9e1ee9a2cee6840e5f00e"], [data-section-id="69e9e48725a62208b4d590fc"], [data-section-id="69e9e55fd857433cc028dcd6"], [data-section-id="69e9dce099ffba0c330640c8"], [data-section-id="69e9e9841351db6792e17611"], [data-section-id="69e9e992c2072a18995aa4ed"], [data-section-id="69e9e9a2d857433cc02a310a"]) .list-item-content__description * {
   color: #005461 !important;
 }
 
-.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item-content__title {
+.user-items-list-item-container:is([data-section-id="69e914650701ed0ac1d35db2"], [data-section-id="69e9c86cbcadb033d1aa85a0"], [data-section-id="69e9d1675857fb4682c045dc"], [data-section-id="69e9ddab092ff56fc51b5459"], [data-section-id="69e9e060ef8ec45f9c564d93"], [data-section-id="69e9e1ee9a2cee6840e5f00e"], [data-section-id="69e9e48725a62208b4d590fc"], [data-section-id="69e9e55fd857433cc028dcd6"], [data-section-id="69e9dce099ffba0c330640c8"], [data-section-id="69e9e9841351db6792e17611"], [data-section-id="69e9e992c2072a18995aa4ed"], [data-section-id="69e9e9a2d857433cc02a310a"]) .list-item-content__title {
   margin-bottom: 0 !important;
 }
 
-.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item-content__description {
+.user-items-list-item-container:is([data-section-id="69e914650701ed0ac1d35db2"], [data-section-id="69e9c86cbcadb033d1aa85a0"], [data-section-id="69e9d1675857fb4682c045dc"], [data-section-id="69e9ddab092ff56fc51b5459"], [data-section-id="69e9e060ef8ec45f9c564d93"], [data-section-id="69e9e1ee9a2cee6840e5f00e"], [data-section-id="69e9e48725a62208b4d590fc"], [data-section-id="69e9e55fd857433cc028dcd6"], [data-section-id="69e9dce099ffba0c330640c8"], [data-section-id="69e9e9841351db6792e17611"], [data-section-id="69e9e992c2072a18995aa4ed"], [data-section-id="69e9e9a2d857433cc02a310a"]) .list-item-content__description {
   margin-top: 4px !important;
 }
 
-.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item-content__button-wrapper {
+.user-items-list-item-container:is([data-section-id="69e914650701ed0ac1d35db2"], [data-section-id="69e9c86cbcadb033d1aa85a0"], [data-section-id="69e9d1675857fb4682c045dc"], [data-section-id="69e9ddab092ff56fc51b5459"], [data-section-id="69e9e060ef8ec45f9c564d93"], [data-section-id="69e9e1ee9a2cee6840e5f00e"], [data-section-id="69e9e48725a62208b4d590fc"], [data-section-id="69e9e55fd857433cc028dcd6"], [data-section-id="69e9dce099ffba0c330640c8"], [data-section-id="69e9e9841351db6792e17611"], [data-section-id="69e9e992c2072a18995aa4ed"], [data-section-id="69e9e9a2d857433cc02a310a"]) .list-item-content__button-wrapper {
   display: none !important;
 }
 
-.user-items-list-item-container[data-section-id="69e914650701ed0ac1d35db2"] .list-item {
+.user-items-list-item-container:is([data-section-id="69e914650701ed0ac1d35db2"], [data-section-id="69e9c86cbcadb033d1aa85a0"], [data-section-id="69e9d1675857fb4682c045dc"], [data-section-id="69e9ddab092ff56fc51b5459"], [data-section-id="69e9e060ef8ec45f9c564d93"], [data-section-id="69e9e1ee9a2cee6840e5f00e"], [data-section-id="69e9e48725a62208b4d590fc"], [data-section-id="69e9e55fd857433cc028dcd6"], [data-section-id="69e9dce099ffba0c330640c8"], [data-section-id="69e9e9841351db6792e17611"], [data-section-id="69e9e992c2072a18995aa4ed"], [data-section-id="69e9e9a2d857433cc02a310a"]) .list-item {
   position: relative;
+}
+
+
+/* ##########################################################################
+   CONTACT PAGE
+   ########################################################################## */
+
+
+/* ==========================================================================
+   CONTACT — "Let's get in touch." — Section ID: 69e9f4495391a643aa88a5f5
+   Gradient background, transparent form inputs with teal-dark border,
+   placeholders at 40% opacity.
+
+   Block map:
+     #block-f15b080887f676316d5b — H1 "Let's get in touch."
+     #block-ea30c5366b98af520e57 — body paragraph
+     #block-3c38afa3b6ad6299992e — Squarespace form block
+     #block-99c14dbf7518da9d58c2 — image
+   ========================================================================== */
+
+[data-section-id="69e9f4495391a643aa88a5f5"],
+[data-section-id="69e9f4495391a643aa88a5f5"] .section-border,
+[data-section-id="69e9f4495391a643aa88a5f5"] .section-background {
+  background: linear-gradient(to bottom, #EDF5F3 0%, #7AC8B5 100%) !important;
+  background-image: linear-gradient(to bottom, #EDF5F3 0%, #7AC8B5 100%) !important;
+}
+
+[data-section-id="69e9f4495391a643aa88a5f5"] {
+
+  .section-background-image,
+  .section-background-overlay {
+    opacity: 0 !important;
+  }
+
+  /* Form fields — transparent bg, teal-dark border */
+  #block-3c38afa3b6ad6299992e .field-element,
+  #block-3c38afa3b6ad6299992e input[type="text"],
+  #block-3c38afa3b6ad6299992e input[type="email"],
+  #block-3c38afa3b6ad6299992e input[type="tel"],
+  #block-3c38afa3b6ad6299992e input[type="url"],
+  #block-3c38afa3b6ad6299992e input[type="number"],
+  #block-3c38afa3b6ad6299992e textarea,
+  #block-3c38afa3b6ad6299992e select {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: 1px solid var(--teal-dark) !important;
+    box-shadow: none !important;
+    color: var(--teal-dark) !important;
+  }
+
+  /* Placeholders — teal-dark at 40% opacity */
+  #block-3c38afa3b6ad6299992e .field-element::placeholder,
+  #block-3c38afa3b6ad6299992e input::placeholder,
+  #block-3c38afa3b6ad6299992e textarea::placeholder {
+    color: var(--teal-dark) !important;
+    opacity: 0.4 !important;
+  }
+
+  /* Submit button — halve top/bottom padding (22.5px → 11.25px) */
+  #block-3c38afa3b6ad6299992e button,
+  #block-3c38afa3b6ad6299992e .form-button-wrapper button,
+  #block-3c38afa3b6ad6299992e button.form-submit-button,
+  #block-3c38afa3b6ad6299992e button.sqs-system-button,
+  #block-3c38afa3b6ad6299992e button[type="submit"] {
+    padding-top: 11.25px !important;
+    padding-bottom: 11.25px !important;
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+
+  }
 }
 
 
