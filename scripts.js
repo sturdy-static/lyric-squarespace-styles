@@ -167,3 +167,56 @@
     init();
   }
 })();
+
+
+/* --------------------------------------------------------------------------
+   CAREERS — HOW HIRING WORKS — Accordion title split
+   Section: 69e904e5d857433cc0dc6887
+   Each item's title is authored as "NN . Label" (e.g. "01 . Candidate Review").
+   We split the leading number into its own <span> so CSS can pin the number
+   left and the label in the middle of the row.
+   -------------------------------------------------------------------------- */
+
+(function () {
+  const SECTION_ID = '69e904e5d857433cc0dc6887';
+  // Leading number + optional separator (". ", " . ", "- ", etc).
+  const PATTERN = /^\s*(\d{1,3})\s*[.\-:·]?\s*\.?\s+(.*\S)\s*$/;
+
+  function splitTitle(titleEl) {
+    if (titleEl.dataset.lyricSplit === '1') return;
+
+    const raw = (titleEl.textContent || '').trim();
+    const m = raw.match(PATTERN);
+    if (!m) return;
+
+    const num = m[1];
+    const label = m[2];
+
+    titleEl.dataset.lyricSplit = '1';
+    titleEl.classList.add('lyric-accordion-title-split');
+    titleEl.innerHTML =
+      '<span class="lyric-accordion-number">' + num + '.</span>' +
+      '<span class="lyric-accordion-label">' + label + '</span>';
+  }
+
+  function init() {
+    const section = document.querySelector('[data-section-id="' + SECTION_ID + '"]');
+    if (!section) return;
+
+    const titles = section.querySelectorAll('.accordion-item__title');
+    titles.forEach(splitTitle);
+
+    // Squarespace re-renders accordion titles on toggle in some builds —
+    // observe for re-inserted text and re-split if needed.
+    const mo = new MutationObserver(function () {
+      section.querySelectorAll('.accordion-item__title').forEach(splitTitle);
+    });
+    mo.observe(section, { childList: true, subtree: true });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();

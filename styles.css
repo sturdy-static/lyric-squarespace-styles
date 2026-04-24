@@ -7,10 +7,21 @@
   --teal-dark: #005461;
   --teal-mid: #008070;
   --teal-light: #7ACAB7;
+  --mint-pale: #EDF5F3;
+  --mint-soft: #7AC8B5;
   --white: #FFFFFF;
   --white-soft: rgba(255, 255, 255, 0.85);
   --white-line: rgba(255, 255, 255, 0.3);
-  --hero-gradient: linear-gradient(to bottom, var(--teal-dark) 0%, var(--teal-mid) 100%);
+
+  /* Reusable gradients. Pair these with section .section-background
+     or a direct background on the section wrapper. */
+  --gradient-teal: linear-gradient(to bottom, var(--teal-dark) 0%, var(--teal-mid) 100%);         /* dark top  → mid bottom  (vertical) */
+  --gradient-teal-inverse: linear-gradient(to bottom, var(--teal-mid) 0%, var(--teal-dark) 100%); /* mid  top  → dark bottom (vertical) */
+  --gradient-teal-diagonal: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal-mid) 100%);   /* diagonal dark → mid */
+  --gradient-mint: linear-gradient(to bottom, var(--mint-pale) 0%, var(--mint-soft) 100%);        /* pale top  → mint bottom */
+
+  /* Legacy alias — keep existing references working. */
+  --hero-gradient: var(--gradient-teal);
 }
 
 /* Hero image fade-in (opacity only, no upward slide) */
@@ -32,6 +43,88 @@
 @keyframes lyric-hero-float-c {
   0%, 100% { transform: translate3d(0, 0, 0); }
   50%      { transform: translate3d(0, -8px, 0); }
+}
+
+/* Subtle float — reduced amplitude for the "How we use AI" cards
+   where the wibble was too pronounced. Same staggered paths,
+   smaller translate. */
+@keyframes lyric-float-subtle-a {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, -5px, 0); }
+}
+@keyframes lyric-float-subtle-b {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, 4px, 0); }
+}
+@keyframes lyric-float-subtle-c {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, -3px, 0); }
+}
+
+
+/* ==========================================================================
+   GLOBAL BUTTON HEIGHT
+   Squarespace's button component forces `.sqs-stretched .sqs-block-button-element`
+   to `height: 100%`, so the anchor fills its Fluid Engine grid cell and
+   ignores any vertical padding. We restore intrinsic sizing and cap the
+   height with our own padding so buttons look slim site-wide.
+   ========================================================================== */
+.sqs-block-button .sqs-stretched .sqs-block-button-element,
+.sqs-block-button .sqs-block-button-element--small,
+.sqs-block-button .sqs-block-button-element--medium,
+.sqs-block-button .sqs-block-button-element--large,
+a.sqs-block-button-element {
+  height: auto !important;
+  min-height: 0 !important;
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  line-height: 1.2 !important;
+}
+
+
+/* ==========================================================================
+   GLOBAL SECTION BACKGROUND RESET
+   Every section on this site paints its own background (gradient or solid),
+   so Squarespace's default background image + overlay layers are always
+   unused. Hide them site-wide. (One section — 69e09e260b9a7c1143d68ddd —
+   also needs `display:none` on an inner image and keeps its own scoped rule.)
+   ========================================================================== */
+[data-section-id] .section-background-image,
+[data-section-id] .section-background-overlay {
+  opacity: 0 !important;
+}
+
+
+/* ==========================================================================
+   GLOBAL "KILL SQUARESPACE SLIDE-UP" RESET FOR HAND-ANIMATED IMAGE BLOCKS
+   We drive our own fade + float on a handful of image blocks across the site.
+   Squarespace's built-in slide-up/fade targets `.fluid-image-animation-wrapper`
+   and the inner `img` — we neutralize both so only our animations run.
+   Consolidated from four per-section duplicates. Specificity preserved
+   (`[data-section-id]` + `:is(#id…)` + `:is(.wrapper, img)` = 1,2,0).
+
+   Block map (grouped by section):
+     Hero                        #block-yui_3_17_2_1_1776942559033_13324, #block-db981ef2ff9d18ccd965
+     How we use AI (top pair)    #block-yui_3_17_2_1_1776853087754_34556, #block-cdcb86dcac6f27b37b8c
+     How we use AI (3-card row)  #block-yui_3_17_2_1_1776853087754_37379, #block-c9f790750fa40a2d7eb4,
+                                 #block-17f4dd96e5ae8200df45
+     Careers — Come Build        #block-bd63645a4e0e98b8a30c, #block-yui_3_17_2_1_1776878137813_8111
+   ========================================================================== */
+[data-section-id] :is(
+  #block-yui_3_17_2_1_1776942559033_13324,
+  #block-db981ef2ff9d18ccd965,
+  #block-yui_3_17_2_1_1776853087754_34556,
+  #block-cdcb86dcac6f27b37b8c,
+  #block-yui_3_17_2_1_1776853087754_37379,
+  #block-c9f790750fa40a2d7eb4,
+  #block-17f4dd96e5ae8200df45,
+  #block-bd63645a4e0e98b8a30c,
+  #block-yui_3_17_2_1_1776878137813_8111
+) :is(.fluid-image-animation-wrapper, img) {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+  transition: none !important;
 }
 
 
@@ -60,18 +153,13 @@
     background: var(--hero-gradient) !important;
   }
 
-  .section-background-image,
-  .section-background-overlay {
-    opacity: 0 !important;
-  }
-
   /* H1 — hero headline */
   #block-yui_3_17_2_1_1776328236739_12108 h1,
   #block-yui_3_17_2_1_1776328236739_12108 h1 strong {
     font-family: 'MNKY Banana Grotesk', sans-serif !important;
     font-size: 4.375rem !important; /* 70px */
     font-weight: 800 !important;
-    line-height: normal !important;
+    line-height: 0.95 !important;
     letter-spacing: 0 !important;
   }
 
@@ -140,15 +228,8 @@
     animation: lyric-hero-fade 1.4s ease-out 0.5s both !important;
     transition: none !important;
   }
-  #block-yui_3_17_2_1_1776942559033_13324 .fluid-image-animation-wrapper,
-  #block-db981ef2ff9d18ccd965 .fluid-image-animation-wrapper,
-  #block-yui_3_17_2_1_1776942559033_13324 img,
-  #block-db981ef2ff9d18ccd965 img {
-    opacity: 1 !important;
-    transform: none !important;
-    animation: none !important;
-    transition: none !important;
-  }
+  /* Slide-up kill rules for these two blocks live in the
+     GLOBAL "KILL SQUARESPACE SLIDE-UP" RESET at the top of this file. */
 
   #block-yui_3_17_2_1_1776942559033_13324 .fluid-image-container {
     animation: lyric-hero-float-a 7s ease-in-out infinite !important;
@@ -159,6 +240,64 @@
     animation-delay: -2s !important;
     will-change: transform;
   }
+
+  /* Nurse photo: pin to a fixed natural size so narrower desktop
+     viewports crop the image rather than shrinking it. The block
+     clips the overflow; the inner image keeps its min width. */
+  #block-yui_3_17_2_1_1776942559033_13324 {
+    overflow: visible !important;
+    position: relative !important;
+    z-index: 5 !important;
+    transform: translateX(100px) !important;
+    display: flex !important;
+    align-items: flex-end !important;
+  }
+  #block-yui_3_17_2_1_1776942559033_13324 .sqs-block-content {
+    margin-top: auto !important;
+    width: 100% !important;
+  }
+  #block-yui_3_17_2_1_1776942559033_13324 .fluid-image-container,
+  #block-yui_3_17_2_1_1776942559033_13324 .fluid-image-animation-wrapper,
+  #block-yui_3_17_2_1_1776942559033_13324 .sqs-image-content,
+  #block-yui_3_17_2_1_1776942559033_13324 img {
+    min-width: 640px !important;
+    max-width: none !important;
+    width: 640px !important;
+  }
+  /* Force the fluid-image container to a shorter aspect ratio than the
+     source (938x1070 → 938x802, ~25% shorter). object-fit: cover with
+     object-position: bottom center crops from the top, keeping the
+     lower portion of the photo framed. */
+  #block-yui_3_17_2_1_1776942559033_13324 .fluid-image-animation-wrapper,
+  #block-yui_3_17_2_1_1776942559033_13324 .fluid-image-container {
+    aspect-ratio: 938 / 802 !important;
+    height: auto !important;
+    margin-top: auto !important;
+  }
+  #block-yui_3_17_2_1_1776942559033_13324 img {
+    object-position: bottom center !important;
+    object-fit: cover !important;
+  }
+
+  /* Icon grid (below hero content) — cap each icon's height individually.
+     Order: Heart, Thumb, Spin, Target. Cap is applied to the img itself
+     with width: auto so the icon shrinks proportionally; the Squarespace
+     wrappers stay intact. */
+  #block-yui_3_17_2_1_1776864865938_12530 img, /* IconHeart */
+  #block-6f7699257b52bdbc2a0b img,              /* IconThumb */
+  #block-26f014619ac1f413a680 img,              /* IconSpin */
+  #block-683ad2b7d677698bbbf5 img {              /* IconTarget */
+    width: auto !important;
+    height: auto !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+    object-position: left center !important;
+  }
+
+  #block-yui_3_17_2_1_1776864865938_12530 img { max-height: 60px !important; }
+  #block-6f7699257b52bdbc2a0b img              { max-height: 52px !important; }
+  #block-26f014619ac1f413a680 img              { max-height: 73px !important; }
+  #block-683ad2b7d677698bbbf5 img              { max-height: 74px !important; }
 
   /* Mobile */
   @media (max-width: 767px) {
@@ -193,6 +332,23 @@
     .sqs-block-horizontalrule {
       display: none !important;
     }
+
+    /* Icon grid — same max-heights as desktop so icons don't
+       balloon at mobile widths. */
+    #block-yui_3_17_2_1_1776864865938_12530 img, /* IconHeart */
+    #block-6f7699257b52bdbc2a0b img,              /* IconThumb */
+    #block-26f014619ac1f413a680 img,              /* IconSpin */
+    #block-683ad2b7d677698bbbf5 img {              /* IconTarget */
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      object-fit: contain !important;
+      object-position: left center !important;
+    }
+    #block-yui_3_17_2_1_1776864865938_12530 img { max-height: 60px !important; }
+    #block-6f7699257b52bdbc2a0b img              { max-height: 52px !important; }
+    #block-26f014619ac1f413a680 img              { max-height: 73px !important; }
+    #block-683ad2b7d677698bbbf5 img              { max-height: 74px !important; }
   }
 }
 
@@ -254,7 +410,7 @@
 
 [data-section-id="69e8af425391a643aa100653"] {
 
-  /* H2 — section heading */
+  /* H2 — section heading (brand dark green) */
   #block-yui_3_17_2_1_1776856272387_22888 h2,
   #block-yui_3_17_2_1_1776856272387_22888 h2 strong {
     font-family: 'MNKY Banana Grotesk', sans-serif !important;
@@ -262,6 +418,7 @@
     font-weight: 800 !important;
     line-height: normal !important;
     letter-spacing: 0 !important;
+    color: var(--teal-dark) !important;
   }
 
   /* Body paragraph */
@@ -302,6 +459,13 @@
      #block-ae44a3cd8c6efc0afc93 — H2 "Trusted"
      #block-13886badbffad8cc1060 — P (We believe you earn trust...)
    ========================================================================== */
+
+[data-section-id="69e8afbfef8ec45f9ce23921"],
+[data-section-id="69e8afbfef8ec45f9ce23921"] .section-border,
+[data-section-id="69e8afbfef8ec45f9ce23921"] .section-background {
+  background: var(--gradient-teal-inverse) !important;
+  background-image: var(--gradient-teal-inverse) !important;
+}
 
 [data-section-id="69e8afbfef8ec45f9ce23921"] {
 
@@ -386,16 +550,9 @@
   #block-cdcb86dcac6f27b37b8c {
     animation: lyric-hero-fade 1.4s ease-out 0.5s both !important;
   }
-  /* Kill Squarespace's slide-up on inner wrappers */
-  #block-yui_3_17_2_1_1776853087754_34556 .fluid-image-animation-wrapper,
-  #block-cdcb86dcac6f27b37b8c .fluid-image-animation-wrapper,
-  #block-yui_3_17_2_1_1776853087754_34556 img,
-  #block-cdcb86dcac6f27b37b8c img {
-    opacity: 1 !important;
-    transform: none !important;
-    animation: none !important;
-    transition: none !important;
-  }
+  /* Slide-up kill rules for these two blocks live in the
+     GLOBAL "KILL SQUARESPACE SLIDE-UP" RESET at the top of this file. */
+
   /* Floating loops on inner containers */
   #block-yui_3_17_2_1_1776853087754_34556 .fluid-image-container {
     animation: lyric-hero-float-a 7s ease-in-out infinite !important;
@@ -421,30 +578,21 @@
     animation: lyric-hero-fade 1.4s ease-out 0.6s both !important;
     transition: none !important;
   }
-  /* Kill Squarespace's slide-up on inner wrappers */
-  #block-yui_3_17_2_1_1776853087754_37379 .fluid-image-animation-wrapper,
-  #block-c9f790750fa40a2d7eb4 .fluid-image-animation-wrapper,
-  #block-17f4dd96e5ae8200df45 .fluid-image-animation-wrapper,
-  #block-yui_3_17_2_1_1776853087754_37379 img,
-  #block-c9f790750fa40a2d7eb4 img,
-  #block-17f4dd96e5ae8200df45 img {
-    opacity: 1 !important;
-    transform: none !important;
-    animation: none !important;
-    transition: none !important;
-  }
-  /* Independent floating loops */
+  /* Slide-up kill rules for these three blocks live in the
+     GLOBAL "KILL SQUARESPACE SLIDE-UP" RESET at the top of this file. */
+
+  /* Independent floating loops — subtle variant (smaller amplitude) */
   #block-yui_3_17_2_1_1776853087754_37379 .fluid-image-container {
-    animation: lyric-hero-float-a 8s ease-in-out infinite !important;
+    animation: lyric-float-subtle-a 8s ease-in-out infinite !important;
     will-change: transform;
   }
   #block-c9f790750fa40a2d7eb4 .fluid-image-container {
-    animation: lyric-hero-float-c 7s ease-in-out infinite !important;
+    animation: lyric-float-subtle-c 7s ease-in-out infinite !important;
     animation-delay: -3s !important;
     will-change: transform;
   }
   #block-17f4dd96e5ae8200df45 .fluid-image-container {
-    animation: lyric-hero-float-b 9s ease-in-out infinite !important;
+    animation: lyric-float-subtle-b 9s ease-in-out infinite !important;
     animation-delay: -5s !important;
     will-change: transform;
   }
@@ -625,12 +773,7 @@
   position: relative !important;
   overflow: hidden !important;
 
-  .section-background-image,
-  .section-background-overlay {
-    opacity: 0 !important;
-  }
-
-  /* H2 — section heading */
+  /* H2 — section heading (white on teal) */
   #block-a61a3c66d5baeefec41c h2,
   #block-a61a3c66d5baeefec41c h2 strong {
     font-family: 'MNKY Banana Grotesk', sans-serif !important;
@@ -638,6 +781,16 @@
     font-weight: 800 !important;
     line-height: normal !important;
     letter-spacing: 0 !important;
+    color: var(--white) !important;
+  }
+
+  /* Body paragraph — white on teal */
+  #block-b8fed555b51213c22798 p,
+  #block-b8fed555b51213c22798 p strong,
+  #block-b8fed555b51213c22798 p span,
+  #block-b8fed555b51213c22798 p em,
+  #block-b8fed555b51213c22798 p a {
+    color: var(--white) !important;
   }
 
   /* Image — pinned flush to right edge, 50vw wide, full section height,
@@ -811,16 +964,11 @@
 [data-section-id="69e902e00701ed0ac1cb8154"],
 [data-section-id="69e902e00701ed0ac1cb8154"] .section-border,
 [data-section-id="69e902e00701ed0ac1cb8154"] .section-background {
-  background: linear-gradient(to bottom, #EDF5F3 0%, #7AC8B5 100%) !important;
-  background-image: linear-gradient(to bottom, #EDF5F3 0%, #7AC8B5 100%) !important;
+  background: var(--gradient-mint) !important;
+  background-image: var(--gradient-mint) !important;
 }
 
 [data-section-id="69e902e00701ed0ac1cb8154"] {
-
-  .section-background-image,
-  .section-background-overlay {
-    opacity: 0 !important;
-  }
 
   /* H1 — hero headline */
   #block-yui_3_17_2_1_1776878137813_7526 h1,
@@ -851,16 +999,8 @@
     animation: lyric-hero-fade 1.4s ease-out 0.5s both !important;
     transition: none !important;
   }
-  /* Kill Squarespace's slide-up on inner wrappers */
-  #block-bd63645a4e0e98b8a30c .fluid-image-animation-wrapper,
-  #block-yui_3_17_2_1_1776878137813_8111 .fluid-image-animation-wrapper,
-  #block-bd63645a4e0e98b8a30c img,
-  #block-yui_3_17_2_1_1776878137813_8111 img {
-    opacity: 1 !important;
-    transform: none !important;
-    animation: none !important;
-    transition: none !important;
-  }
+  /* Slide-up kill rules for these two blocks live in the
+     GLOBAL "KILL SQUARESPACE SLIDE-UP" RESET at the top of this file. */
   /* Floating loops on inner containers */
   #block-bd63645a4e0e98b8a30c .fluid-image-container {
     animation: lyric-hero-float-a 7s ease-in-out infinite !important;
@@ -886,14 +1026,110 @@
 
 
 /* ==========================================================================
-   CAREERS — COME WORK WITH US — Section ID: 69e90210d49cfe289df15348
+   CAREERS — CONSEQUENTIAL PROBLEMS CTA — Section ID: 69eb3da36a08f979839506f5
+   Dark teal band between the hero and "Build across borders" — H3 pitch,
+   short proof line, "Learn more" button.
+
+   Block map:
+     #block-yui_3_17_2_1_1777024401332_9174  — H3 headline
+     #block-yui_3_17_2_1_1777024401332_9427  — body paragraph (KLAS)
+     #block-yui_3_17_2_1_1777024401332_10060 — "Learn more" button
+   ========================================================================== */
+
+[data-section-id="69eb3da36a08f979839506f5"] {
+
+  /* H3 headline — MNKY Banana Grotesk, Extrabold 27px, white */
+  #block-yui_3_17_2_1_1777024401332_9174 :is(h1, h2, h3, h4, h5, h6),
+  #block-yui_3_17_2_1_1777024401332_9174 :is(h1, h2, h3, h4, h5, h6) :is(strong, em, span) {
+    font-family: 'MNKY Banana Grotesk', sans-serif !important;
+    font-size: 1.6875rem !important; /* 27px */
+    font-weight: 800 !important;
+    line-height: normal !important;
+    letter-spacing: 0 !important;
+    color: var(--white) !important;
+  }
+
+  /* Body paragraph — Inter Regular 20px, white */
+  #block-yui_3_17_2_1_1777024401332_9427 :is(p, strong, em, span, a) {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1.25rem !important; /* 20px */
+    font-weight: 400 !important;
+    line-height: normal !important;
+    letter-spacing: 0 !important;
+    color: var(--white) !important;
+  }
+
+  /* Button — white background, dark-teal text (hover keeps contrast) */
+  #block-yui_3_17_2_1_1777024401332_10060 .sqs-block-button-element,
+  #block-yui_3_17_2_1_1777024401332_10060 a.sqs-block-button-element {
+    background-color: var(--white) !important;
+    background-image: none !important;
+    color: var(--teal-dark) !important;
+    border-color: var(--white) !important;
+  }
+  #block-yui_3_17_2_1_1777024401332_10060 .sqs-block-button-element:hover,
+  #block-yui_3_17_2_1_1777024401332_10060 a.sqs-block-button-element:hover {
+    background-color: var(--white) !important;
+    color: var(--teal-dark) !important;
+    border-color: var(--white) !important;
+    opacity: 0.9;
+  }
+
+  /* Mobile — step heading down a touch */
+  @media (max-width: 767px) {
+    #block-yui_3_17_2_1_1777024401332_9174 :is(h1, h2, h3, h4, h5, h6),
+    #block-yui_3_17_2_1_1777024401332_9174 :is(h1, h2, h3, h4, h5, h6) :is(strong, em, span) {
+      font-size: 1.375rem !important; /* 22px */
+    }
+    #block-yui_3_17_2_1_1777024401332_9427 :is(p, strong, em, span, a) {
+      font-size: 1rem !important; /* 16px */
+    }
+  }
+}
+
+
+/* ==========================================================================
+   CAREERS — BUILDING ACROSS BORDERS — Section ID: 69e90210d49cfe289df15348
+
+   Block map:
+     #block-99bbd91449530b85e22a — H2 "Building across borders"
+     #block-aa2e3bd2c0cef88575ff — button "View open roles"
    ========================================================================== */
 
 [data-section-id="69e90210d49cfe289df15348"] {
 
+  /* H2 heading — 50px extrabold (teal-dark inherited from careers-wide rule) */
+  #block-99bbd91449530b85e22a :is(h1, h2, h3, h4, h5, h6),
+  #block-99bbd91449530b85e22a :is(h1, h2, h3, h4, h5, h6) :is(strong, em, span) {
+    font-family: 'MNKY Banana Grotesk', sans-serif !important;
+    font-size: 3.125rem !important; /* 50px */
+    font-weight: 800 !important;
+    line-height: normal !important;
+    letter-spacing: 0 !important;
+  }
+
+  /* Button — dark teal background, white text (matches heading colour) */
+  #block-aa2e3bd2c0cef88575ff .sqs-block-button-element,
+  #block-aa2e3bd2c0cef88575ff a.sqs-block-button-element {
+    background-color: var(--teal-dark) !important;
+    background-image: none !important;
+    color: var(--white) !important;
+    border-color: var(--teal-dark) !important;
+  }
+  #block-aa2e3bd2c0cef88575ff .sqs-block-button-element:hover,
+  #block-aa2e3bd2c0cef88575ff a.sqs-block-button-element:hover {
+    background-color: var(--teal-dark) !important;
+    color: var(--white) !important;
+    border-color: var(--teal-dark) !important;
+    opacity: 0.9;
+  }
+
   /* Mobile */
   @media (max-width: 767px) {
-
+    #block-99bbd91449530b85e22a :is(h1, h2, h3, h4, h5, h6),
+    #block-99bbd91449530b85e22a :is(h1, h2, h3, h4, h5, h6) :is(strong, em, span) {
+      font-size: 2rem !important; /* 32px */
+    }
   }
 }
 
@@ -923,6 +1159,37 @@
     display: none !important;
   }
 
+  /* Benefit icons — fixed max-heights per icon to balance their optical weight.
+     Order: Heart, Calendar, Dollar, Laptop, Message, Profile. */
+  #block-yui_3_17_2_1_1776949192187_15814 img, /* HeartIcon */
+  #block-4cf73fd17b4509122efe img,              /* CalIcon */
+  #block-95606272bd71fdfd41bc img,              /* DollarIcon */
+  #block-c0ea986e6756d386a9a6 img,              /* LaptopIcon */
+  #block-7e2946fb8561786474e7 img,              /* MessageIcon */
+  #block-0c66743e0c5e21a0bf15 img {              /* ProfileIcon */
+    width: auto !important;
+    height: auto !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+  }
+  #block-yui_3_17_2_1_1776949192187_15814 img { max-height: 56px !important; }
+  #block-4cf73fd17b4509122efe img              { max-height: 67px !important; }
+  #block-95606272bd71fdfd41bc img              { max-height: 59px !important; }
+  #block-c0ea986e6756d386a9a6 img              { max-height: 68px !important; }
+  #block-7e2946fb8561786474e7 img              { max-height: 62px !important; }
+  #block-0c66743e0c5e21a0bf15 img              { max-height: 80px !important; }
+
+  /* Main H2 — "Supporting you beyond the 9-5" — match the 50px heading style */
+  #block-2dfda079b00a3ae14e36 :is(h1, h2, h3, h4, h5, h6),
+  #block-2dfda079b00a3ae14e36 :is(h1, h2, h3, h4, h5, h6) :is(strong, em, span) {
+    font-family: 'MNKY Banana Grotesk', sans-serif !important;
+    font-size: 3.125rem !important; /* 50px */
+    font-weight: 800 !important;
+    line-height: normal !important;
+    letter-spacing: 0 !important;
+  }
+
   /* Column headings (Health benefits / PTO / Financial benefits / ...) */
   .sqs-html-content h3,
   .sqs-html-content h3 :is(strong, em, span) {
@@ -933,21 +1200,28 @@
     letter-spacing: 0 !important;
   }
 
-  /* Teal-dark divider line between H3 and body copy */
+  /* Teal-dark divider line between H3 and body copy.
+     Desktop = 300px, tablet (iPad) halves to 150px because the 3-up grid
+     gets cramped, mobile reverts to 300px since columns stack full-width. */
   .sqs-html-content h3::after {
     content: "" !important;
     display: block !important;
-    width: 64px !important;
+    width: 300px !important;
     height: 1px !important;
     background: var(--teal-dark) !important;
     margin: 20px auto !important;
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .sqs-html-content h3::after {
+      width: 150px !important;
+    }
   }
 
   /* Column body copy */
   .sqs-html-content p,
   .sqs-html-content p :is(strong, em, span) {
     font-family: 'Inter', sans-serif !important;
-    font-size: 1.25rem !important; /* 20px */
+    font-size: 1.125rem !important; /* 18px */
     font-weight: 400 !important;
     line-height: normal !important;
     letter-spacing: 0 !important;
@@ -955,6 +1229,10 @@
 
   /* Mobile */
   @media (max-width: 767px) {
+    #block-2dfda079b00a3ae14e36 :is(h1, h2, h3, h4, h5, h6),
+    #block-2dfda079b00a3ae14e36 :is(h1, h2, h3, h4, h5, h6) :is(strong, em, span) {
+      font-size: 2rem !important; /* 32px */
+    }
     .sqs-html-content h3,
     .sqs-html-content h3 :is(strong, em, span) {
       font-size: 1.5rem !important; /* 24px */
@@ -970,13 +1248,29 @@
 /* ==========================================================================
    CAREERS — EOE STATEMENT — Section ID: 69e904499dbdcb3b40f87abf
    Equal Opportunity Employer statement
+
+   Block map:
+     #block-b2d1d3405d0ac1968cad — P "Lyric is an Equal Opportunity Employer…"
    ========================================================================== */
 
 [data-section-id="69e904499dbdcb3b40f87abf"] {
 
+  /* EOE statement — MNKY Banana Grotesk Extrabold 33px (display treatment) */
+  #block-b2d1d3405d0ac1968cad p,
+  #block-b2d1d3405d0ac1968cad p :is(strong, em, span, a) {
+    font-family: 'MNKY Banana Grotesk', sans-serif !important;
+    font-size: 2.0625rem !important; /* 33px */
+    font-weight: 800 !important;
+    line-height: normal !important;
+    letter-spacing: 0 !important;
+  }
+
   /* Mobile */
   @media (max-width: 767px) {
-
+    #block-b2d1d3405d0ac1968cad p,
+    #block-b2d1d3405d0ac1968cad p :is(strong, em, span, a) {
+      font-size: 1.25rem !important; /* 20px */
+    }
   }
 }
 
@@ -994,11 +1288,6 @@
 }
 
 [data-section-id="69e906cc9dbdcb3b40f9a9a1"] {
-
-  .section-background-image,
-  .section-background-overlay {
-    opacity: 0 !important;
-  }
 
   /* Headings white (override the careers-wide teal-dark rule) */
   :is(h1, h2, h3, h4, h5, h6),
@@ -1020,14 +1309,16 @@
     margin-bottom: 32px !important;
   }
 
-  /* White divider lines pinned to top and bottom edges of each h3 box */
+  /* White divider lines pinned to top and bottom edges of each h3 box.
+     calc(100% - 32px) leaves a ~16px gap on each side so adjacent
+     columns' lines don't visually connect. */
   .sqs-html-content h3::before,
   .sqs-html-content h3::after {
     content: "" !important;
     position: absolute !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
-    width: 72px !important;
+    width: calc(100% - 32px) !important;
     height: 1px !important;
     background: var(--white) !important;
     margin: 0 !important;
@@ -1035,10 +1326,12 @@
   .sqs-html-content h3::before { top: 0 !important; }
   .sqs-html-content h3::after  { bottom: 0 !important; }
 
-  /* Value headings — reduce size so they breathe in narrow columns */
+  /* Value headings — fluid size: 22px on desktop, scaling down smoothly
+     through tablet widths to 18px on mobile (clamp handles every width
+     between 768px and ~1200px without needing multiple media queries). */
   .sqs-html-content h3,
   .sqs-html-content h3 :is(strong, em, span) {
-    font-size: 1.25rem !important; /* 20px */
+    font-size: clamp(1.125rem, 0.93vw + 0.68rem, 1.375rem) !important;
     line-height: normal !important;
   }
 
@@ -1067,6 +1360,22 @@
   :is(h1, h2, h3, h4, h5, h6),
   :is(h1, h2, h3, h4, h5, h6) :is(strong, em, span) {
     color: var(--white) !important;
+  }
+
+  /* "Learn more" button — white background, dark-teal text */
+  #block-1f203482ae63bb724b08 .sqs-block-button-element,
+  #block-1f203482ae63bb724b08 a.sqs-block-button-element {
+    background-color: var(--white) !important;
+    background-image: none !important;
+    color: var(--teal-dark) !important;
+    border-color: var(--white) !important;
+  }
+  #block-1f203482ae63bb724b08 .sqs-block-button-element:hover,
+  #block-1f203482ae63bb724b08 a.sqs-block-button-element:hover {
+    background-color: var(--white) !important;
+    color: var(--teal-dark) !important;
+    border-color: var(--white) !important;
+    opacity: 0.9;
   }
 
   /* Mobile */
@@ -1101,6 +1410,41 @@
       font-weight: 800 !important;
       line-height: normal !important;
       letter-spacing: 0 !important;
+    }
+
+    /* Split-number layout (injected by scripts.js).
+       Row becomes a 3-part grid: [number] [label] [icon], with the number
+       pinned to a fixed-width left column and the label starting at a
+       consistent x-offset across every item. Flex is safer than grid
+       here because Squarespace lays the icon out as a flex sibling. */
+    .accordion-item__title.lyric-accordion-title-split {
+      display: flex !important;
+      align-items: baseline !important;
+      width: 100% !important;
+      gap: 0 !important;
+    }
+    .lyric-accordion-number {
+      flex: 0 0 22% !important;
+      min-width: 88px !important;
+      text-align: left !important;
+    }
+    .lyric-accordion-label {
+      flex: 1 1 auto !important;
+      text-align: left !important;
+    }
+
+    /* Tablet/mobile — narrow the number column so the label has room */
+    @media (max-width: 1023px) {
+      .lyric-accordion-number {
+        flex-basis: 72px !important;
+        min-width: 72px !important;
+      }
+    }
+    @media (max-width: 640px) {
+      .lyric-accordion-number {
+        flex-basis: 56px !important;
+        min-width: 56px !important;
+      }
     }
 
     /* Replace the default plus icon with a down arrow */
@@ -1176,11 +1520,6 @@
 
 [data-section-id="69e90210d49cfe289df1535d"] {
 
-  .section-background-image,
-  .section-background-overlay {
-    opacity: 0 !important;
-  }
-
   /* Headings white (override the careers-wide teal-dark rule) */
   :is(h1, h2, h3, h4, h5, h6),
   :is(h1, h2, h3, h4, h5, h6) :is(strong, em, span) {
@@ -1207,7 +1546,7 @@
    ========================================================================== */
 
 [data-section-id="69e914650701ed0ac1d35dae"] .section-background {
-  background: linear-gradient(135deg, #005461 0%, #008070 100%) !important;
+  background: var(--gradient-teal-diagonal) !important;
 }
 
 [data-section-id="69e914650701ed0ac1d35dae"] h1 {
@@ -1336,16 +1675,11 @@
 [data-section-id="69e9f4495391a643aa88a5f5"],
 [data-section-id="69e9f4495391a643aa88a5f5"] .section-border,
 [data-section-id="69e9f4495391a643aa88a5f5"] .section-background {
-  background: linear-gradient(to bottom, #EDF5F3 0%, #7AC8B5 100%) !important;
-  background-image: linear-gradient(to bottom, #EDF5F3 0%, #7AC8B5 100%) !important;
+  background: var(--gradient-mint) !important;
+  background-image: var(--gradient-mint) !important;
 }
 
 [data-section-id="69e9f4495391a643aa88a5f5"] {
-
-  .section-background-image,
-  .section-background-overlay {
-    opacity: 0 !important;
-  }
 
   /* Form fields — transparent bg, teal-dark border */
   #block-3c38afa3b6ad6299992e .field-element,
@@ -1371,6 +1705,15 @@
     opacity: 0.4 !important;
   }
 
+  /* Field labels — teal-dark to match the field borders/text */
+  #block-3c38afa3b6ad6299992e label,
+  #block-3c38afa3b6ad6299992e .title,
+  #block-3c38afa3b6ad6299992e .caption,
+  #block-3c38afa3b6ad6299992e .field-element label,
+  #block-3c38afa3b6ad6299992e .form-item .title {
+    color: var(--teal-dark) !important;
+  }
+
   /* Submit button — halve top/bottom padding (22.5px → 11.25px) */
   #block-3c38afa3b6ad6299992e button,
   #block-3c38afa3b6ad6299992e .form-button-wrapper button,
@@ -1379,6 +1722,24 @@
   #block-3c38afa3b6ad6299992e button[type="submit"] {
     padding-top: 11.25px !important;
     padding-bottom: 11.25px !important;
+  }
+
+  /* Right-side image(s) — nudge 50px to the right and add a subtle floating
+     loop. Translate applied to the outer block so the float animation on
+     the inner fluid-image-container doesn't fight with it. */
+  #block-99c14dbf7518da9d58c2 {
+    transform: translateX(20px) !important;
+  }
+  #block-99c14dbf7518da9d58c2 .fluid-image-animation-wrapper,
+  #block-99c14dbf7518da9d58c2 img {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  #block-99c14dbf7518da9d58c2 .fluid-image-container {
+    animation: lyric-float-subtle-a 9s ease-in-out infinite !important;
+    will-change: transform;
   }
 
   /* Mobile */
