@@ -220,3 +220,28 @@
     init();
   }
 })();
+
+
+/* --------------------------------------------------------------------------
+   PAGE-SCOPED BODY CLASSES
+   Squarespace doesn't expose page slugs as body classes, so add our own
+   for any URL we want to target from CSS.
+   -------------------------------------------------------------------------- */
+
+(function () {
+  const SLUG_CLASS_MAP = {
+    '/home-new-v2': 'lyric-page-home-v2',
+  };
+
+  function apply() {
+    const path = window.location.pathname.replace(/\/+$/, '') || '/';
+    const cls = SLUG_CLASS_MAP[path];
+    if (cls) document.body.classList.add(cls);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', apply);
+  } else {
+    apply();
+  }
+})();

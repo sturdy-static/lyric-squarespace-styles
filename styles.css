@@ -129,6 +129,29 @@ a.sqs-block-button-element {
 
 
 /* ==========================================================================
+   /home-new-v2 NAVIGATION — transparent header + white nav links.
+   Scoped via the body class added by scripts.js (PAGE-SCOPED BODY CLASSES)
+   so this only applies on /home-new-v2, not the live homepage.
+   ========================================================================== */
+.lyric-page-home-v2 #header,
+.lyric-page-home-v2 #header .header-background,
+.lyric-page-home-v2 #header .header-background-solid,
+.lyric-page-home-v2 #header.theme-col--primary,
+.lyric-page-home-v2 #header .theme-bg--primary {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.lyric-page-home-v2 #header .header-nav-item a,
+.lyric-page-home-v2 #header .header-nav-folder-item a,
+.lyric-page-home-v2 #header .header-menu-nav-item a,
+.lyric-page-home-v2 #header .header-title-text a {
+  color: #fff !important;
+}
+
+
+/* ==========================================================================
    HERO — Section ID: 69e09e3cc2426d72a3b2a97b
 
    Block map:
@@ -197,7 +220,7 @@ a.sqs-block-button-element {
   #block-e75ee00756497475a772          :is(h3, p, strong, span),
   #block-a72fa5a4e72dfea00345          :is(h3, p, strong, span) {
     font-family: 'MNKY Banana Grotesk', sans-serif !important;
-    font-size: clamp(2rem, 4.5vw, 3rem) !important; /* 32px → 48px */
+    font-size: clamp(2rem, 7vw, 5.875rem) !important; /* 32px → 94px */
     font-weight: 800 !important;
     line-height: normal !important;
     letter-spacing: 0 !important;
