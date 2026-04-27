@@ -220,7 +220,7 @@ a.sqs-block-button-element {
   #block-e75ee00756497475a772          :is(h3, p, strong, span),
   #block-a72fa5a4e72dfea00345          :is(h3, p, strong, span) {
     font-family: 'MNKY Banana Grotesk', sans-serif !important;
-    font-size: clamp(2rem, 7vw, 5.875rem) !important; /* 32px → 94px */
+    font-size: clamp(2rem, 5.6vw, 4.7rem) !important; /* 32px → 75px (-20%) */
     font-weight: 800 !important;
     line-height: normal !important;
     letter-spacing: 0 !important;
@@ -404,7 +404,7 @@ a.sqs-block-button-element {
   #block-fb77cbc0c669ad827d77 p strong,
   #block-fb77cbc0c669ad827d77 p span {
     font-family: 'Inter', sans-serif !important;
-    font-size: 1.25rem !important; /* 20px */
+    font-size: 1rem !important; /* 16px */
     font-weight: 400 !important;
     line-height: normal !important;
     letter-spacing: 0 !important;
@@ -450,10 +450,11 @@ a.sqs-block-button-element {
   #block-eca3bf84bcfd62a67441 p strong,
   #block-eca3bf84bcfd62a67441 p span {
     font-family: 'Inter', sans-serif !important;
-    font-size: 1.25rem !important; /* 20px */
+    font-size: 1rem !important; /* 16px */
     font-weight: 400 !important;
     line-height: normal !important;
     letter-spacing: 0 !important;
+    color: var(--teal-dark) !important;
   }
 
   /* Mobile */
@@ -510,13 +511,13 @@ a.sqs-block-button-element {
     letter-spacing: 0 !important;
   }
 
-  /* All body paragraphs — 20px Inter regular */
+  /* All body paragraphs — 16px Inter regular */
   #block-79ccced73c161be2b773 :is(p, strong, span),
   #block-aa70b591c8a0e909c477 :is(p, strong, span),
   #block-ba971b79e4a8c7eac9c9 :is(p, strong, span),
   #block-13886badbffad8cc1060 :is(p, strong, span) {
     font-family: 'Inter', sans-serif !important;
-    font-size: 1.25rem !important; /* 20px */
+    font-size: 1rem !important; /* 16px */
     font-weight: 400 !important;
     line-height: normal !important;
     letter-spacing: 0 !important;
@@ -619,6 +620,19 @@ a.sqs-block-button-element {
     animation: lyric-float-subtle-b 9s ease-in-out infinite !important;
     animation-delay: -5s !important;
     will-change: transform;
+  }
+
+  /* Typography — force teal-dark on the heading + subheading + paragraph,
+     and bold the "intelligence is in how it's built" H3 (theme un-bolds
+     the inner <strong> by default). */
+  #block-yui_3_17_2_1_1776853087754_34838 :is(h1, h2, h3, h4, p, strong, span),
+  #block-e47caa302cdddfbec688 :is(h1, h2, h3, h4, p, strong, span),
+  #block-c480bd3e634f62be432b :is(p, strong, span, em, a) {
+    color: var(--teal-dark) !important;
+  }
+  #block-e47caa302cdddfbec688 :is(h1, h2, h3, h4),
+  #block-e47caa302cdddfbec688 :is(h1, h2, h3, h4) strong {
+    font-weight: 800 !important;
   }
 
   /* Mobile */
@@ -815,6 +829,7 @@ a.sqs-block-button-element {
   #block-b8fed555b51213c22798 p em,
   #block-b8fed555b51213c22798 p a {
     color: var(--white) !important;
+    line-height: 1.2 !important;
   }
 
   /* Image — pinned flush to right edge, 50vw wide, full section height,
