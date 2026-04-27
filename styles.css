@@ -150,6 +150,14 @@ a.sqs-block-button-element {
   color: #fff !important;
 }
 
+/* Default p text on /home-new-v2 to dark teal-green. Block-scoped colour
+   rules (e.g. white quote on the dark image banner) keep their own colour
+   thanks to higher specificity. */
+.lyric-page-home-v2 main p,
+.lyric-page-home-v2 main p :is(strong, em, span, a) {
+  color: var(--teal-dark) !important;
+}
+
 
 /* ==========================================================================
    HERO — Section ID: 69e09e3cc2426d72a3b2a97b
@@ -404,7 +412,7 @@ a.sqs-block-button-element {
   #block-fb77cbc0c669ad827d77 p strong,
   #block-fb77cbc0c669ad827d77 p span {
     font-family: 'Inter', sans-serif !important;
-    font-size: 1rem !important; /* 16px */
+    font-size: 1.125rem !important; /* 18px */
     font-weight: 400 !important;
     line-height: normal !important;
     letter-spacing: 0 !important;
@@ -450,7 +458,7 @@ a.sqs-block-button-element {
   #block-eca3bf84bcfd62a67441 p strong,
   #block-eca3bf84bcfd62a67441 p span {
     font-family: 'Inter', sans-serif !important;
-    font-size: 1rem !important; /* 16px */
+    font-size: 1.125rem !important; /* 18px */
     font-weight: 400 !important;
     line-height: normal !important;
     letter-spacing: 0 !important;
@@ -517,7 +525,7 @@ a.sqs-block-button-element {
   #block-ba971b79e4a8c7eac9c9 :is(p, strong, span),
   #block-13886badbffad8cc1060 :is(p, strong, span) {
     font-family: 'Inter', sans-serif !important;
-    font-size: 1rem !important; /* 16px */
+    font-size: 1.125rem !important; /* 18px */
     font-weight: 400 !important;
     line-height: normal !important;
     letter-spacing: 0 !important;
