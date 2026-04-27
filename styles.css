@@ -416,6 +416,7 @@ a.sqs-block-button-element {
     font-weight: 400 !important;
     line-height: normal !important;
     letter-spacing: 0 !important;
+    color: var(--teal-dark) !important;
   }
 
   /* Mobile */
@@ -519,7 +520,7 @@ a.sqs-block-button-element {
     letter-spacing: 0 !important;
   }
 
-  /* All body paragraphs — 16px Inter regular */
+  /* All body paragraphs — 18px Inter regular */
   #block-79ccced73c161be2b773 :is(p, strong, span),
   #block-aa70b591c8a0e909c477 :is(p, strong, span),
   #block-ba971b79e4a8c7eac9c9 :is(p, strong, span),
@@ -529,6 +530,7 @@ a.sqs-block-button-element {
     font-weight: 400 !important;
     line-height: normal !important;
     letter-spacing: 0 !important;
+    color: var(--teal-dark) !important;
   }
 
   /* Mobile */
