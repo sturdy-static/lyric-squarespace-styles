@@ -245,3 +245,32 @@
     apply();
   }
 })();
+
+
+/* --------------------------------------------------------------------------
+   CAREERS — COME THRIVE AT LYRIC: force "Honesty and Respect" heading to
+   break after "and" so it reads "Honesty and / Respect" (matching the
+   intended two-line layout on the wider columns).
+   -------------------------------------------------------------------------- */
+
+(function () {
+  function apply() {
+    const el = document.querySelector('#block-a87ff8a5ea4d34c8ebfb h3');
+    if (!el) return;
+    const target = el.querySelector('strong') || el;
+    if (target.dataset.lyricBroken === '1') return;
+    if (/Honesty and Respect/.test(target.textContent)) {
+      target.innerHTML = target.innerHTML.replace(
+        /Honesty and\s+Respect/,
+        'Honesty and<br>Respect'
+      );
+      target.dataset.lyricBroken = '1';
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', apply);
+  } else {
+    apply();
+  }
+})();

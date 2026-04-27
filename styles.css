@@ -129,30 +129,6 @@ a.sqs-block-button-element {
 
 
 /* ==========================================================================
-   /home-new-v2 NAVIGATION — transparent header + white nav links.
-   Scoped via the body class added by scripts.js (PAGE-SCOPED BODY CLASSES)
-   so this only applies on /home-new-v2, not the live homepage.
-   ========================================================================== */
-.lyric-page-home-v2 #header,
-.lyric-page-home-v2 #header .header-background,
-.lyric-page-home-v2 #header .header-background-solid,
-.lyric-page-home-v2 #header.theme-col--primary,
-.lyric-page-home-v2 #header .theme-bg--primary {
-  background: transparent !important;
-  background-color: transparent !important;
-  box-shadow: none !important;
-}
-
-.lyric-page-home-v2 #header .header-nav-item a,
-.lyric-page-home-v2 #header .header-nav-folder-item a,
-.lyric-page-home-v2 #header .header-menu-nav-item a,
-.lyric-page-home-v2 #header .header-title-text a {
-  color: #fff !important;
-}
-
-
-
-/* ==========================================================================
    HERO — Section ID: 69e09e3cc2426d72a3b2a97b
 
    Block map:
@@ -1439,6 +1415,14 @@ a.sqs-block-button-element {
     padding-left: 16px !important;
     padding-right: 16px !important;
     line-height: 1.2 !important;
+  }
+
+  /* HandShakeIcon (Honesty and Respect) is much wider than its peers in
+     the source asset — cap it down so it reads at the same optical size. */
+  #block-e2b1a5b9a0564c16af77 img {
+    max-height: 55px !important;
+    width: auto !important;
+    object-fit: contain !important;
   }
 
   /* Mobile */
