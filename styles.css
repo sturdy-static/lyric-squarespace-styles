@@ -618,6 +618,9 @@ a.sqs-block-button-element {
   #block-c480bd3e634f62be432b :is(p, strong, span, em, a) {
     color: var(--teal-dark) !important;
   }
+  #block-c480bd3e634f62be432b :is(p, strong, span, em, a) {
+    line-height: 1.2 !important;
+  }
   #block-yui_3_17_2_1_1776853087754_34838 :is(h1, h2, h3, h4),
   #block-yui_3_17_2_1_1776853087754_34838 :is(h1, h2, h3, h4) :is(strong, em, span) {
     font-size: 4.375rem !important; /* 70px */
@@ -641,6 +644,12 @@ a.sqs-block-button-element {
     hr,
     .sqs-block-horizontalrule {
       display: none !important;
+    }
+
+    /* Keep "How we use AI" at desktop size on mobile */
+    #block-yui_3_17_2_1_1776853087754_34838 :is(h1, h2, h3, h4),
+    #block-yui_3_17_2_1_1776853087754_34838 :is(h1, h2, h3, h4) :is(strong, em, span) {
+      font-size: 4.375rem !important; /* 70px */
     }
   }
 }
