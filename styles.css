@@ -621,6 +621,7 @@ a.sqs-block-button-element {
   #block-e47caa302cdddfbec688 :is(h1, h2, h3, h4),
   #block-e47caa302cdddfbec688 :is(h1, h2, h3, h4) strong {
     font-weight: 800 !important;
+    font-size: 3.125rem !important; /* 50px */
   }
 
   /* Tighter line-height on the three pillar paragraphs */
@@ -647,6 +648,11 @@ a.sqs-block-button-element {
    ========================================================================== */
 
 [data-section-id="69e8b1aeef8ec45f9ce2ed07"] {
+
+  /* Customer quote — tighter line-height */
+  #block-yui_3_17_2_1_1776856272387_34780 :is(p, span, strong, em, a) {
+    line-height: 1.2 !important;
+  }
 
   /* Mobile */
   @media (max-width: 767px) {
