@@ -618,6 +618,10 @@ a.sqs-block-button-element {
   #block-c480bd3e634f62be432b :is(p, strong, span, em, a) {
     color: var(--teal-dark) !important;
   }
+  #block-yui_3_17_2_1_1776853087754_34838 :is(h1, h2, h3, h4),
+  #block-yui_3_17_2_1_1776853087754_34838 :is(h1, h2, h3, h4) :is(strong, em, span) {
+    font-size: 4.375rem !important; /* 70px */
+  }
   #block-e47caa302cdddfbec688 :is(h1, h2, h3, h4),
   #block-e47caa302cdddfbec688 :is(h1, h2, h3, h4) strong {
     font-weight: 800 !important;
@@ -942,6 +946,28 @@ a.sqs-block-button-element {
    ========================================================================== */
 
 [data-section-id="666af531a6b8672071aa1192"] {
+
+  /* Each card's primary link (the .sqsrte-large title link, e.g.
+     "Leadership Insights", "In the News", etc.) is rendered as a plain
+     anchor inside an HTML block. Promote it to the standard teal-dark
+     pill button so it matches the rest of the site. */
+  .sqs-html-content p.sqsrte-large a {
+    display: inline-block !important;
+    background-color: var(--teal-dark) !important;
+    color: var(--white) !important;
+    text-decoration: none !important;
+    padding: 12px 24px !important;
+    border-radius: 999px !important;
+    border: 1px solid var(--teal-dark) !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    transition: opacity 0.2s ease !important;
+  }
+  .sqs-html-content p.sqsrte-large a:hover {
+    background-color: var(--teal-dark) !important;
+    color: var(--white) !important;
+    opacity: 0.9 !important;
+  }
 
   /* Mobile */
   @media (max-width: 767px) {
