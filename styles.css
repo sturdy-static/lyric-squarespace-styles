@@ -578,15 +578,11 @@ a.sqs-block-button-element {
   /* Slide-up kill rules for these two blocks live in the
      GLOBAL "KILL SQUARESPACE SLIDE-UP" RESET at the top of this file. */
 
-  /* Floating loops on inner containers */
-  #block-yui_3_17_2_1_1776853087754_34556 .fluid-image-container {
-    animation: lyric-hero-float-a 7s ease-in-out infinite !important;
-    will-change: transform;
-  }
+  /* Floating loops on inner containers — disabled */
+  #block-yui_3_17_2_1_1776853087754_34556 .fluid-image-container,
   #block-cdcb86dcac6f27b37b8c .fluid-image-container {
-    animation: lyric-hero-float-b 9s ease-in-out infinite !important;
-    animation-delay: -2s !important;
-    will-change: transform;
+    animation: none !important;
+    transform: none !important;
   }
 
   /* Three stacked photo cards below the top pair —
@@ -606,20 +602,12 @@ a.sqs-block-button-element {
   /* Slide-up kill rules for these three blocks live in the
      GLOBAL "KILL SQUARESPACE SLIDE-UP" RESET at the top of this file. */
 
-  /* Independent floating loops — subtle variant (smaller amplitude) */
-  #block-yui_3_17_2_1_1776853087754_37379 .fluid-image-container {
-    animation: lyric-float-subtle-a 8s ease-in-out infinite !important;
-    will-change: transform;
-  }
-  #block-c9f790750fa40a2d7eb4 .fluid-image-container {
-    animation: lyric-float-subtle-c 7s ease-in-out infinite !important;
-    animation-delay: -3s !important;
-    will-change: transform;
-  }
+  /* Independent floating loops — disabled */
+  #block-yui_3_17_2_1_1776853087754_37379 .fluid-image-container,
+  #block-c9f790750fa40a2d7eb4 .fluid-image-container,
   #block-17f4dd96e5ae8200df45 .fluid-image-container {
-    animation: lyric-float-subtle-b 9s ease-in-out infinite !important;
-    animation-delay: -5s !important;
-    will-change: transform;
+    animation: none !important;
+    transform: none !important;
   }
 
   /* Typography — force teal-dark on the heading + subheading + paragraph,
@@ -633,6 +621,13 @@ a.sqs-block-button-element {
   #block-e47caa302cdddfbec688 :is(h1, h2, h3, h4),
   #block-e47caa302cdddfbec688 :is(h1, h2, h3, h4) strong {
     font-weight: 800 !important;
+  }
+
+  /* Tighter line-height on the three pillar paragraphs */
+  #block-cedc6dbb118a0eea01e7 :is(p, strong, span, em, a),
+  #block-187c407f3a8ebe0c5f8b :is(p, strong, span, em, a),
+  #block-df5141c29c5d7e4a3356 :is(p, strong, span, em, a) {
+    line-height: 1.2 !important;
   }
 
   /* Mobile */
