@@ -150,13 +150,6 @@ a.sqs-block-button-element {
   color: #fff !important;
 }
 
-/* Default p text on /home-new-v2 to dark teal-green. Block-scoped colour
-   rules (e.g. white quote on the dark image banner) keep their own colour
-   thanks to higher specificity. */
-.lyric-page-home-v2 main p,
-.lyric-page-home-v2 main p :is(strong, em, span, a) {
-  color: var(--teal-dark) !important;
-}
 
 
 /* ==========================================================================
@@ -416,7 +409,6 @@ a.sqs-block-button-element {
     font-weight: 400 !important;
     line-height: normal !important;
     letter-spacing: 0 !important;
-    color: var(--teal-dark) !important;
   }
 
   /* Mobile */
@@ -530,7 +522,6 @@ a.sqs-block-button-element {
     font-weight: 400 !important;
     line-height: normal !important;
     letter-spacing: 0 !important;
-    color: var(--teal-dark) !important;
   }
 
   /* Mobile */
@@ -641,11 +632,12 @@ a.sqs-block-button-element {
     font-size: 3.125rem !important; /* 50px */
   }
 
-  /* Tighter line-height on the three pillar paragraphs */
+  /* Tighter line-height + dark teal-green on the three pillar paragraphs */
   #block-cedc6dbb118a0eea01e7 :is(p, strong, span, em, a),
   #block-187c407f3a8ebe0c5f8b :is(p, strong, span, em, a),
   #block-df5141c29c5d7e4a3356 :is(p, strong, span, em, a) {
     line-height: 1.2 !important;
+    color: var(--teal-dark) !important;
   }
 
   /* Mobile */
@@ -1081,6 +1073,7 @@ a.sqs-block-button-element {
     font-weight: 400 !important;
     line-height: normal !important;
     letter-spacing: 0 !important;
+    color: var(--teal-dark) !important;
   }
 
   /* Hero images — staggered fade-in, then gentle floating loop.
@@ -1202,6 +1195,11 @@ a.sqs-block-button-element {
     letter-spacing: 0 !important;
   }
 
+  /* Body paragraph — tighter line-height */
+  #block-429a919108fbc32bcf01 :is(p, strong, span, em, a) {
+    line-height: 1.2 !important;
+  }
+
   /* Button — dark teal background, white text (matches heading colour) */
   #block-aa2e3bd2c0cef88575ff .sqs-block-button-element,
   #block-aa2e3bd2c0cef88575ff a.sqs-block-button-element {
@@ -1233,6 +1231,11 @@ a.sqs-block-button-element {
    ========================================================================== */
 
 [data-section-id="69e90210d49cfe289df1534b"] {
+
+  /* Body paragraph — tighter line-height */
+  #block-392462fed1f8a091a9f3 :is(p, strong, span, em, a) {
+    line-height: 1.2 !important;
+  }
 
   /* Mobile */
   @media (max-width: 767px) {
@@ -1272,7 +1275,7 @@ a.sqs-block-button-element {
   #block-95606272bd71fdfd41bc img              { max-height: 59px !important; }
   #block-c0ea986e6756d386a9a6 img              { max-height: 68px !important; }
   #block-7e2946fb8561786474e7 img              { max-height: 62px !important; }
-  #block-0c66743e0c5e21a0bf15 img              { max-height: 80px !important; }
+  #block-0c66743e0c5e21a0bf15 img              { max-height: 85px !important; }
 
   /* Main H2 — "Supporting you beyond the 9-5" — match the 50px heading style */
   #block-2dfda079b00a3ae14e36 :is(h1, h2, h3, h4, h5, h6),
@@ -1420,20 +1423,22 @@ a.sqs-block-button-element {
   .sqs-html-content h3::before { top: 0 !important; }
   .sqs-html-content h3::after  { bottom: 0 !important; }
 
-  /* Value headings — fluid size: 22px on desktop, scaling down smoothly
-     through tablet widths to 18px on mobile (clamp handles every width
-     between 768px and ~1200px without needing multiple media queries). */
+  /* Value headings — fluid size: 18px on desktop, scaling down smoothly
+     through tablet widths to 14px on mobile (-4px from previous spec). */
   .sqs-html-content h3,
   .sqs-html-content h3 :is(strong, em, span) {
-    font-size: clamp(1.125rem, 0.93vw + 0.68rem, 1.375rem) !important;
+    font-size: clamp(0.875rem, 0.93vw + 0.43rem, 1.125rem) !important;
     line-height: normal !important;
+    font-weight: 700 !important;
   }
 
-  /* Body copy — add horizontal breathing room inside each column */
+  /* Body copy — add horizontal breathing room inside each column,
+     and tighten line-height. */
   .sqs-html-content p,
   .sqs-html-content p :is(strong, em, span) {
     padding-left: 16px !important;
     padding-right: 16px !important;
+    line-height: 1.2 !important;
   }
 
   /* Mobile */
