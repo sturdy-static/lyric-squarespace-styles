@@ -227,7 +227,7 @@ a.sqs-block-button-element {
   #block-db981ef2ff9d18ccd965 {
     animation: lyric-hero-fade 1.4s ease-out 0.5s both !important;
     transition: none !important;
-    transform: translateY(-70px) !important;
+    transform: translateY(-100px) !important;
   }
   /* Slide-up kill rules for these two blocks live in the
      GLOBAL "KILL SQUARESPACE SLIDE-UP" RESET at the top of this file. */
