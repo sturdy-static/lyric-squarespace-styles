@@ -1574,7 +1574,7 @@ a.sqs-block-button-element {
 
 @media (min-width: 768px) {
   [data-section-id="69e914650701ed0ac1d35dae"] .fe-block-a136c92b58e664e11926 {
-    transform: translateY(-40px);
+    transform: translateY(-120px);
   }
 }
 
@@ -1711,6 +1711,12 @@ a.sqs-block-button-element {
   #block-3c38afa3b6ad6299992e input::placeholder,
   #block-3c38afa3b6ad6299992e textarea::placeholder {
     color: var(--teal-dark) !important;
+    opacity: 0.4 !important;
+  }
+
+  /* Select placeholder — selects can't use ::placeholder, so fade the
+     control itself while its empty default option is the chosen one. */
+  #block-3c38afa3b6ad6299992e select:has(option[value=""]:checked) {
     opacity: 0.4 !important;
   }
 
