@@ -858,7 +858,14 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
      #block-a61a3c66d5baeefec41c             — H2 "Lyric 42"
      #block-b8fed555b51213c22798             — body paragraph
      #block-yui_3_17_2_1_1776863276072_11431 — image (Mask group)
+
+   ⚠ DISABLED — the rules below are wrapped in `@media not all { }`, which
+   never matches, so nothing here applies. To re-enable, remove the
+   `@media not all {` wrapper at the top of this section and the matching
+   closing `}` just before the next section header.
    ========================================================================== */
+
+@media not all {
 
 [data-section-id="69e8c799d278121d8d40dc76"],
 [data-section-id="69e8c799d278121d8d40dc76"] .section-border,
@@ -1026,6 +1033,8 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     display: none;
   }
 }
+
+} /* end @media not all — LYRIC 42 disabled wrapper */
 
 
 /* ==========================================================================
