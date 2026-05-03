@@ -397,7 +397,8 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
      #block-yui_3_17_2_1_1776695389595_14584 — H2 heading ("Why Lyric exists")
      #block-fb77cbc0c669ad827d77            — body paragraph
      #block-yui_3_17_2_1_1776856272387_17722 — button
-     #block-yui_3_17_2_1_1776695389595_14334 — image (Bill Miller)
+     #block-yui_3_17_2_1_1776695389595_14334 — image (desktop, shaped)
+     #block-e5c8b5c5acdf222aff43             — image (mobile, rectangular)
    ========================================================================== */
 
 [data-section-id="69e63e83126fbf28f74a40c8"] {
@@ -423,6 +424,11 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     letter-spacing: 0 !important;
   }
 
+  /* Hide the rectangular mobile image on desktop. */
+  .fe-block-e5c8b5c5acdf222aff43 {
+    display: none !important;
+  }
+
   /* Mobile */
   @media (max-width: 767px) {
     #block-yui_3_17_2_1_1776695389595_14584 h2,
@@ -431,6 +437,17 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     }
     #block-fb77cbc0c669ad827d77 :is(p, strong, span) {
       font-size: 1rem !important; /* 16px */
+    }
+
+    /* Swap images on mobile: hide the shaped desktop image, show the
+       rectangular mobile one full-width. */
+    .fe-block-yui_3_17_2_1_1776695389595_14334 {
+      display: none !important;
+    }
+    .fe-block-e5c8b5c5acdf222aff43 {
+      display: block !important;
+      grid-column: 1 / -1 !important;
+      width: 100% !important;
     }
   }
 }
