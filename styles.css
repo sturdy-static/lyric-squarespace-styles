@@ -237,14 +237,14 @@ a.sqs-block-button-element {
   }
   /* Per-image top/right offset + size. */
   .fe-block-yui_3_17_2_1_1776942559033_13324 {
-    top: -355px !important;                 /* pulled higher so less hangs down */
+    top: -337px !important;                 /* pulled higher so less hangs down */
     right: calc(50% - 800px) !important;    /* shifted ~80px right of line anchor */
     width: 800px !important;
     aspect-ratio: 938 / 1070 !important;   /* nurse natural source ratio → 800 × ~913 */
   }
   .fe-block-db981ef2ff9d18ccd965 {
     top: -63px !important;                  /* moved down ~57px (~10% of height) */
-    right: calc(50% - 630px) !important;    /* moved left ~90px (~15% of width) */
+    right: calc(50% - 600px) !important;    /* moved left ~120px (~20% of width) */
     width: 600px !important;
     aspect-ratio: 746 / 708 !important;    /* line natural source ratio → 600 × ~570 */
   }
