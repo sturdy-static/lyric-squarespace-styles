@@ -706,6 +706,12 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     #block-yui_3_17_2_1_1776853087754_34838 :is(h1, h2, h3, h4) :is(strong, em, span) {
       font-size: 4.375rem !important; /* 70px */
     }
+
+    /* Shrink "The intelligence is in how it's built." on mobile */
+    #block-e47caa302cdddfbec688 :is(h1, h2, h3, h4),
+    #block-e47caa302cdddfbec688 :is(h1, h2, h3, h4) strong {
+      font-size: 1.875rem !important; /* 30px */
+    }
   }
 }
 
