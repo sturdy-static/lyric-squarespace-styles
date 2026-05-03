@@ -221,17 +221,19 @@ a.sqs-block-button-element {
   }
 
   /* Right-side hero images (nurse + flowing line):
-     Lifted out of the Fluid Engine grid and absolutely positioned to the
-     top-right of the hero section. Fixed pixel widths so they don't squish
-     on narrow viewports — the section's `overflow: hidden` (line 148)
-     clips the left edge naturally as the viewport narrows.
+     Lifted out of the Fluid Engine grid and absolutely positioned at a
+     fixed PAGE coordinate (not viewport-edge tracking). On a >=1440px
+     viewport the image's right edge sits at the viewport right; on
+     narrower viewports the right edge extends past the viewport and is
+     clipped by the section's `overflow: hidden` (line 148). Fixed pixel
+     widths so they never squish.
      Stacked above the hero text content but below the nav (which lives in
      #header, a separate stacking context, so it always renders on top). */
   .fe-block-yui_3_17_2_1_1776942559033_13324,
   .fe-block-db981ef2ff9d18ccd965 {
     position: absolute !important;
     top: 0 !important;
-    right: 0 !important;
+    right: calc(50% - 720px) !important;
     z-index: 5 !important;
     grid-area: unset !important;
   }
