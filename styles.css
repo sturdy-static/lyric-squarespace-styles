@@ -798,9 +798,36 @@ a.sqs-block-button-element {
   background-image: none !important;
 }
 
+/* Decorative dark-teal stroked rounded-rectangle frame. Inset on the left,
+   top, and bottom; width is wide enough to bleed off the right edge at
+   typical viewports and caps at 1700px on very wide screens (right edge
+   becomes visible). Sits behind everything (z-index: 0) so the photo
+   overlaps it on the right. pointer-events:none keeps it inert. */
+[data-section-id="69e8c799d278121d8d40dc76"]::before {
+  content: '';
+  position: absolute;
+  top: clamp(24px, 4vw, 56px);
+  bottom: clamp(24px, 4vw, 56px);
+  left: clamp(24px, 4vw, 56px);
+  width: clamp(900px, 110vw, 1700px);
+  border: 1.5px solid var(--teal-dark);
+  border-radius: 24px;
+  pointer-events: none;
+  z-index: 0;
+}
+
 [data-section-id="69e8c799d278121d8d40dc76"] {
   position: relative !important;
   overflow: hidden !important;
+
+  /* Text + button blocks sit above the decorative frame. position:relative
+     gives them a stacking context so z-index applies. */
+  #block-a61a3c66d5baeefec41c,
+  #block-b8fed555b51213c22798,
+  #block-yui_3_17_2_1_1776946358501_14022 {
+    position: relative !important;
+    z-index: 3 !important;
+  }
 
   /* H2 — section heading (white on teal) */
   #block-a61a3c66d5baeefec41c h2,
@@ -823,17 +850,20 @@ a.sqs-block-button-element {
     line-height: 1.2 !important;
   }
 
-  /* Image — pinned flush to right edge, 50vw wide, full section height,
-     showing the LEFT half of the source image via object-position */
+  /* Image — pinned to the right with a slight bleed past the section edge
+     (right offset is negative so the photo's right side gets clipped by
+     the section's overflow:hidden). Width clamps so the photo grows with
+     the viewport, then caps at 820px on very wide screens (fully visible).
+     Sits above the decorative frame at z-index: 2. */
   .fe-block-yui_3_17_2_1_1776863276072_11431 {
     position: absolute !important;
     top: 0 !important;
-    right: 0 !important;
+    right: clamp(-120px, -6vw, -32px) !important;
     bottom: 0 !important;
-    width: 50vw !important;
+    width: clamp(420px, 48vw, 820px) !important;
     max-width: none !important;
     height: 100% !important;
-    z-index: 1 !important;
+    z-index: 2 !important;
   }
 
   #block-yui_3_17_2_1_1776863276072_11431,
@@ -849,18 +879,28 @@ a.sqs-block-button-element {
   }
 
   #block-yui_3_17_2_1_1776863276072_11431 {
-    --image-component-object-fit: contain !important;
+    --image-component-object-fit: cover !important;
     --image-component-container-width: 100% !important;
     --image-component-container-height: 100% !important;
   }
 
-  /* Image stays still (no zoom/crop on resize) — full shape visible,
-     pinned to the right edge of the 50vw container */
+  /* Rounded corners on all four sides of the photo. The right two corners
+     simply land off-screen at typical viewport widths because the wrapper
+     is offset past the section's right edge; on very wide screens the
+     wrapper caps and all four corners are visible. */
+  #block-yui_3_17_2_1_1776863276072_11431 .fluid-image-container,
+  #block-yui_3_17_2_1_1776863276072_11431 img {
+    border-radius: 16px !important;
+    overflow: hidden !important;
+  }
+
+  /* Photo fills the rounded container; left-anchored so the laptop body
+     stays in the visible half and the inert right edge is what gets cropped. */
   #block-yui_3_17_2_1_1776863276072_11431 img {
     width: 100% !important;
     height: 100% !important;
-    object-fit: contain !important;
-    object-position: right center !important;
+    object-fit: cover !important;
+    object-position: left center !important;
   }
 
   /* Button — white background, dark teal text (hover keeps contrast) */
@@ -880,15 +920,16 @@ a.sqs-block-button-element {
   }
 
   /* Mobile — stack image below content at full page width. Unwind the
-     desktop 50vw absolute pin; force the fluid-image container to the
-     source image's natural aspect (787x537) so it has a real height;
-     keep the img at 100%/100% inside it with object-fit contain. */
+     desktop absolute pin; force the fluid-image container to the source
+     image's natural aspect so it has a real height. Photo keeps its
+     rounded corners (inherited from the desktop rule above). */
   @media (max-width: 767px) {
     .fe-block-yui_3_17_2_1_1776863276072_11431 {
       position: static !important;
       width: 100% !important;
       height: auto !important;
       max-width: 100% !important;
+      right: auto !important;
     }
     #block-yui_3_17_2_1_1776863276072_11431 .fluid-image-animation-wrapper,
     #block-yui_3_17_2_1_1776863276072_11431 .fluid-image-container {
@@ -906,6 +947,14 @@ a.sqs-block-button-element {
     #block-b8fed555b51213c22798 :is(p, strong, span) {
       font-size: 1rem !important; /* 16px */
     }
+  }
+}
+
+/* Hide the decorative frame on mobile — it doesn't translate to a
+   stacked single-column layout. */
+@media (max-width: 767px) {
+  [data-section-id="69e8c799d278121d8d40dc76"]::before {
+    display: none;
   }
 }
 
