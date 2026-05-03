@@ -244,7 +244,7 @@ a.sqs-block-button-element {
   }
   .fe-block-db981ef2ff9d18ccd965 {
     top: -63px !important;                  /* moved down ~57px (~10% of height) */
-    right: calc(50% - 660px) !important;    /* moved left ~60px (~10% of width) */
+    right: calc(50% - 630px) !important;    /* moved left ~90px (~15% of width) */
     width: 600px !important;
     aspect-ratio: 746 / 708 !important;    /* line natural source ratio → 600 × ~570 */
   }
