@@ -293,12 +293,6 @@ a.sqs-block-button-element {
 
   /* Mobile */
   @media (max-width: 767px) {
-    /* Hide the two right-side hero images on mobile */
-    #block-yui_3_17_2_1_1776942559033_13324,
-    #block-db981ef2ff9d18ccd965 {
-      display: none !important;
-    }
-
     /* H1 — mobile step-down */
     #block-yui_3_17_2_1_1776328236739_12108 h1,
     #block-yui_3_17_2_1_1776328236739_12108 h1 strong {
