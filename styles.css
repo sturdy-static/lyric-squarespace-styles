@@ -1801,8 +1801,10 @@ a.sqs-block-button-element {
   }
 
   /* Select placeholder — selects can't use ::placeholder, so fade the
-     control itself while its empty default option is the chosen one. */
-  #block-3c38afa3b6ad6299992e select:has(option[value=""]:checked) {
+     control while the default first option is still the chosen one.
+     (Squarespace's placeholder option doesn't carry value="", so the
+     old option[value=""] match never fired.) */
+  #block-3c38afa3b6ad6299992e select:has(option:first-of-type:checked) {
     opacity: 0.4 !important;
   }
 
