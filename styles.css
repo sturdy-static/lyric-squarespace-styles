@@ -1964,6 +1964,17 @@ body.lyric-page-home-v2 #header:not(:hover) .header-nav-folder-title svg * {
   transition: filter 250ms ease !important;
 }
 
+/* Contact Us button — slim height, matches GLOBAL BUTTON HEIGHT rule
+   (padding 12px / line-height 1.2). Applied regardless of hover state. */
+body.lyric-page-home-v2 #header .header-actions-action--cta .btn,
+body.lyric-page-home-v2 #header .header-actions-action--cta a.sqs-button-element--primary {
+  height: auto !important;
+  min-height: 0 !important;
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  line-height: 1.2 !important;
+}
+
 /* Contact Us button — white pill, dark teal text. */
 body.lyric-page-home-v2 #header:not(:hover) .header-actions-action--cta .btn,
 body.lyric-page-home-v2 #header:not(:hover) .header-actions-action--cta a.sqs-button-element--primary {
