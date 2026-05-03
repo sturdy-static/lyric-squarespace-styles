@@ -216,7 +216,7 @@ a.sqs-block-button-element {
   #block-a72fa5a4e72dfea00345          .sqs-html-content::after {
     content: "" !important;
     display: block !important;
-    width: 50% !important;
+    width: 80% !important;
     height: 1px !important;
     background: var(--white) !important;
     margin: 16px auto 0 !important;
