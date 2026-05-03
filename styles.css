@@ -221,28 +221,38 @@ a.sqs-block-button-element {
   }
 
   /* Right-side hero images (nurse + flowing line):
-     - replace Squarespace's slide-up fade with an opacity-only fade-in
-     - translateY(-100px) bleeds the top of each image up behind the nav
-     - hidden on mobile below
-     Nurse mirrors the line's CSS exactly as a baseline; tweak from here. */
+     Lifted out of the Fluid Engine grid and absolutely positioned to the
+     top-right of the hero section. Fixed pixel widths so they don't squish
+     on narrow viewports — the section's `overflow: hidden` (line 148)
+     clips the left edge naturally as the viewport narrows.
+     Stacked above the hero text content but below the nav (which lives in
+     #header, a separate stacking context, so it always renders on top). */
+  .fe-block-yui_3_17_2_1_1776942559033_13324,
+  .fe-block-db981ef2ff9d18ccd965 {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    z-index: 5 !important;
+    grid-area: unset !important;
+  }
+  .fe-block-yui_3_17_2_1_1776942559033_13324 {
+    width: 700px !important;
+  }
+  .fe-block-db981ef2ff9d18ccd965 {
+    width: 700px !important;
+  }
+
+  /* Keep the fade-in animation (Squarespace's default slide-up is killed
+     globally at the top of this file). No transform: translateY hack
+     needed any more — absolute positioning replaces the bleed-up trick. */
   #block-yui_3_17_2_1_1776942559033_13324 {
     animation: lyric-hero-fade 1.2s ease-out 0.1s both !important;
     transition: none !important;
-    transform: translateY(-100px) !important;
-    overflow: visible !important;
-  }
-  #block-yui_3_17_2_1_1776942559033_13324 .sqs-block-content,
-  #block-yui_3_17_2_1_1776942559033_13324 .fluid-image-container,
-  #block-yui_3_17_2_1_1776942559033_13324 .fluid-image-animation-wrapper {
-    overflow: visible !important;
   }
   #block-db981ef2ff9d18ccd965 {
     animation: lyric-hero-fade 1.4s ease-out 0.5s both !important;
     transition: none !important;
-    transform: translateY(-100px) !important;
   }
-  /* Slide-up kill rules for these two blocks live in the
-     GLOBAL "KILL SQUARESPACE SLIDE-UP" RESET at the top of this file. */
 
   /* Scroll-driven parallax targets (driven by scripts.js):
      nurse photo drifts down, line graphic drifts up. will-change pre-promotes
