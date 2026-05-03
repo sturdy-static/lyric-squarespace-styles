@@ -1059,6 +1059,22 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
   color: var(--white) !important;
 }
 
+/* Button — white background, dark teal text. */
+[data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776946358501_14022 .sqs-block-button-element,
+[data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776946358501_14022 a.sqs-block-button-element {
+  background-color: var(--white) !important;
+  background-image: none !important;
+  color: var(--teal-dark) !important;
+  border-color: var(--white) !important;
+}
+[data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776946358501_14022 .sqs-block-button-element:hover,
+[data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776946358501_14022 a.sqs-block-button-element:hover {
+  background-color: var(--white) !important;
+  color: var(--teal-dark) !important;
+  border-color: var(--white) !important;
+  opacity: 0.9;
+}
+
 @media (min-width: 768px) {
   [data-section-id="69e8c799d278121d8d40dc76"] {
     position: relative !important;
