@@ -1845,9 +1845,27 @@ a.sqs-block-button-element {
     opacity: 0.9 !important;
   }
 
-  /* Right-side image(s) — nudge 50px to the right and add a subtle floating
-     loop. Translate applied to the outer block so the float animation on
-     the inner fluid-image-container doesn't fight with it. */
+  /* Right-side image pair — counter-motion parallax. The outline drifts up
+     while the photo drifts down on the same 9s loop, so they pass each
+     other every cycle. Same pattern as the homepage hero pair: neutralize
+     Squarespace's slide-up on the wrapper + img, then animate the inner
+     .fluid-image-container so the float doesn't fight the outer block
+     transform. */
+
+  /* Outline graphic — drifts up (-5px) */
+  #block-5ffdf3528f2cc4c961c9 .fluid-image-animation-wrapper,
+  #block-5ffdf3528f2cc4c961c9 img {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  #block-5ffdf3528f2cc4c961c9 .fluid-image-container {
+    animation: lyric-float-subtle-a 9s ease-in-out infinite !important;
+    will-change: transform;
+  }
+
+  /* Full photo — drifts down (+4px), nudged 20px right to overlap the outline */
   #block-99c14dbf7518da9d58c2 {
     transform: translateX(20px) !important;
   }
@@ -1859,7 +1877,7 @@ a.sqs-block-button-element {
     transition: none !important;
   }
   #block-99c14dbf7518da9d58c2 .fluid-image-container {
-    animation: lyric-float-subtle-a 9s ease-in-out infinite !important;
+    animation: lyric-float-subtle-b 9s ease-in-out infinite !important;
     will-change: transform;
   }
 
