@@ -232,17 +232,18 @@ a.sqs-block-button-element {
   .fe-block-yui_3_17_2_1_1776942559033_13324,
   .fe-block-db981ef2ff9d18ccd965 {
     position: absolute !important;
-    top: -120px !important;     /* extend up behind the transparent nav */
     right: calc(50% - 720px) !important;
     z-index: 5 !important;
     grid-area: unset !important;
   }
-  /* Aspect ratios stay at natural source dimensions. */
+  /* Per-image top offset + size. */
   .fe-block-yui_3_17_2_1_1776942559033_13324 {
+    top: -400px !important;       /* nurse — pulled higher so less hangs down */
     width: 800px !important;
     aspect-ratio: 938 / 1070 !important;   /* nurse natural source ratio → 800 × ~913 */
   }
   .fe-block-db981ef2ff9d18ccd965 {
+    top: -120px !important;       /* line — sits behind the nav */
     width: 600px !important;
     aspect-ratio: 746 / 708 !important;    /* line natural source ratio → 600 × ~570 */
   }
