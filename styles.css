@@ -1929,6 +1929,21 @@ body.lyric-page-home-v2 #header:not(:hover) .header-nav-folder-item-content {
   stroke: var(--white) !important;
 }
 
+/* Folder title chevron — Squarespace renders it as a pseudo-element with a
+   background-image SVG, so color/fill alone don't reach it. Filter inverts
+   to white; also covers inline SVG variants. */
+body.lyric-page-home-v2 #header:not(:hover) .header-nav-folder-title::before,
+body.lyric-page-home-v2 #header:not(:hover) .header-nav-folder-title::after,
+body.lyric-page-home-v2 #header:not(:hover) .header-nav-folder-title svg,
+body.lyric-page-home-v2 #header:not(:hover) .header-nav-folder-title svg * {
+  filter: brightness(0) invert(1) !important;
+  color: var(--white) !important;
+  fill: var(--white) !important;
+  stroke: var(--white) !important;
+  border-color: var(--white) !important;
+  transition: filter 250ms ease !important;
+}
+
 /* Contact Us button — white pill, dark teal text. */
 body.lyric-page-home-v2 #header:not(:hover) .header-actions-action--cta .btn,
 body.lyric-page-home-v2 #header:not(:hover) .header-actions-action--cta a.sqs-button-element--primary {
