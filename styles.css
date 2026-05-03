@@ -339,6 +339,16 @@ a.sqs-block-button-element {
   }
 }
 
+/* On /home-new-v2, allow the right-side hero images to extend up behind the
+   transparent nav. We swap the section's `overflow: hidden` for a clip-path
+   that allows unlimited vertical overflow but still clips horizontally at
+   the section edges (so the right-side narrow-viewport clipping still
+   works for images anchored with `right: calc(50% - 720px)`). */
+body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
+  overflow: visible !important;
+  clip-path: inset(-9999px 0 0 0) !important;
+}
+
 
 /* ==========================================================================
    WHY LYRIC EXISTS — Section ID: 69e63e83126fbf28f74a40c8
