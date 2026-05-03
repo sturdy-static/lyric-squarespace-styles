@@ -1844,14 +1844,14 @@ a.sqs-block-button-element {
     opacity: 0.9 !important;
   }
 
-  /* Right-side image pair — counter-motion parallax. The outline drifts up
-     while the photo drifts down on the same 9s loop, so they pass each
-     other every cycle. Same pattern as the homepage hero pair: neutralize
-     Squarespace's slide-up on the wrapper + img, then animate the inner
-     .fluid-image-container so the float doesn't fight the outer block
-     transform. */
+  /* Right-side image pair — scroll-driven counter-motion parallax. As the
+     section scrolls through the viewport, scripts.js writes a translate3d
+     to each .fluid-image-container: outline drifts up, photo drifts down.
+     Same pattern as elsewhere — neutralize Squarespace's slide-up on the
+     wrapper + img so it doesn't fight our transform, leave the inner
+     container free for JS to drive. will-change pre-promotes a layer. */
 
-  /* Outline graphic — drifts up (-5px) */
+  /* Outline graphic — JS animates .fluid-image-container with a negative factor */
   #block-5ffdf3528f2cc4c961c9 .fluid-image-animation-wrapper,
   #block-5ffdf3528f2cc4c961c9 img {
     opacity: 1 !important;
@@ -1860,11 +1860,11 @@ a.sqs-block-button-element {
     transition: none !important;
   }
   #block-5ffdf3528f2cc4c961c9 .fluid-image-container {
-    animation: lyric-float-subtle-a 9s ease-in-out infinite !important;
     will-change: transform;
   }
 
-  /* Full photo — drifts down (+4px), nudged 20px right to overlap the outline */
+  /* Full photo — JS animates .fluid-image-container with a positive factor.
+     Outer block keeps its 20px right nudge so the photo overlaps the outline. */
   #block-99c14dbf7518da9d58c2 {
     transform: translateX(20px) !important;
   }
@@ -1876,7 +1876,6 @@ a.sqs-block-button-element {
     transition: none !important;
   }
   #block-99c14dbf7518da9d58c2 .fluid-image-container {
-    animation: lyric-float-subtle-b 9s ease-in-out infinite !important;
     will-change: transform;
   }
 

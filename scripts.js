@@ -274,3 +274,82 @@
     apply();
   }
 })();
+
+
+/* --------------------------------------------------------------------------
+   CONTACT — SCROLL-DRIVEN PARALLAX
+   Section: 69e9f4495391a643aa88a5f5
+   Two image blocks drift in opposite directions as the section scrolls
+   through the viewport — outline (#block-5ffdf3528f2cc4c961c9) goes up,
+   photo (#block-99c14dbf7518da9d58c2) goes down.
+
+   Implementation: rAF-throttled scroll listener computes each element's
+   distance from viewport centre as a clamped progress value in [-1, +1]
+   and multiplies by the per-element factor. Translation is applied to
+   the inner .fluid-image-container so it doesn't fight the outer block's
+   transform (the photo carries a translateX(20px) nudge in CSS).
+
+   Skipped when prefers-reduced-motion is on.
+   -------------------------------------------------------------------------- */
+
+(function () {
+  const TARGETS = [
+    { blockId: 'block-5ffdf3528f2cc4c961c9', factor: -40 }, // outline → drifts up
+    { blockId: 'block-99c14dbf7518da9d58c2', factor:  40 }, // photo   → drifts down
+  ];
+
+  const reduceMotion =
+    window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function init() {
+    if (reduceMotion) return;
+
+    const items = TARGETS
+      .map(function (t) {
+        const block = document.getElementById(t.blockId);
+        if (!block) return null;
+        const container = block.querySelector('.fluid-image-container');
+        if (!container) return null;
+        return { container: container, factor: t.factor };
+      })
+      .filter(Boolean);
+
+    if (!items.length) return;
+
+    let ticking = false;
+
+    function update() {
+      const vh = window.innerHeight;
+      const half = vh / 2;
+      items.forEach(function (item) {
+        const rect = item.container.getBoundingClientRect();
+        const elementCenter = rect.top + rect.height / 2;
+        // Progress: -1 when element centre is at viewport bottom edge,
+        //            0 when element centre is at viewport centre,
+        //           +1 when element centre is at viewport top edge.
+        const raw = (half - elementCenter) / (half + rect.height / 2);
+        const progress = Math.max(-1, Math.min(1, raw));
+        const y = progress * item.factor;
+        item.container.style.transform = 'translate3d(0,' + y.toFixed(2) + 'px,0)';
+      });
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
