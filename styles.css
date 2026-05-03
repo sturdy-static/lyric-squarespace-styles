@@ -232,7 +232,7 @@ a.sqs-block-button-element {
   .fe-block-yui_3_17_2_1_1776942559033_13324,
   .fe-block-db981ef2ff9d18ccd965 {
     position: absolute !important;
-    top: 0 !important;
+    top: -120px !important;     /* extend up behind the transparent nav */
     right: calc(50% - 720px) !important;
     z-index: 5 !important;
     grid-area: unset !important;
