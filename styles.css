@@ -1045,6 +1045,14 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
      #block-yui_3_17_2_1_1776863276072_11431 — right image (787x537)
    ========================================================================== */
 
+/* Section background — lighter teal across all viewports. */
+[data-section-id="69e8c799d278121d8d40dc76"],
+[data-section-id="69e8c799d278121d8d40dc76"] .section-border,
+[data-section-id="69e8c799d278121d8d40dc76"] .section-background {
+  background-color: var(--teal-light) !important;
+  background-image: none !important;
+}
+
 @media (min-width: 768px) {
   [data-section-id="69e8c799d278121d8d40dc76"] {
     position: relative !important;
