@@ -294,8 +294,8 @@ a.sqs-block-button-element {
     /* Right-side hero images — mobile: half size, centered horizontally
        with a slight rightward bias. */
     .fe-block-yui_3_17_2_1_1776942559033_13324 {
-      top: -100px !important;
-      right: calc(50% - 220px) !important;
+      top: -200px !important;                  /* flush with top of viewport */
+      right: calc(50% - 340px) !important;     /* shifted ~120px right (~30%) */
       width: 400px !important;
     }
     .fe-block-db981ef2ff9d18ccd965 {
