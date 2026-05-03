@@ -1071,15 +1071,20 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     grid-area: unset !important;
   }
 
-  /* Left image — pinned to the left edge of the section. */
+  /* Left image — anchored to section center; right edge sits at the
+     center line so the image extends leftward and clips on narrow
+     viewports via the section's overflow. */
   [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1777795191934_14510 {
-    left: 0 !important;
+    right: 50% !important;
+    left: auto !important;
     aspect-ratio: 792 / 537 !important;
   }
 
-  /* Right image — pinned to the right edge of the section. */
+  /* Right image — anchored to section center; left edge sits at the
+     center line so the image extends rightward. */
   [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1776863276072_11431 {
-    right: 0 !important;
+    left: 50% !important;
+    right: auto !important;
     aspect-ratio: 787 / 537 !important;
   }
 }
