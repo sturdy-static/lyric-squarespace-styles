@@ -352,6 +352,13 @@ a.sqs-block-button-element {
     .sqs-block-horizontalrule {
       display: none !important;
     }
+    /* …except the hero divider that sits between the intro text and the
+       stats — keep this one visible on mobile. */
+    #block-yui_3_17_2_1_1776328203793_10925,
+    #block-yui_3_17_2_1_1776328203793_10925 hr,
+    #block-yui_3_17_2_1_1776328203793_10925 .sqs-block-horizontalrule {
+      display: block !important;
+    }
 
     /* Icon grid — same max-heights as desktop so icons don't
        balloon at mobile widths. */
