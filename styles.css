@@ -383,7 +383,7 @@ a.sqs-block-button-element {
     font-family: 'Inter', sans-serif !important;
     font-size: 1.125rem !important; /* 18px */
     font-weight: 400 !important;
-    line-height: normal !important;
+    line-height: 1.2 !important;
     letter-spacing: 0 !important;
   }
 
@@ -429,7 +429,7 @@ a.sqs-block-button-element {
     font-family: 'Inter', sans-serif !important;
     font-size: 1.125rem !important; /* 18px */
     font-weight: 400 !important;
-    line-height: normal !important;
+    line-height: 1.2 !important;
     letter-spacing: 0 !important;
     color: var(--teal-dark) !important;
   }
@@ -496,7 +496,7 @@ a.sqs-block-button-element {
     font-family: 'Inter', sans-serif !important;
     font-size: 1.125rem !important; /* 18px */
     font-weight: 400 !important;
-    line-height: normal !important;
+    line-height: 1.2 !important;
     letter-spacing: 0 !important;
   }
 
@@ -1047,7 +1047,7 @@ a.sqs-block-button-element {
     font-family: 'Inter', sans-serif !important;
     font-size: 1.25rem !important; /* 20px */
     font-weight: 400 !important;
-    line-height: normal !important;
+    line-height: 1.2 !important;
     letter-spacing: 0 !important;
     color: var(--teal-dark) !important;
   }
@@ -1117,7 +1117,7 @@ a.sqs-block-button-element {
     font-family: 'Inter', sans-serif !important;
     font-size: 1.25rem !important; /* 20px */
     font-weight: 400 !important;
-    line-height: normal !important;
+    line-height: 1.2 !important;
     letter-spacing: 0 !important;
     color: var(--white) !important;
   }
@@ -1296,7 +1296,7 @@ a.sqs-block-button-element {
     font-family: 'Inter', sans-serif !important;
     font-size: 1.125rem !important; /* 18px */
     font-weight: 400 !important;
-    line-height: normal !important;
+    line-height: 1.2 !important;
     letter-spacing: 0 !important;
   }
 
@@ -1638,7 +1638,7 @@ a.sqs-block-button-element {
 }
 
 [data-section-id="69e914650701ed0ac1d35dae"] .sqsrte-large {
-  line-height: 1.4 !important;
+  line-height: 1.2 !important;
 }
 
 /* Top-right image */
@@ -1764,6 +1764,18 @@ a.sqs-block-button-element {
 
 [data-section-id="69e9f4495391a643aa88a5f5"] {
 
+  /* Body paragraph — tighten to match site-wide body line-height */
+  #block-ea30c5366b98af520e57 :is(p, strong, em, span, a) {
+    line-height: 1.2 !important;
+  }
+
+  /* Form labels / field titles / captions — match body line-height so
+     multi-line labels and helper text don't read airier than the rest
+     of the page. */
+  #block-3c38afa3b6ad6299992e :is(label, .title, .caption, .description) {
+    line-height: 1.2 !important;
+  }
+
   /* Form fields — transparent bg, teal-dark border */
   #block-3c38afa3b6ad6299992e .field-element,
   #block-3c38afa3b6ad6299992e input[type="text"],
@@ -1803,14 +1815,32 @@ a.sqs-block-button-element {
     color: var(--teal-dark) !important;
   }
 
-  /* Submit button — halve top/bottom padding (22.5px → 11.25px) */
+  /* Submit button — dark teal brand background, white text, halved
+     top/bottom padding (22.5px → 11.25px). Hover keeps the dark fill
+     and slightly fades for feedback (matches the careers CTA pattern). */
   #block-3c38afa3b6ad6299992e button,
   #block-3c38afa3b6ad6299992e .form-button-wrapper button,
   #block-3c38afa3b6ad6299992e button.form-submit-button,
   #block-3c38afa3b6ad6299992e button.sqs-system-button,
   #block-3c38afa3b6ad6299992e button[type="submit"] {
+    background: var(--teal-dark) !important;
+    background-color: var(--teal-dark) !important;
+    background-image: none !important;
+    color: var(--white) !important;
+    border-color: var(--teal-dark) !important;
     padding-top: 11.25px !important;
     padding-bottom: 11.25px !important;
+  }
+  #block-3c38afa3b6ad6299992e button:hover,
+  #block-3c38afa3b6ad6299992e .form-button-wrapper button:hover,
+  #block-3c38afa3b6ad6299992e button.form-submit-button:hover,
+  #block-3c38afa3b6ad6299992e button.sqs-system-button:hover,
+  #block-3c38afa3b6ad6299992e button[type="submit"]:hover {
+    background: var(--teal-dark) !important;
+    background-color: var(--teal-dark) !important;
+    color: var(--white) !important;
+    border-color: var(--teal-dark) !important;
+    opacity: 0.9 !important;
   }
 
   /* Right-side image(s) — nudge 50px to the right and add a subtle floating
