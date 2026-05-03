@@ -160,6 +160,7 @@ a.sqs-block-button-element {
     font-weight: 800 !important;
     line-height: 0.95 !important;
     letter-spacing: 0 !important;
+    color: var(--white) !important;
   }
 
   /* H3 — hero subheading */
@@ -169,6 +170,7 @@ a.sqs-block-button-element {
     font-size: 2.0625rem !important; /* 33px */
     font-weight: 800 !important;
     line-height: normal !important;
+    color: var(--white) !important;
   }
 
   /* Body paragraph */
@@ -176,6 +178,7 @@ a.sqs-block-button-element {
     font-family: 'Inter', sans-serif !important;
     font-size: 1rem !important; /* 16px */
     font-weight: 400 !important;
+    color: var(--white) !important;
   }
 
   /* Learn More button — reduced vertical spacing */
@@ -201,6 +204,7 @@ a.sqs-block-button-element {
     line-height: normal !important;
     letter-spacing: 0 !important;
     overflow-wrap: break-word !important;
+    color: var(--white) !important;
   }
 
   /* Hero stats — captions under each number */
@@ -213,6 +217,7 @@ a.sqs-block-button-element {
     font-weight: 400 !important;
     line-height: normal !important;
     letter-spacing: 0 !important;
+    color: var(--white) !important;
   }
 
   /* Right-side hero images (nurse + flowing line):
@@ -262,19 +267,13 @@ a.sqs-block-button-element {
     max-width: none !important;
     width: 640px !important;
   }
-  /* Force the fluid-image container to a shorter aspect ratio than the
-     source (938x1070 → 938x802, ~25% shorter). object-fit: cover with
-     object-position: bottom center crops from the top, keeping the
-     lower portion of the photo framed. */
+  /* Let the photo render at its full natural aspect (938x1070) so the
+     top extends up behind the transparent nav on /home-new-v2. Bottom
+     stays pinned via the flex-end / margin-top:auto rules above. */
   #block-yui_3_17_2_1_1776942559033_13324 .fluid-image-animation-wrapper,
   #block-yui_3_17_2_1_1776942559033_13324 .fluid-image-container {
-    aspect-ratio: 938 / 802 !important;
     height: auto !important;
     margin-top: auto !important;
-  }
-  #block-yui_3_17_2_1_1776942559033_13324 img {
-    object-position: bottom center !important;
-    object-fit: cover !important;
   }
 
   /* Icon grid (below hero content) — cap each icon's height individually.
@@ -473,7 +472,7 @@ a.sqs-block-button-element {
   position: relative !important;
   z-index: 2 !important;
 
-  /* All H2 headings — 50px extrabold */
+  /* All H2 headings — 50px extrabold, white on dark gradient */
   #block-09d6bfbb3514b72b504d h2, #block-09d6bfbb3514b72b504d h2 strong,
   #block-ec20108b69a0d8d87fcd h2, #block-ec20108b69a0d8d87fcd h2 strong,
   #block-b8708677ad55d80adc64 h2, #block-b8708677ad55d80adc64 h2 strong,
@@ -483,9 +482,10 @@ a.sqs-block-button-element {
     font-weight: 800 !important;
     line-height: normal !important;
     letter-spacing: 0 !important;
+    color: var(--white) !important;
   }
 
-  /* All body paragraphs — 18px Inter regular */
+  /* All body paragraphs — 18px Inter regular, white on dark gradient */
   #block-79ccced73c161be2b773 :is(p, strong, span),
   #block-aa70b591c8a0e909c477 :is(p, strong, span),
   #block-ba971b79e4a8c7eac9c9 :is(p, strong, span),
@@ -495,6 +495,7 @@ a.sqs-block-button-element {
     font-weight: 400 !important;
     line-height: 1.2 !important;
     letter-spacing: 0 !important;
+    color: var(--white) !important;
   }
 
   /* Mobile */
@@ -759,6 +760,14 @@ a.sqs-block-button-element {
   .section-background img {
     opacity: 0 !important;
     display: none !important;
+  }
+
+  /* All headings + body copy — white on the teal-light brand background */
+  :is(h1, h2, h3, h4, h5, h6),
+  :is(h1, h2, h3, h4, h5, h6) :is(strong, em, span),
+  .sqs-html-content :is(p, li),
+  .sqs-html-content :is(p, li) :is(strong, em, span, a) {
+    color: var(--white) !important;
   }
 
   /* Mobile */
@@ -1032,7 +1041,7 @@ a.sqs-block-button-element {
 
 [data-section-id="69e902e00701ed0ac1cb8154"] {
 
-  /* H1 — hero headline */
+  /* H1 — hero headline (teal-dark on light mint background) */
   #block-yui_3_17_2_1_1776878137813_7526 h1,
   #block-yui_3_17_2_1_1776878137813_7526 h1 strong {
     font-family: 'MNKY Banana Grotesk', sans-serif !important;
@@ -1040,6 +1049,7 @@ a.sqs-block-button-element {
     font-weight: 800 !important;
     line-height: 0.5 !important;
     letter-spacing: 0 !important;
+    color: var(--teal-dark) !important;
   }
 
   /* Body paragraph */
@@ -1632,13 +1642,17 @@ a.sqs-block-button-element {
   background: var(--gradient-teal-diagonal) !important;
 }
 
-[data-section-id="69e914650701ed0ac1d35dae"] h1 {
+[data-section-id="69e914650701ed0ac1d35dae"] h1,
+[data-section-id="69e914650701ed0ac1d35dae"] h1 strong {
   line-height: 0.9 !important;
   margin: 0 !important;
+  color: var(--white) !important;
 }
 
-[data-section-id="69e914650701ed0ac1d35dae"] .sqsrte-large {
+[data-section-id="69e914650701ed0ac1d35dae"] .sqsrte-large,
+[data-section-id="69e914650701ed0ac1d35dae"] .sqsrte-large :is(strong, em, span, a) {
   line-height: 1.2 !important;
+  color: var(--white) !important;
 }
 
 /* Top-right image */
