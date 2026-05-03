@@ -267,11 +267,13 @@ a.sqs-block-button-element {
     max-width: none !important;
     width: 640px !important;
   }
-  /* Let the photo render at its full natural aspect (938x1070) so the
-     top extends up behind the transparent nav on /home-new-v2. Bottom
-     stays pinned via the flex-end / margin-top:auto rules above. */
+  /* Render the photo at its natural aspect (938x1070) instead of the
+     previously-cropped 938x802. Container is ~33% taller so the top of
+     the image extends up behind the transparent nav on /home-new-v2.
+     Bottom stays pinned via the flex-end / margin-top:auto rules above. */
   #block-yui_3_17_2_1_1776942559033_13324 .fluid-image-animation-wrapper,
   #block-yui_3_17_2_1_1776942559033_13324 .fluid-image-container {
+    aspect-ratio: 938 / 1070 !important;
     height: auto !important;
     margin-top: auto !important;
   }
