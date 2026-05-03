@@ -1888,6 +1888,71 @@ a.sqs-block-button-element {
 
 
 /* ==========================================================================
+   HEADER — TRANSPARENT NAV ON /home-new-v2 PREVIEW PAGE
+   `body.lyric-page-home-v2` is added by scripts.js SLUG_CLASS_MAP.
+   On hover anywhere in #header, :not(:hover) rules drop and Squarespace
+   defaults reassert — that's the "revert on hover" effect.
+   Out of scope: .sqs-announcement-bar-dropzone (super-nav above header).
+   ========================================================================== */
+
+body.lyric-page-home-v2 #header {
+  transition: background-color 250ms ease, background 250ms ease;
+}
+
+/* Transparent backgrounds (Squarespace layers multiple bg divs). */
+body.lyric-page-home-v2 #header:not(:hover) .header-announcement-bar-wrapper,
+body.lyric-page-home-v2 #header:not(:hover) .header-background,
+body.lyric-page-home-v2 #header:not(:hover) .header-background-solid,
+body.lyric-page-home-v2 #header:not(:hover) .header-border,
+body.lyric-page-home-v2 #header:not(:hover) .header-dropshadow {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+
+/* Logo — white via filter (existing PNG is colored RGB only). */
+body.lyric-page-home-v2 #header:not(:hover) .header-title-logo img {
+  filter: brightness(0) invert(1) !important;
+  transition: filter 250ms ease !important;
+}
+
+/* Nav link text + folder titles + chevrons — white. */
+body.lyric-page-home-v2 #header:not(:hover) .header-nav-item a,
+body.lyric-page-home-v2 #header:not(:hover) .header-nav-item a *,
+body.lyric-page-home-v2 #header:not(:hover) .header-nav-folder-title,
+body.lyric-page-home-v2 #header:not(:hover) .header-nav-folder-title-text,
+body.lyric-page-home-v2 #header:not(:hover) .header-nav-folder-content a,
+body.lyric-page-home-v2 #header:not(:hover) .header-nav-folder-item-content {
+  color: var(--white) !important;
+  fill: var(--white) !important;
+  stroke: var(--white) !important;
+}
+
+/* Contact Us button — white pill, dark teal text. */
+body.lyric-page-home-v2 #header:not(:hover) .header-actions-action--cta .btn,
+body.lyric-page-home-v2 #header:not(:hover) .header-actions-action--cta a.sqs-button-element--primary {
+  background: var(--white) !important;
+  background-color: var(--white) !important;
+  color: var(--teal-dark) !important;
+  border: 1px solid var(--white) !important;
+  transition: background-color 250ms ease, color 250ms ease, border-color 250ms ease !important;
+}
+body.lyric-page-home-v2 #header:not(:hover) .header-actions-action--cta .btn *,
+body.lyric-page-home-v2 #header:not(:hover) .header-actions-action--cta a.sqs-button-element--primary * {
+  color: var(--teal-dark) !important;
+  fill: var(--teal-dark) !important;
+}
+
+/* Mobile burger lines — white when transparent. */
+body.lyric-page-home-v2 #header:not(:hover) .burger-inner .top-bun,
+body.lyric-page-home-v2 #header:not(:hover) .burger-inner .patty,
+body.lyric-page-home-v2 #header:not(:hover) .burger-inner .bottom-bun {
+  background-color: var(--white) !important;
+}
+
+
+/* ==========================================================================
    GLOBAL MOBILE RULES
    Apply to every section except where explicitly excluded.
    ========================================================================== */
