@@ -207,6 +207,21 @@ a.sqs-block-button-element {
     color: var(--white) !important;
   }
 
+  /* Hero stats — thin white divider line below each big number, sitting
+     between the number and its caption. Same pattern as the h3::before/::after
+     dividers used in the WHY LYRIC section (see ~line 1465). */
+  #block-yui_3_17_2_1_1776864865938_11136 .sqs-html-content::after,
+  #block-a082f825d59daf49cae2          .sqs-html-content::after,
+  #block-e75ee00756497475a772          .sqs-html-content::after,
+  #block-a72fa5a4e72dfea00345          .sqs-html-content::after {
+    content: "" !important;
+    display: block !important;
+    width: 50% !important;
+    height: 1px !important;
+    background: var(--white) !important;
+    margin: 16px auto 0 !important;
+  }
+
   /* Hero stats — captions under each number */
   #block-5ea15080769699813280 :is(h1, h2, h3, h4, p, strong, span),
   #block-8f1219799a2ed2996084 :is(h1, h2, h3, h4, p, strong, span),
