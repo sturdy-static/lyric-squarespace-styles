@@ -676,11 +676,28 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     color: var(--teal-dark) !important;
   }
 
+  /* Pillar imagery — desktop trio (smaller stacked photos) hides on mobile;
+     mobile trio (full-width laptops) hides on desktop. */
+  @media (min-width: 768px) {
+    .fe-block-c83e10f32fc4fcbdc1f7,
+    .fe-block-b827213f7f49a0e143a9,
+    .fe-block-3ea2fe144d2fd55f0f06 {
+      display: none !important;
+    }
+  }
+
   /* Mobile */
   @media (max-width: 767px) {
     /* Hide horizontal rule dividers */
     hr,
     .sqs-block-horizontalrule {
+      display: none !important;
+    }
+
+    /* Hide desktop pillar imagery on mobile */
+    .fe-block-yui_3_17_2_1_1776853087754_37379,
+    .fe-block-c9f790750fa40a2d7eb4,
+    .fe-block-17f4dd96e5ae8200df45 {
       display: none !important;
     }
 
