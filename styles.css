@@ -552,11 +552,14 @@ a.sqs-block-button-element {
   /* Slide-up kill rules for these two blocks live in the
      GLOBAL "KILL SQUARESPACE SLIDE-UP" RESET at the top of this file. */
 
-  /* Floating loops on inner containers — disabled */
+  /* Scroll-driven parallax targets (driven by scripts.js):
+     34556 drifts down, cdcb86 drifts up. will-change pre-promotes a layer
+     so the JS-driven transforms are cheap. No animation/transform reset
+     here — the JS writes inline transforms which would otherwise be
+     overridden by !important rules. */
   #block-yui_3_17_2_1_1776853087754_34556 .fluid-image-container,
   #block-cdcb86dcac6f27b37b8c .fluid-image-container {
-    animation: none !important;
-    transform: none !important;
+    will-change: transform;
   }
 
   /* Three stacked photo cards below the top pair —
