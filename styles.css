@@ -694,13 +694,8 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
       display: none !important;
     }
 
-    /* Re-show the divider that sits between "How we use AI" and
-       "The intelligence is in how it's built." Its native mobile grid
-       placement is row 75 (bottom of section), so we also reposition it
-       to row 23 — H2 ends row 22, H3 starts row 24. */
-    .fe-block-yui_3_17_2_1_1776851009516_46704 {
-      grid-area: 23 / 2 / 24 / 10 !important;
-    }
+    /* Re-show the divider block 46704 on mobile — position is set in the
+       Squarespace editor, not here. */
     .fe-block-yui_3_17_2_1_1776851009516_46704 .sqs-block-horizontalrule,
     .fe-block-yui_3_17_2_1_1776851009516_46704 hr {
       display: block !important;
@@ -713,10 +708,10 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
       display: none !important;
     }
 
-    /* Keep "How we use AI" at desktop size on mobile */
+    /* "How we use AI" on mobile — 20% smaller than desktop's 70px */
     #block-yui_3_17_2_1_1776853087754_34838 :is(h1, h2, h3, h4),
     #block-yui_3_17_2_1_1776853087754_34838 :is(h1, h2, h3, h4) :is(strong, em, span) {
-      font-size: 4.375rem !important; /* 70px */
+      font-size: 3.5rem !important; /* 56px (70 × 0.8) */
     }
 
     /* Shrink "The intelligence is in how it's built." on mobile */
