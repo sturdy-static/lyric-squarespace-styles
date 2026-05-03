@@ -411,6 +411,7 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     font-weight: 800 !important;
     line-height: normal !important;
     letter-spacing: 0 !important;
+    text-align: left !important;
   }
 
   /* Body paragraph */
@@ -422,6 +423,7 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     font-weight: 400 !important;
     line-height: 1.2 !important;
     letter-spacing: 0 !important;
+    text-align: left !important;
   }
 
   /* Hide the rectangular mobile image on desktop. */
