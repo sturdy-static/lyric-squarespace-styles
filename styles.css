@@ -1059,6 +1059,12 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
   color: var(--white) !important;
 }
 
+/* Left-align the H2 and body text. */
+[data-section-id="69e8c799d278121d8d40dc76"] #block-a61a3c66d5baeefec41c :is(h1, h2, h3, h4, h5, h6, p),
+[data-section-id="69e8c799d278121d8d40dc76"] #block-b8fed555b51213c22798 :is(h1, h2, h3, h4, h5, h6, p) {
+  text-align: left !important;
+}
+
 /* Button — white background, dark teal text. */
 [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776946358501_14022 .sqs-block-button-element,
 [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776946358501_14022 a.sqs-block-button-element {
