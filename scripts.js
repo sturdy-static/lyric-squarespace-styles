@@ -277,25 +277,38 @@
 
 
 /* --------------------------------------------------------------------------
-   CONTACT — SCROLL-DRIVEN PARALLAX
-   Section: 69e9f4495391a643aa88a5f5
-   Two image blocks drift in opposite directions as the section scrolls
-   through the viewport — outline (#block-5ffdf3528f2cc4c961c9) goes up,
-   photo (#block-99c14dbf7518da9d58c2) goes down.
+   SCROLL-DRIVEN PARALLAX (site-wide registry)
+   Each entry pairs a Squarespace image block ID with a Y-translation factor.
+   Negative factor → element drifts up as the section scrolls through the
+   viewport; positive → drifts down. Magnitude in px (≈ peak displacement
+   when the element centre crosses a viewport edge).
 
    Implementation: rAF-throttled scroll listener computes each element's
    distance from viewport centre as a clamped progress value in [-1, +1]
-   and multiplies by the per-element factor. Translation is applied to
+   and multiplies by the per-element factor. The transform is written to
    the inner .fluid-image-container so it doesn't fight the outer block's
-   transform (the photo carries a translateX(20px) nudge in CSS).
+   own positioning transform (e.g. the homepage hero photo carries a
+   translate(100px,-20px) nudge, the line graphic translateY(-100px),
+   and the contact photo a translateX(20px) nudge — all on the outer block).
 
    Skipped when prefers-reduced-motion is on.
+
+   Sections wired up:
+     - Homepage hero (69e09e3cc2426d72a3b2a97b)
+         line graphic → up, nurse photo → down
+     - Contact (69e9f4495391a643aa88a5f5)
+         outline → up, photo → down
    -------------------------------------------------------------------------- */
 
 (function () {
   const TARGETS = [
-    { blockId: 'block-5ffdf3528f2cc4c961c9', factor: -40 }, // outline → drifts up
-    { blockId: 'block-99c14dbf7518da9d58c2', factor:  40 }, // photo   → drifts down
+    // Homepage hero
+    { blockId: 'block-db981ef2ff9d18ccd965',           factor: -40 }, // line graphic → up
+    { blockId: 'block-yui_3_17_2_1_1776942559033_13324', factor:  40 }, // nurse photo  → down
+
+    // Contact
+    { blockId: 'block-5ffdf3528f2cc4c961c9', factor: -40 }, // outline → up
+    { blockId: 'block-99c14dbf7518da9d58c2', factor:  40 }, // photo   → down
   ];
 
   const reduceMotion =
