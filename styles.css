@@ -237,9 +237,11 @@ a.sqs-block-button-element {
   }
   .fe-block-yui_3_17_2_1_1776942559033_13324 {
     width: 700px !important;
+    aspect-ratio: 938 / 1070 !important;   /* nurse natural source ratio */
   }
   .fe-block-db981ef2ff9d18ccd965 {
     width: 700px !important;
+    aspect-ratio: 746 / 708 !important;    /* line natural source ratio */
   }
 
   /* Keep the fade-in animation (Squarespace's default slide-up is killed
