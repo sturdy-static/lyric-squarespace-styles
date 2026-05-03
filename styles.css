@@ -1038,6 +1038,46 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
 
 
 /* ==========================================================================
+   LYRIC 42 — REBUILD (Section ID: 69e8c799d278121d8d40dc76)
+
+   Two images on desktop, vertically centered, 540px tall:
+     #block-yui_3_17_2_1_1777795191934_14510 — left image  (792x537)
+     #block-yui_3_17_2_1_1776863276072_11431 — right image (787x537)
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  [data-section-id="69e8c799d278121d8d40dc76"] {
+    position: relative !important;
+  }
+
+  /* Both images: lifted out of the Fluid Engine grid, absolutely positioned,
+     vertically centered, fixed 540px tall. Width is derived from the image's
+     natural aspect ratio so they don't squish. */
+  [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1777795191934_14510,
+  [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1776863276072_11431 {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    height: 540px !important;
+    z-index: 5 !important;
+    grid-area: unset !important;
+  }
+
+  /* Left image — pinned to the left edge of the section. */
+  [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1777795191934_14510 {
+    left: 0 !important;
+    aspect-ratio: 792 / 537 !important;
+  }
+
+  /* Right image — pinned to the right edge of the section. */
+  [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1776863276072_11431 {
+    right: 0 !important;
+    aspect-ratio: 787 / 537 !important;
+  }
+}
+
+
+/* ==========================================================================
    OUR SOLUTIONS — Section ID: 666aedda921ca01d6c442c7e
    "Our Solutions" header + Lyric42 Platform + module descriptions
    (Pre-Pay Editing, Diagnostics, Concept Libraries, Coordination of Benefits,
