@@ -222,11 +222,13 @@ a.sqs-block-button-element {
 
   /* Right-side hero images (nurse + flowing line):
      - replace Squarespace's slide-up fade with an opacity-only fade-in
-     - then loop a gentle floating parallax on the inner container
-     - hidden on mobile below */
+     - translateY(-100px) bleeds the top of each image up behind the nav
+     - hidden on mobile below
+     Nurse mirrors the line's CSS exactly as a baseline; tweak from here. */
   #block-yui_3_17_2_1_1776942559033_13324 {
     animation: lyric-hero-fade 1.2s ease-out 0.1s both !important;
     transition: none !important;
+    transform: translateY(-100px) !important;
   }
   #block-db981ef2ff9d18ccd965 {
     animation: lyric-hero-fade 1.4s ease-out 0.5s both !important;
@@ -242,40 +244,6 @@ a.sqs-block-button-element {
   #block-yui_3_17_2_1_1776942559033_13324 .fluid-image-container,
   #block-db981ef2ff9d18ccd965 .fluid-image-container {
     will-change: transform;
-  }
-
-  /* Nurse photo: pin to a fixed natural size so narrower desktop
-     viewports crop the image rather than shrinking it. The block
-     clips the overflow; the inner image keeps its min width. */
-  #block-yui_3_17_2_1_1776942559033_13324 {
-    overflow: visible !important;
-    position: relative !important;
-    z-index: 5 !important;
-    transform: translate(100px, -20px) !important;
-    display: flex !important;
-    align-items: flex-end !important;
-  }
-  #block-yui_3_17_2_1_1776942559033_13324 .sqs-block-content {
-    margin-top: auto !important;
-    width: 100% !important;
-  }
-  #block-yui_3_17_2_1_1776942559033_13324 .fluid-image-container,
-  #block-yui_3_17_2_1_1776942559033_13324 .fluid-image-animation-wrapper,
-  #block-yui_3_17_2_1_1776942559033_13324 .sqs-image-content,
-  #block-yui_3_17_2_1_1776942559033_13324 img {
-    min-width: 640px !important;
-    max-width: none !important;
-    width: 640px !important;
-  }
-  /* Render the photo at its natural aspect (938x1070) instead of the
-     previously-cropped 938x802. Container is ~33% taller so the top of
-     the image extends up behind the transparent nav on /home-new-v2.
-     Bottom stays pinned via the flex-end / margin-top:auto rules above. */
-  #block-yui_3_17_2_1_1776942559033_13324 .fluid-image-animation-wrapper,
-  #block-yui_3_17_2_1_1776942559033_13324 .fluid-image-container {
-    aspect-ratio: 938 / 1070 !important;
-    height: auto !important;
-    margin-top: auto !important;
   }
 
   /* Icon grid (below hero content) — cap each icon's height individually.
