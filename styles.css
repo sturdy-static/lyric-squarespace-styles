@@ -229,6 +229,12 @@ a.sqs-block-button-element {
     animation: lyric-hero-fade 1.2s ease-out 0.1s both !important;
     transition: none !important;
     transform: translateY(-100px) !important;
+    overflow: visible !important;
+  }
+  #block-yui_3_17_2_1_1776942559033_13324 .sqs-block-content,
+  #block-yui_3_17_2_1_1776942559033_13324 .fluid-image-container,
+  #block-yui_3_17_2_1_1776942559033_13324 .fluid-image-animation-wrapper {
+    overflow: visible !important;
   }
   #block-db981ef2ff9d18ccd965 {
     animation: lyric-hero-fade 1.4s ease-out 0.5s both !important;
