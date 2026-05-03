@@ -45,20 +45,19 @@
   50%      { transform: translate3d(0, -8px, 0); }
 }
 
-/* Subtle float — reduced amplitude for the "How we use AI" cards
-   where the wibble was too pronounced. Same staggered paths,
-   smaller translate. */
+/* Counter-motion float — used on the contact page image pair so the
+   outline drifts up while the photo drifts down on the same loop. */
 @keyframes lyric-float-subtle-a {
   0%, 100% { transform: translate3d(0, 0, 0); }
-  50%      { transform: translate3d(0, -5px, 0); }
+  50%      { transform: translate3d(0, -14px, 0); }
 }
 @keyframes lyric-float-subtle-b {
   0%, 100% { transform: translate3d(0, 0, 0); }
-  50%      { transform: translate3d(0, 4px, 0); }
+  50%      { transform: translate3d(0, 12px, 0); }
 }
 @keyframes lyric-float-subtle-c {
   0%, 100% { transform: translate3d(0, 0, 0); }
-  50%      { transform: translate3d(0, -3px, 0); }
+  50%      { transform: translate3d(0, -8px, 0); }
 }
 
 
