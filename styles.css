@@ -237,17 +237,13 @@ a.sqs-block-button-element {
     z-index: 5 !important;
     grid-area: unset !important;
   }
-  /* Shared width — line and nurse stay the same width.
-     Aspect ratios stay at natural source dimensions, so the line is
-     naturally shorter than the nurse. */
-  .fe-block-yui_3_17_2_1_1776942559033_13324,
+  /* Aspect ratios stay at natural source dimensions. */
+  .fe-block-yui_3_17_2_1_1776942559033_13324 {
+    width: 800px !important;
+    aspect-ratio: 938 / 1070 !important;   /* nurse natural source ratio → 800 × ~913 */
+  }
   .fe-block-db981ef2ff9d18ccd965 {
     width: 600px !important;
-  }
-  .fe-block-yui_3_17_2_1_1776942559033_13324 {
-    aspect-ratio: 938 / 1070 !important;   /* nurse natural source ratio → 600 × ~684 */
-  }
-  .fe-block-db981ef2ff9d18ccd965 {
     aspect-ratio: 746 / 708 !important;    /* line natural source ratio → 600 × ~570 */
   }
 
