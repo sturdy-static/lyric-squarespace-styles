@@ -688,10 +688,22 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
 
   /* Mobile */
   @media (max-width: 767px) {
-    /* Hide horizontal rule dividers */
+    /* Hide horizontal rule dividers by default */
     hr,
     .sqs-block-horizontalrule {
       display: none !important;
+    }
+
+    /* Re-show the divider that sits between "How we use AI" and
+       "The intelligence is in how it's built." Its native mobile grid
+       placement is row 75 (bottom of section), so we also reposition it
+       to row 23 — H2 ends row 22, H3 starts row 24. */
+    .fe-block-yui_3_17_2_1_1776851009516_46704 {
+      grid-area: 23 / 2 / 24 / 10 !important;
+    }
+    .fe-block-yui_3_17_2_1_1776851009516_46704 .sqs-block-horizontalrule,
+    .fe-block-yui_3_17_2_1_1776851009516_46704 hr {
+      display: block !important;
     }
 
     /* Hide desktop pillar imagery on mobile */

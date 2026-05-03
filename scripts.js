@@ -300,6 +300,8 @@
          cdcb86 → up, 34556 → down
      - Contact (69e9f4495391a643aa88a5f5)
          outline → up, photo → down
+     - Careers "How hiring works at Lyric" (69e904e5d857433cc0dc6887)
+         RecruitmentLine3 → up, Recruitment3 photo → down
    -------------------------------------------------------------------------- */
 
 (function () {
@@ -315,6 +317,10 @@
     // Contact
     { blockId: 'block-5ffdf3528f2cc4c961c9', factor: -40 }, // outline → up
     { blockId: 'block-99c14dbf7518da9d58c2', factor:  40 }, // photo   → down
+
+    // Careers "How hiring works at Lyric"
+    { blockId: 'block-7cbe7547d2686a55ff3a', factor: -40 }, // line graphic → up
+    { blockId: 'block-82f4ebf3d4276ba0f31f', factor:  40 }, // people photo → down
   ];
 
   const reduceMotion =
