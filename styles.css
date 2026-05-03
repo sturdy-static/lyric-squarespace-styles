@@ -1053,6 +1053,12 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
   background-image: none !important;
 }
 
+/* White text across the section's H2 + body + button. */
+[data-section-id="69e8c799d278121d8d40dc76"] #block-a61a3c66d5baeefec41c :is(h1, h2, h3, h4, h5, h6, p, strong, em, span, a),
+[data-section-id="69e8c799d278121d8d40dc76"] #block-b8fed555b51213c22798 :is(h1, h2, h3, h4, h5, h6, p, strong, em, span, a) {
+  color: var(--white) !important;
+}
+
 @media (min-width: 768px) {
   [data-section-id="69e8c799d278121d8d40dc76"] {
     position: relative !important;
