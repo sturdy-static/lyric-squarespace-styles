@@ -712,6 +712,13 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     #block-e47caa302cdddfbec688 :is(h1, h2, h3, h4) strong {
       font-size: 1.875rem !important; /* 30px */
     }
+
+    /* Left-align the three pillar paragraphs on mobile */
+    #block-cedc6dbb118a0eea01e7 :is(p, h1, h2, h3, h4),
+    #block-187c407f3a8ebe0c5f8b :is(p, h1, h2, h3, h4),
+    #block-df5141c29c5d7e4a3356 :is(p, h1, h2, h3, h4) {
+      text-align: left !important;
+    }
   }
 }
 
