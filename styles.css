@@ -1800,12 +1800,13 @@ a.sqs-block-button-element {
     opacity: 0.4 !important;
   }
 
-  /* Select placeholder — selects can't use ::placeholder, so fade the
-     control while the default first option is still the chosen one.
-     (Squarespace's placeholder option doesn't carry value="", so the
-     old option[value=""] match never fired.) */
+  /* Select placeholder — selects can't use ::placeholder, so fade only the
+     text + chevron via color/alpha (NOT opacity, which would fade the
+     border too). The chevron tracks currentColor so it follows the text.
+     Once the user picks a real option the rule stops matching and the
+     control snaps back to full teal-dark from the form-fields rule above. */
   #block-3c38afa3b6ad6299992e select:has(option:first-of-type:checked) {
-    opacity: 0.4 !important;
+    color: rgba(0, 84, 97, 0.4) !important; /* --teal-dark @ 40% */
   }
 
   /* Field labels — teal-dark to match the field borders/text */
@@ -1899,12 +1900,17 @@ body.lyric-page-home-v2 #header {
   transition: background-color 250ms ease, background 250ms ease;
 }
 
-/* Transparent backgrounds (Squarespace layers multiple bg divs). */
+/* Transparent backgrounds (Squarespace layers multiple bg divs and applies
+   theme-col--primary on the <header> itself + theme-bg--primary on inner divs). */
+body.lyric-page-home-v2 #header:not(:hover),
 body.lyric-page-home-v2 #header:not(:hover) .header-announcement-bar-wrapper,
+body.lyric-page-home-v2 #header:not(:hover) .header-inner,
 body.lyric-page-home-v2 #header:not(:hover) .header-background,
 body.lyric-page-home-v2 #header:not(:hover) .header-background-solid,
 body.lyric-page-home-v2 #header:not(:hover) .header-border,
-body.lyric-page-home-v2 #header:not(:hover) .header-dropshadow {
+body.lyric-page-home-v2 #header:not(:hover) .header-dropshadow,
+body.lyric-page-home-v2 #header:not(:hover) .theme-bg--primary,
+body.lyric-page-home-v2 #header:not(:hover) .theme-col--primary {
   background: transparent !important;
   background-color: transparent !important;
   box-shadow: none !important;
