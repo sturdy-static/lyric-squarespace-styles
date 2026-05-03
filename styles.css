@@ -237,7 +237,7 @@ a.sqs-block-button-element {
   }
   /* Per-image top/right offset + size. */
   .fe-block-yui_3_17_2_1_1776942559033_13324 {
-    top: -400px !important;                 /* pulled higher so less hangs down */
+    top: -355px !important;                 /* pulled higher so less hangs down */
     right: calc(50% - 800px) !important;    /* shifted ~80px right of line anchor */
     width: 800px !important;
     aspect-ratio: 938 / 1070 !important;   /* nurse natural source ratio → 800 × ~913 */
