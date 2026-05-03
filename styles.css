@@ -1094,7 +1094,7 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     position: absolute !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
-    height: 540px !important;
+    height: 590px !important;
     z-index: 5 !important;
     grid-area: unset !important;
   }
@@ -1122,14 +1122,14 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
 @media (max-width: 767px) {
   [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1777795191934_14510,
   [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1776863276072_11431 {
-    height: 300px !important;
+    height: 350px !important;
     width: 100% !important;
   }
   [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1777795191934_14510 .fluid-image-container,
   [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1776863276072_11431 .fluid-image-container,
   [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1777795191934_14510 .fluid-image-animation-wrapper,
   [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1776863276072_11431 .fluid-image-animation-wrapper {
-    height: 300px !important;
+    height: 350px !important;
     aspect-ratio: auto !important;
   }
 }
