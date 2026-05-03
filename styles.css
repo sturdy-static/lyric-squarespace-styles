@@ -304,6 +304,14 @@ a.sqs-block-button-element {
       width: 300px !important;
     }
 
+    /* Push the whole text cluster (H1, subheading, body, button, stats) down
+       below the absolutely-positioned hero images on mobile. The Fluid Engine
+       container holds all the in-flow blocks; padding-top on it shifts them
+       all together without disturbing their relative grid placements. */
+    .fluid-engine.fe-69e09e3da4b2930aa6765304 {
+      padding-top: 400px !important;
+    }
+
     /* H1 — mobile step-down */
     #block-yui_3_17_2_1_1776328236739_12108 h1,
     #block-yui_3_17_2_1_1776328236739_12108 h1 strong {
