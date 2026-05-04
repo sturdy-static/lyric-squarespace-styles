@@ -1176,6 +1176,14 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     right: auto !important;
     aspect-ratio: 787 / 537 !important;
   }
+
+  /* Scroll-driven parallax targets (driven by scripts.js, desktop only):
+     left frame drifts up subtly, right photo drifts down subtly. will-change
+     pre-promotes a layer so the JS-driven transforms are cheap. */
+  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1777795191934_14510 .fluid-image-container,
+  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .fluid-image-container {
+    will-change: transform;
+  }
 }
 
 /* ==========================================================================

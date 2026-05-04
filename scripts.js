@@ -310,6 +310,8 @@
          bd636… → up, …8111 → down
      - Careers "Join our talent community" (69e90210d49cfe289df1534b)
          single wide image → down
+     - Homepage "Lyric 42", desktop only (69e8c799d278121d8d40dc76)
+         left frame → up subtle, right photo → down subtle
    -------------------------------------------------------------------------- */
 
 (function () {
@@ -351,6 +353,11 @@
     // Careers "Join our talent community" (69e90210d49cfe289df1534b) —
     // single wide image just before the Benefits icon section.
     { blockId: 'block-e5248eb3595a9858c010',             factor:  40 }, // wide image → down
+
+    // Homepage "Lyric 42" (69e8c799d278121d8d40dc76) — subtle counter-motion
+    // pair, desktop only (mobile stacks the photo full-width below the copy).
+    { blockId: 'block-yui_3_17_2_1_1777795191934_14510', factor: -15, desktopOnly: true }, // left frame  → up, subtle
+    { blockId: 'block-yui_3_17_2_1_1776863276072_11431', factor:  15, desktopOnly: true }, // right photo → down, subtle
   ];
 
   const reduceMotion =
