@@ -442,14 +442,19 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     }
 
     /* Swap images on mobile: hide the shaped desktop image, show the
-       rectangular mobile one full-width. */
+       rectangular mobile one edge-to-edge (full viewport bleed past the
+       section's horizontal padding). */
     .fe-block-yui_3_17_2_1_1776695389595_14334 {
       display: none !important;
     }
     .fe-block-e5c8b5c5acdf222aff43 {
       display: block !important;
       grid-column: 1 / -1 !important;
-      width: 100% !important;
+      width: 100vw !important;
+      max-width: 100vw !important;
+      position: relative !important;
+      left: 50% !important;
+      margin-left: -50vw !important;
     }
   }
 }
@@ -2267,6 +2272,16 @@ body.lyric-page-home-v2 #header:not(:hover) .burger-inner .top-bun,
 body.lyric-page-home-v2 #header:not(:hover) .burger-inner .patty,
 body.lyric-page-home-v2 #header:not(:hover) .burger-inner .bottom-bun {
   background-color: var(--white) !important;
+}
+
+/* Mobile burger button — dark teal rounded square behind the white lines.
+   Matches the home-v2 transparent header treatment (resting state only;
+   reverts to Squarespace defaults on hover). */
+body.lyric-page-home-v2 #header:not(:hover) .header-burger-btn {
+  background-color: var(--teal-dark) !important;
+  border-radius: 14px !important;
+  padding: 12px !important;
+  transition: background-color 250ms ease, padding 250ms ease !important;
 }
 
 
