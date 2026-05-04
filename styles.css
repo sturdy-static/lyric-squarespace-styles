@@ -2285,9 +2285,10 @@ body.lyric-page-home-v2 #header:not(:hover) .header-burger-btn {
    ========================================================================== */
 
 @media (max-width: 767px) {
-  /* Center all text content on mobile — except the Hero (keep left-aligned) */
-  section[data-section-id]:not([data-section-id="69e09e3cc2426d72a3b2a97b"]) .sqs-html-content,
-  section[data-section-id]:not([data-section-id="69e09e3cc2426d72a3b2a97b"]) .sqs-html-content :is(h1, h2, h3, h4, h5, h6, p, li) {
+  /* Center all text content on mobile — except the Hero (keep left-aligned)
+     and the Proof Bar (alignment controlled in Squarespace settings). */
+  section[data-section-id]:not([data-section-id="69e09e3cc2426d72a3b2a97b"]):not([data-section-id="69e8afbfef8ec45f9ce23921"]) .sqs-html-content,
+  section[data-section-id]:not([data-section-id="69e09e3cc2426d72a3b2a97b"]):not([data-section-id="69e8afbfef8ec45f9ce23921"]) .sqs-html-content :is(h1, h2, h3, h4, h5, h6, p, li) {
     text-align: center !important;
   }
 }
