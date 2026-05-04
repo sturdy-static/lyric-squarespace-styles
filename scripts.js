@@ -302,6 +302,14 @@
          outline → up, photo → down
      - Careers "How hiring works at Lyric" (69e904e5d857433cc0dc6887)
          RecruitmentLine3 → up, Recruitment3 photo → down
+     - Homepage "Why Lyric exists" (69e63e83126fbf28f74a40c8)
+         single image (desktop + mobile variants) → down
+     - Homepage "How we use AI" 3-card row, desktop only (69e8a392ef8ec45f9cde5abc)
+         card 1 → up subtle, card 2 → up baseline, card 3 → up strong
+     - Careers hero (69e902e00701ed0ac1cb8154)
+         bd636… → up, …8111 → down
+     - Careers "Join our talent community" (69e90210d49cfe289df1534b)
+         single wide image → down
    -------------------------------------------------------------------------- */
 
 (function () {
@@ -321,6 +329,28 @@
     // Careers "How hiring works at Lyric"
     { blockId: 'block-7cbe7547d2686a55ff3a', factor: -40 }, // line graphic → up
     { blockId: 'block-82f4ebf3d4276ba0f31f', factor:  40 }, // people photo → down
+
+    // Homepage "Why Lyric exists" (69e63e83126fbf28f74a40c8) — single image,
+    // desktop (shaped) and mobile (rectangular) variants are display-swapped
+    // by CSS, so register both; only the visible one moves.
+    { blockId: 'block-yui_3_17_2_1_1776695389595_14334', factor: 40 }, // desktop image → down
+    { blockId: 'block-e5c8b5c5acdf222aff43',             factor: 40 }, // mobile image  → down
+
+    // Homepage "How we use AI" — 3-card row, desktop only. Staggered
+    // upward drift escalating left → right (1× / 2× / 3× of baseline).
+    // Mobile shows a different trio (c83e10/b82721/3ea2fe), untouched.
+    { blockId: 'block-yui_3_17_2_1_1776853087754_37379', factor: -20, desktopOnly: true }, // card 1 → up, subtle
+    { blockId: 'block-c9f790750fa40a2d7eb4',             factor: -40, desktopOnly: true }, // card 2 → up, baseline
+    { blockId: 'block-17f4dd96e5ae8200df45',             factor: -60, desktopOnly: true }, // card 3 → up, strong
+
+    // Careers hero "Come build better healthcare" (69e902e00701ed0ac1cb8154)
+    // — counter-motion pair, replaces the prior floating-loop animations.
+    { blockId: 'block-bd63645a4e0e98b8a30c',             factor: -40 }, // image 1 → up
+    { blockId: 'block-yui_3_17_2_1_1776878137813_8111',  factor:  40 }, // image 2 → down
+
+    // Careers "Join our talent community" (69e90210d49cfe289df1534b) —
+    // single wide image just before the Benefits icon section.
+    { blockId: 'block-e5248eb3595a9858c010',             factor:  40 }, // wide image → down
   ];
 
   const reduceMotion =
@@ -336,7 +366,7 @@
         if (!block) return null;
         const container = block.querySelector('.fluid-image-container');
         if (!container) return null;
-        return { container: container, factor: t.factor };
+        return { container: container, factor: t.factor, desktopOnly: !!t.desktopOnly };
       })
       .filter(Boolean);
 
@@ -347,7 +377,14 @@
     function update() {
       const vh = window.innerHeight;
       const half = vh / 2;
+      // Slightly stronger drift on desktop, slightly softer on mobile.
+      const isMobile = window.innerWidth <= 767;
+      const scale = isMobile ? 0.75 : 1.2;
       items.forEach(function (item) {
+        if (item.desktopOnly && isMobile) {
+          item.container.style.transform = '';
+          return;
+        }
         const rect = item.container.getBoundingClientRect();
         const elementCenter = rect.top + rect.height / 2;
         // Progress: -1 when element centre is at viewport bottom edge,
@@ -355,7 +392,7 @@
         //           +1 when element centre is at viewport top edge.
         const raw = (half - elementCenter) / (half + rect.height / 2);
         const progress = Math.max(-1, Math.min(1, raw));
-        const y = progress * item.factor;
+        const y = progress * item.factor * scale;
         item.container.style.transform = 'translate3d(0,' + y.toFixed(2) + 'px,0)';
       });
       ticking = false;

@@ -299,7 +299,7 @@ a.sqs-block-button-element {
     object-position: left center !important;
   }
 
-  #block-yui_3_17_2_1_1776864865938_12530 img { max-height: 60px !important; }
+  #block-yui_3_17_2_1_1776864865938_12530 img { max-height: 48px !important; }
   #block-6f7699257b52bdbc2a0b img              { max-height: 52px !important; }
   #block-26f014619ac1f413a680 img              { max-height: 73px !important; }
   #block-683ad2b7d677698bbbf5 img              { max-height: 74px !important; }
@@ -372,7 +372,7 @@ a.sqs-block-button-element {
       object-fit: contain !important;
       object-position: left center !important;
     }
-    #block-yui_3_17_2_1_1776864865938_12530 img { max-height: 60px !important; }
+    #block-yui_3_17_2_1_1776864865938_12530 img { max-height: 48px !important; }
     #block-6f7699257b52bdbc2a0b img              { max-height: 52px !important; }
     #block-26f014619ac1f413a680 img              { max-height: 73px !important; }
     #block-683ad2b7d677698bbbf5 img              { max-height: 74px !important; }
@@ -622,6 +622,17 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     will-change: transform;
   }
 
+  /* Counter parallax-induced top/bottom gaps on the photo: extend the
+     drawable area ±48px (desktop peak displacement after the 1.2× scale
+     in scripts.js) so the section background isn't exposed as the
+     container drifts. Mobile override below uses ±30px to match its
+     0.75× scale. The .fluid-image-animation-wrapper clips the overflow,
+     so the extra height is only revealed where it's needed. */
+  #block-yui_3_17_2_1_1776853087754_34556 .fluid-image-container {
+    height: calc(100% + 96px) !important;
+    margin-top: -48px !important;
+  }
+
   /* Three stacked photo cards below the top pair —
      staggered fade-in then gentle floating loop. */
   #block-yui_3_17_2_1_1776853087754_37379 {
@@ -639,12 +650,14 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
   /* Slide-up kill rules for these three blocks live in the
      GLOBAL "KILL SQUARESPACE SLIDE-UP" RESET at the top of this file. */
 
-  /* Independent floating loops — disabled */
+  /* Independent floating loops disabled — JS drives a scroll-driven
+     parallax (staggered upward drift) on the inner containers, so leave
+     the transform free for inline writes and only kill the animation. */
   #block-yui_3_17_2_1_1776853087754_37379 .fluid-image-container,
   #block-c9f790750fa40a2d7eb4 .fluid-image-container,
   #block-17f4dd96e5ae8200df45 .fluid-image-container {
     animation: none !important;
-    transform: none !important;
+    will-change: transform;
   }
 
   /* Typography — force teal-dark on the heading + subheading + paragraph,
@@ -725,6 +738,13 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     #block-187c407f3a8ebe0c5f8b :is(p, h1, h2, h3, h4),
     #block-df5141c29c5d7e4a3356 :is(p, h1, h2, h3, h4) {
       text-align: left !important;
+    }
+
+    /* Mobile parallax range is ±30px (0.75× scale in scripts.js) — shrink
+     the photo's drawable extension to match. */
+    #block-yui_3_17_2_1_1776853087754_34556 .fluid-image-container {
+      height: calc(100% + 60px) !important;
+      margin-top: -30px !important;
     }
   }
 }
@@ -1312,14 +1332,11 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
   }
   /* Slide-up kill rules for these two blocks live in the
      GLOBAL "KILL SQUARESPACE SLIDE-UP" RESET at the top of this file. */
-  /* Floating loops on inner containers */
-  #block-bd63645a4e0e98b8a30c .fluid-image-container {
-    animation: lyric-hero-float-a 7s ease-in-out infinite !important;
-    will-change: transform;
-  }
+  /* Scroll-driven parallax targets (driven by scripts.js) — counter-motion
+     pair, replaces the previous floating-loop animations. will-change
+     pre-promotes a layer so the JS-driven transforms are cheap. */
+  #block-bd63645a4e0e98b8a30c .fluid-image-container,
   #block-yui_3_17_2_1_1776878137813_8111 .fluid-image-container {
-    animation: lyric-hero-float-b 9s ease-in-out infinite !important;
-    animation-delay: -2s !important;
     will-change: transform;
   }
 
@@ -1459,6 +1476,13 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
   /* Body paragraph — tighter line-height */
   #block-392462fed1f8a091a9f3 :is(p, strong, span, em, a) {
     line-height: 1.2 !important;
+  }
+
+  /* Scroll-driven parallax target (driven by scripts.js): the wide image
+     drifts down. will-change pre-promotes a layer so the JS-driven
+     transforms are cheap. */
+  #block-e5248eb3595a9858c010 .fluid-image-container {
+    will-change: transform;
   }
 
   /* Mobile */
@@ -1665,10 +1689,12 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     line-height: 1.2 !important;
   }
 
-  /* HandShakeIcon (Honesty and Respect) is much wider than its peers in
-     the source asset — cap it down so it reads at the same optical size. */
+  /* HandShakeIcon (Honesty and Respect) source is 223×102 (~2.2:1) — much
+     wider than the square peers — so capping height alone leaves it
+     visually oversized. Cap height so its rendered width (~70px) lines up
+     with the square peers' optical weight. */
   #block-e2b1a5b9a0564c16af77 img {
-    max-height: 55px !important;
+    max-height: 32px !important;
     width: auto !important;
     object-fit: contain !important;
   }
