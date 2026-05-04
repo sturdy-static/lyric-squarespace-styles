@@ -308,8 +308,8 @@
          card 1 → up subtle, card 2 → up baseline, card 3 → up strong
      - Careers hero (69e902e00701ed0ac1cb8154)
          bd636… → up, …8111 → down
-     - Careers "Join our talent community" (69e90210d49cfe289df1534b)
-         single wide image → down
+     - Careers "Come thrive at Lyric" (69e906cc9dbdcb3b40f9a9a1)
+         wide image above the 6 value icon cards → down
      - Homepage "Lyric 42", desktop only (69e8c799d278121d8d40dc76)
          left frame → up subtle, right photo → down subtle
    -------------------------------------------------------------------------- */
@@ -350,9 +350,9 @@
     { blockId: 'block-bd63645a4e0e98b8a30c',             factor: -40 }, // image 1 → up
     { blockId: 'block-yui_3_17_2_1_1776878137813_8111',  factor:  40 }, // image 2 → down
 
-    // Careers "Join our talent community" (69e90210d49cfe289df1534b) —
-    // single wide image just before the Benefits icon section.
-    { blockId: 'block-e5248eb3595a9858c010',             factor:  40 }, // wide image → down
+    // Careers "Come thrive at Lyric" (69e906cc9dbdcb3b40f9a9a1) —
+    // wide image at the top of the section, above the 6 value icon cards.
+    { blockId: 'block-yui_3_17_2_1_1776880203920_69753', factor:  40 }, // wide image → down
 
     // Homepage "Lyric 42" (69e8c799d278121d8d40dc76) — subtle counter-motion
     // pair, desktop only (mobile stacks the photo full-width below the copy).

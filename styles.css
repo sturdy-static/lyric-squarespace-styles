@@ -1485,13 +1485,6 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     line-height: 1.2 !important;
   }
 
-  /* Scroll-driven parallax target (driven by scripts.js): the wide image
-     drifts down. will-change pre-promotes a layer so the JS-driven
-     transforms are cheap. */
-  #block-e5248eb3595a9858c010 .fluid-image-container {
-    will-change: transform;
-  }
-
   /* Mobile */
   @media (max-width: 767px) {
 
@@ -1704,6 +1697,13 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     max-height: 32px !important;
     width: auto !important;
     object-fit: contain !important;
+  }
+
+  /* Scroll-driven parallax target (driven by scripts.js): the wide image
+     above the value icon cards drifts down. will-change pre-promotes a
+     layer so the JS-driven transforms are cheap. */
+  #block-yui_3_17_2_1_1776880203920_69753 .fluid-image-container {
+    will-change: transform;
   }
 
   /* Mobile */

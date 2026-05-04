@@ -6,3 +6,9 @@ Contact button darak colour ✅
 Contact page line heights ✅
 Home navigation style changes ✅
 New mobile layout for home 
+
+Chagne the Hero Image on homepage Abscract - 
+Canva stock 
+Heath Insirance Comapnies 
+Remove the S on lyrics  
+
