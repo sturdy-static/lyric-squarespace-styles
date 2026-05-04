@@ -1191,30 +1191,6 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
   }
 }
 
-/* Mobile — both images centered at 90% width, fixed 400px tall. Span the
-   full grid width and use auto margins for centering; height is forced on
-   the inner Squarespace wrappers (overrides the default aspect-ratio
-   sizing). */
-@media (max-width: 767px) {
-  [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1777795191934_14510,
-  [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1776863276072_11431 {
-    grid-column: 1 / -1 !important;
-    width: 90% !important;
-    max-width: 90% !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-
-  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1777795191934_14510 .fluid-image-animation-wrapper,
-  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1777795191934_14510 .fluid-image-container,
-  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .fluid-image-animation-wrapper,
-  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .fluid-image-container {
-    aspect-ratio: auto !important;
-    height: 400px !important;
-    width: 100% !important;
-  }
-}
-
 /* ==========================================================================
    OUR SOLUTIONS — Section ID: 666aedda921ca01d6c442c7e
    "Our Solutions" header + Lyric42 Platform + module descriptions
