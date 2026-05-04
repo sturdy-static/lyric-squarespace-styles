@@ -576,12 +576,6 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     #block-13886badbffad8cc1060 :is(p, strong, span) {
       font-size: 1rem !important; /* 16px */
     }
-
-    /* Hide any hr dividers on mobile */
-    hr,
-    .sqs-block-horizontalrule {
-      display: none !important;
-    }
   }
 }
 
