@@ -245,7 +245,8 @@ a.sqs-block-button-element {
      Stacked above the hero text content but below the nav (which lives in
      #header, a separate stacking context, so it always renders on top). */
   .fe-block-yui_3_17_2_1_1776942559033_13324,
-  .fe-block-db981ef2ff9d18ccd965 {
+  .fe-block-db981ef2ff9d18ccd965,
+  .fe-block-yui_3_17_2_1_1778165193507_14569 {
     position: absolute !important;
     z-index: 5 !important;
     grid-area: unset !important;
@@ -256,12 +257,22 @@ a.sqs-block-button-element {
     right: calc(50% - 800px) !important;    /* shifted ~80px right of line anchor */
     width: 800px !important;
     aspect-ratio: 938 / 1070 !important;   /* nurse natural source ratio → 800 × ~913 */
+    visibility: hidden !important;          /* hidden — replaced visually by hero video */
   }
   .fe-block-db981ef2ff9d18ccd965 {
     top: -63px !important;                  /* moved down ~57px (~10% of height) */
     right: calc(50% - 600px) !important;    /* moved left ~120px (~20% of width) */
     width: 600px !important;
     aspect-ratio: 746 / 708 !important;    /* line natural source ratio → 600 × ~570 */
+  }
+  /* Hero video — anchored to the same top-right corner as the nurse photo,
+     square (1:1) at the nurse's width. Sits above nurse + line graphic. */
+  .fe-block-yui_3_17_2_1_1778165193507_14569 {
+    z-index: 6 !important;
+    top: -337px !important;
+    right: calc(50% - 800px) !important;
+    width: 800px !important;
+    aspect-ratio: 1 / 1 !important;
   }
 
   /* Keep the fade-in animation (Squarespace's default slide-up is killed
@@ -275,13 +286,41 @@ a.sqs-block-button-element {
     animation: lyric-hero-fade 1.4s ease-out 0.5s both !important;
     transition: none !important;
   }
+  #block-yui_3_17_2_1_1778165193507_14569 {
+    animation: lyric-hero-fade 1.2s ease-out 0.1s both !important;
+    transition: none !important;
+  }
 
   /* Scroll-driven parallax targets (driven by scripts.js):
-     nurse photo drifts down, line graphic drifts up. will-change pre-promotes
+     hero video drifts down, line graphic drifts up. will-change pre-promotes
      a layer so the JS-driven transforms are cheap. */
-  #block-yui_3_17_2_1_1776942559033_13324 .fluid-image-container,
+  #block-yui_3_17_2_1_1778165193507_14569 .intrinsic,
   #block-db981ef2ff9d18ccd965 .fluid-image-container {
     will-change: transform;
+  }
+
+  /* Squarespace's video-block intrinsic-ratio hack exports as
+     padding-bottom: 1% (broken). Outer width/height come from the
+     absolute-position rule above; here we just make the inner wrappers
+     fill that box so the injected <video> renders at the slot's full size. */
+  #block-yui_3_17_2_1_1778165193507_14569 .intrinsic,
+  #block-yui_3_17_2_1_1778165193507_14569 .embed-block-wrapper,
+  #block-yui_3_17_2_1_1778165193507_14569 .sqs-native-video,
+  #block-yui_3_17_2_1_1778165193507_14569 .native-video-player {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    padding-bottom: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: transparent !important;
+  }
+  #block-yui_3_17_2_1_1778165193507_14569 video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    display: block !important;
   }
 
   /* Icon grid (below hero content) — cap each icon's height individually.
@@ -317,6 +356,11 @@ a.sqs-block-button-element {
       top: -40px !important;
       right: calc(50% - 180px) !important;
       width: 300px !important;
+    }
+    .fe-block-yui_3_17_2_1_1778165193507_14569 {
+      top: -200px !important;
+      right: calc(50% - 340px) !important;
+      width: 400px !important;
     }
 
     /* Push the whole text cluster (H1, subheading, body, button, stats) down

@@ -295,7 +295,7 @@
 
    Sections wired up:
      - Homepage hero (69e09e3cc2426d72a3b2a97b)
-         line graphic → up, nurse photo → down
+         line graphic → up, hero video → down
      - Homepage "How we use AI" top pair (69e8a392ef8ec45f9cde5abc)
          cdcb86 → up, 34556 → down
      - Contact (69e9f4495391a643aa88a5f5)
@@ -318,7 +318,7 @@
   const TARGETS = [
     // Homepage hero
     { blockId: 'block-db981ef2ff9d18ccd965',             factor: -40 }, // line graphic → up
-    { blockId: 'block-yui_3_17_2_1_1776942559033_13324', factor:  40 }, // nurse photo  → down
+    { blockId: 'block-yui_3_17_2_1_1778165193507_14569', factor:  40 }, // hero video   → down (replaces hidden nurse photo)
 
     // Homepage "How we use AI" top pair
     { blockId: 'block-cdcb86dcac6f27b37b8c',             factor: -40 }, // → up
@@ -371,7 +371,9 @@
       .map(function (t) {
         const block = document.getElementById(t.blockId);
         if (!block) return null;
-        const container = block.querySelector('.fluid-image-container');
+        const container =
+          block.querySelector('.fluid-image-container') ||
+          block.querySelector('.intrinsic');
         if (!container) return null;
         return { container: container, factor: t.factor, desktopOnly: !!t.desktopOnly };
       })
