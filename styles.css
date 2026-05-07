@@ -2257,12 +2257,6 @@ body.lyric-page-home-v2 #header:not(:hover) .theme-col--primary {
   border-color: transparent !important;
 }
 
-/* Logo — white via filter (existing PNG is colored RGB only). */
-body.lyric-page-home-v2 #header:not(:hover) .header-title-logo img {
-  filter: brightness(0) invert(1) !important;
-  transition: filter 250ms ease !important;
-}
-
 /* Nav link text + folder titles + chevrons — white. */
 body.lyric-page-home-v2 #header:not(:hover) .header-nav-item a,
 body.lyric-page-home-v2 #header:not(:hover) .header-nav-item a *,
