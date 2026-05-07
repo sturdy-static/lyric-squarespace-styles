@@ -266,13 +266,15 @@ a.sqs-block-button-element {
     aspect-ratio: 746 / 708 !important;    /* line natural source ratio → 600 × ~570 */
   }
   /* Hero video — anchored to the same top-right corner as the nurse photo,
-     square (1:1) at the nurse's width. Sits above nurse + line graphic. */
+     same bounding box as the nurse source (938 × 1070, rendered at 800 wide
+     → ~913 tall). The CSS mask below carves out the brand shape inside
+     this box, so the visible shape leans + has rounded corners. */
   .fe-block-yui_3_17_2_1_1778166124741_14826 {
     z-index: 6 !important;
     top: -337px !important;
     right: calc(50% - 800px) !important;
     width: 800px !important;
-    aspect-ratio: 1 / 1 !important;
+    aspect-ratio: 938 / 1070 !important;
   }
 
   /* Keep the fade-in animation (Squarespace's default slide-up is killed
@@ -311,8 +313,23 @@ a.sqs-block-button-element {
   #block-yui_3_17_2_1_1778166124741_14826 video {
     width: 100% !important;
     height: 100% !important;
-    object-fit: contain !important;
+    object-fit: cover !important;
+    object-position: center !important;
     display: block !important;
+    background: transparent !important;
+
+    /* Brand-shape mask — Lyric Symbol Shape.svg, served from this same
+       GitHub Pages repo. mask-size: 100% 100% stretches the SVG (natural
+       870 × 1461 portrait) into the 938 × 1070 slot so the shape's
+       bounding box matches the old nurse-photo footprint exactly. */
+    -webkit-mask-image: url('https://sturdy-static.github.io/lyric-squarespace-styles/Lyric%20Symbol%20Shape.svg') !important;
+            mask-image: url('https://sturdy-static.github.io/lyric-squarespace-styles/Lyric%20Symbol%20Shape.svg') !important;
+    -webkit-mask-size: 100% 100% !important;
+            mask-size: 100% 100% !important;
+    -webkit-mask-repeat: no-repeat !important;
+            mask-repeat: no-repeat !important;
+    -webkit-mask-position: center !important;
+            mask-position: center !important;
   }
 
   /* Icon grid (below hero content) — cap each icon's height individually.

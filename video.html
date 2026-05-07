@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Hero video shape preview — Option C</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --teal-dark:   #0c4a4f;
+      --teal-mid:    #176d75;
+      --teal-light:  #1f8e8e;
+      --hero-gradient: linear-gradient(180deg, var(--teal-dark) 0%, var(--teal-mid) 50%, var(--teal-light) 100%);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: white;
+      background: var(--hero-gradient);
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 32px 40px 16px;
+    }
+    header h1 {
+      margin: 0 0 4px;
+      font-size: 22px;
+      font-weight: 700;
+    }
+    header p {
+      margin: 0;
+      opacity: 0.75;
+      font-size: 14px;
+    }
+
+    .stage {
+      display: flex;
+      justify-content: center;
+      padding: 24px 40px 64px;
+    }
+
+    /* Box matches the homepage hero slot — 938 × 1070 (natural source pixels
+       of the original nurse photo). On the live page it renders at 800 wide;
+       previewing here at the same size for parity. The SVG mask gets
+       stretched to fill this box (slightly wider, slightly shorter than its
+       natural 870 × 1461 portrait ratio). */
+    .video-box-portrait {
+      width: 100%;
+      max-width: 800px;
+      aspect-ratio: 938 / 1070;
+      position: relative;
+    }
+
+    /* Option C — external SVG file as CSS mask-image.
+       The video renders at the box's full size; the mask carves out the
+       brand shape so only the masked region is visible. object-fit: cover
+       crops the 1:1 source video to fill the portrait box, keeping focus
+       on the centre of the frame. */
+    .lyric-hero-video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      background: transparent;
+
+      -webkit-mask-image: url('./Lyric%20Symbol%20Shape.svg');
+              mask-image: url('./Lyric%20Symbol%20Shape.svg');
+      -webkit-mask-size: 100% 100%;
+              mask-size: 100% 100%;
+      -webkit-mask-repeat: no-repeat;
+              mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+              mask-position: center;
+    }
+
+    .legend {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 40px 32px;
+      font-size: 13px;
+      opacity: 0.75;
+      line-height: 1.5;
+    }
+    code {
+      background: rgba(0,0,0,0.25);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Hero video — masked with Lyric Symbol Shape.svg</h1>
+    <p>Tell me what to refine: size, framing (which part of the video shows), drop shadow, glow, etc.</p>
+  </header>
+
+  <div class="stage">
+    <div class="video-box-portrait">
+      <video
+        class="lyric-hero-video"
+        autoplay loop muted playsinline preload="auto" fetchpriority="high"
+      >
+        <source src="https://pub-e2eac72aa6284d089aa43b00bd7028bb.r2.dev/Lyric-Hero-No-Mask.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>Quick tuning levers</strong> (in <code>video.html</code> &lt;style&gt;):<br>
+    • Size — change <code>max-width: 800px</code> on <code>.video-box-portrait</code>.<br>
+    • Aspect — currently <code>938 / 1070</code> (matches the homepage hero slot). For the SVG&rsquo;s natural portrait, set <code>870.36 / 1461.5</code>.<br>
+    • Framing — change <code>object-position: center</code> on <code>.lyric-hero-video</code> to e.g. <code>top</code>, <code>50% 30%</code>, <code>right center</code> to shift which part of the video sits inside the shape.
+  </div>
+</body>
+</html>
