@@ -246,7 +246,7 @@ a.sqs-block-button-element {
      #header, a separate stacking context, so it always renders on top). */
   .fe-block-yui_3_17_2_1_1776942559033_13324,
   .fe-block-db981ef2ff9d18ccd965,
-  .fe-block-yui_3_17_2_1_1778165193507_14569 {
+  .fe-block-yui_3_17_2_1_1778166124741_14826 {
     position: absolute !important;
     z-index: 5 !important;
     grid-area: unset !important;
@@ -267,7 +267,7 @@ a.sqs-block-button-element {
   }
   /* Hero video — anchored to the same top-right corner as the nurse photo,
      square (1:1) at the nurse's width. Sits above nurse + line graphic. */
-  .fe-block-yui_3_17_2_1_1778165193507_14569 {
+  .fe-block-yui_3_17_2_1_1778166124741_14826 {
     z-index: 6 !important;
     top: -337px !important;
     right: calc(50% - 800px) !important;
@@ -286,7 +286,7 @@ a.sqs-block-button-element {
     animation: lyric-hero-fade 1.4s ease-out 0.5s both !important;
     transition: none !important;
   }
-  #block-yui_3_17_2_1_1778165193507_14569 {
+  #block-yui_3_17_2_1_1778166124741_14826 {
     animation: lyric-hero-fade 1.2s ease-out 0.1s both !important;
     transition: none !important;
   }
@@ -294,29 +294,21 @@ a.sqs-block-button-element {
   /* Scroll-driven parallax targets (driven by scripts.js):
      hero video drifts down, line graphic drifts up. will-change pre-promotes
      a layer so the JS-driven transforms are cheap. */
-  #block-yui_3_17_2_1_1778165193507_14569 .intrinsic,
+  #block-yui_3_17_2_1_1778166124741_14826 .sqs-code-container,
   #block-db981ef2ff9d18ccd965 .fluid-image-container {
     will-change: transform;
   }
 
-  /* Squarespace's video-block intrinsic-ratio hack exports as
-     padding-bottom: 1% (broken). Outer width/height come from the
-     absolute-position rule above; here we just make the inner wrappers
-     fill that box so the injected <video> renders at the slot's full size. */
-  #block-yui_3_17_2_1_1778165193507_14569 .intrinsic,
-  #block-yui_3_17_2_1_1778165193507_14569 .embed-block-wrapper,
-  #block-yui_3_17_2_1_1778165193507_14569 .sqs-native-video,
-  #block-yui_3_17_2_1_1778165193507_14569 .native-video-player {
+  /* Hero video is a Squarespace Code Block containing a vanilla <video> tag.
+     Make every wrapper fill the absolutely-sized outer block so the video
+     stretches to 800×800 (desktop) / 400×400 (mobile). The <video>'s own
+     object-fit: contain (set inline) preserves the curved bottom mask. */
+  #block-yui_3_17_2_1_1778166124741_14826 .sqs-block-content,
+  #block-yui_3_17_2_1_1778166124741_14826 .sqs-code-container {
     width: 100% !important;
     height: 100% !important;
-    max-width: 100% !important;
-    padding-bottom: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    background: transparent !important;
   }
-  #block-yui_3_17_2_1_1778165193507_14569 video {
+  #block-yui_3_17_2_1_1778166124741_14826 video {
     width: 100% !important;
     height: 100% !important;
     object-fit: contain !important;
@@ -357,7 +349,7 @@ a.sqs-block-button-element {
       right: calc(50% - 180px) !important;
       width: 300px !important;
     }
-    .fe-block-yui_3_17_2_1_1778165193507_14569 {
+    .fe-block-yui_3_17_2_1_1778166124741_14826 {
       top: -200px !important;
       right: calc(50% - 340px) !important;
       width: 400px !important;

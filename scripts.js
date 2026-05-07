@@ -318,7 +318,7 @@
   const TARGETS = [
     // Homepage hero
     { blockId: 'block-db981ef2ff9d18ccd965',             factor: -40 }, // line graphic → up
-    { blockId: 'block-yui_3_17_2_1_1778165193507_14569', factor:  40 }, // hero video   → down (replaces hidden nurse photo)
+    { blockId: 'block-yui_3_17_2_1_1778166124741_14826', factor:  40 }, // hero video (code block) → down (replaces hidden nurse photo)
 
     // Homepage "How we use AI" top pair
     { blockId: 'block-cdcb86dcac6f27b37b8c',             factor: -40 }, // → up
@@ -373,7 +373,8 @@
         if (!block) return null;
         const container =
           block.querySelector('.fluid-image-container') ||
-          block.querySelector('.intrinsic');
+          block.querySelector('.intrinsic') ||
+          block.querySelector('.sqs-code-container');
         if (!container) return null;
         return { container: container, factor: t.factor, desktopOnly: !!t.desktopOnly };
       })
