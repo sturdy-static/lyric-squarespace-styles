@@ -260,10 +260,11 @@ a.sqs-block-button-element {
     visibility: hidden !important;          /* hidden — replaced visually by hero video */
   }
   .fe-block-db981ef2ff9d18ccd965 {
+    z-index: 7 !important;                  /* sits above the hero video (z-index 6) */
     top: -63px !important;                  /* moved down ~57px (~10% of height) */
-    right: calc(50% - 600px) !important;    /* moved left ~120px (~20% of width) */
-    width: 600px !important;
-    aspect-ratio: 746 / 708 !important;    /* line natural source ratio → 600 × ~570 */
+    right: calc(50% - 800px) !important;    /* anchored to same right edge as the hero video, so the two line up */
+    width: 860px !important;                /* matches hero video width — balanced framing */
+    aspect-ratio: 746 / 708 !important;    /* line natural source ratio → 860 × ~816 */
   }
   /* Hero video — anchored to the same top-right corner as the nurse photo.
      Widened ~7.5% from the nurse footprint (800 → 860 wide) while keeping
@@ -364,8 +365,8 @@ a.sqs-block-button-element {
     }
     .fe-block-db981ef2ff9d18ccd965 {
       top: -40px !important;
-      right: calc(50% - 180px) !important;
-      width: 300px !important;
+      right: calc(50% - 340px) !important;   /* matches mobile hero-video right anchor */
+      width: 430px !important;               /* matches mobile hero-video width */
     }
     .fe-block-yui_3_17_2_1_1778166124741_14826 {
       top: -200px !important;
