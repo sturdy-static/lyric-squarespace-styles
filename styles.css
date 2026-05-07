@@ -267,7 +267,7 @@ a.sqs-block-button-element {
     aspect-ratio: 746 / 708 !important;    /* line natural source ratio → 600 × ~570 */
   }
   /* Hero video — anchored to the same top-right corner as the nurse photo.
-     Widened ~12.5% from the nurse footprint (800 → 900 wide) while keeping
+     Widened ~35% from the nurse footprint (800 → 1080 wide) while keeping
      the height pinned at ~913 by adjusting aspect-ratio. Right edge stays
      anchored; the extra width spills left. The CSS mask below carves out
      the brand shape inside this box. */
@@ -275,8 +275,8 @@ a.sqs-block-button-element {
     z-index: 6 !important;
     top: -337px !important;
     right: calc(50% - 800px) !important;
-    width: 900px !important;
-    aspect-ratio: 900 / 913 !important;
+    width: 1080px !important;
+    aspect-ratio: 1080 / 913 !important;
   }
 
   /* Keep the fade-in animation (Squarespace's default slide-up is killed
