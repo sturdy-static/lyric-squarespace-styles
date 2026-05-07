@@ -2257,6 +2257,14 @@ body.lyric-page-home-v2 #header:not(:hover) .theme-col--primary {
   border-color: transparent !important;
 }
 
+/* Logo — homepage-only swap. Replaces the displayed image without touching
+   the underlying <img src>, so alt text, dimensions, and Squarespace's logo
+   markup all stay intact. Drop the asset into the repo root with the
+   filename below; GitHub Pages will serve it. */
+body.lyric-page-home-v2 .header-title-logo img {
+  content: url('https://sturdy-static.github.io/lyric-squarespace-styles/Lyric%20Logo_White%201.svg') !important;
+}
+
 /* Nav link text + folder titles + chevrons — white. */
 body.lyric-page-home-v2 #header:not(:hover) .header-nav-item a,
 body.lyric-page-home-v2 #header:not(:hover) .header-nav-item a *,
