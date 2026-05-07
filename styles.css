@@ -265,16 +265,17 @@ a.sqs-block-button-element {
     width: 600px !important;
     aspect-ratio: 746 / 708 !important;    /* line natural source ratio → 600 × ~570 */
   }
-  /* Hero video — anchored to the same top-right corner as the nurse photo,
-     same bounding box as the nurse source (938 × 1070, rendered at 800 wide
-     → ~913 tall). The CSS mask below carves out the brand shape inside
-     this box, so the visible shape leans + has rounded corners. */
+  /* Hero video — anchored to the same top-right corner as the nurse photo.
+     Widened ~7.5% from the nurse footprint (800 → 860 wide) while keeping
+     the height pinned at ~913 by adjusting aspect-ratio. Right edge stays
+     anchored; the extra width spills left. The CSS mask below carves out
+     the brand shape inside this box. */
   .fe-block-yui_3_17_2_1_1778166124741_14826 {
     z-index: 6 !important;
     top: -337px !important;
     right: calc(50% - 800px) !important;
-    width: 800px !important;
-    aspect-ratio: 938 / 1070 !important;
+    width: 860px !important;
+    aspect-ratio: 860 / 913 !important;
   }
 
   /* Keep the fade-in animation (Squarespace's default slide-up is killed
@@ -369,7 +370,7 @@ a.sqs-block-button-element {
     .fe-block-yui_3_17_2_1_1778166124741_14826 {
       top: -200px !important;
       right: calc(50% - 340px) !important;
-      width: 400px !important;
+      width: 430px !important;        /* matches desktop's 7.5% widening; aspect inherits 860/913 → height stays ~456 */
     }
 
     /* Push the whole text cluster (H1, subheading, body, button, stats) down
