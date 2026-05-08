@@ -2363,11 +2363,20 @@ body.lyric-page-home-v2 #header:not(:hover) .header-burger-btn {
    screens instead of pushing past the right edge. */
 .gdpr-cookie-banner .sqs-cookie-banner-v2-cta-container {
   flex-wrap: wrap !important;
+  row-gap: 12px !important;
 }
 .gdpr-cookie-banner .sqs-cookie-banner-v2-cta-container button {
   flex: 1 1 0 !important;
   min-width: 140px !important;
   border-radius: 8px !important;
+}
+
+/* Manage button — Squarespace's tertiary skin uses justify-content: space-between
+   so the text hugs the left edge and the arrow drifts to the right. Center the
+   contents instead and add a small gap so "Manage cookies →" reads as a unit. */
+.gdpr-cookie-banner .sqs-cookie-banner-v2-cta-container button.manage {
+  justify-content: center !important;
+  gap: 8px !important;
 }
 
 
