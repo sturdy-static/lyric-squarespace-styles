@@ -2356,6 +2356,25 @@ body.lyric-page-home-v2 #header:not(:hover) .header-burger-btn {
   color: var(--primaryButtonTextColor) !important;
 }
 
+/* Equal width, single-line labels, and matching corner radius across all
+   three buttons. The Manage button currently reads more "pill-like" than
+   the other two — unifying border-radius removes that mismatch. On mobile
+   the min-width floor is dropped so buttons can shrink/stack cleanly. */
+.gdpr-cookie-banner .sqs-cookie-banner-v2-cta-container button {
+  min-width: 220px !important;
+  white-space: nowrap !important;
+  border-radius: 8px !important;
+}
+.gdpr-cookie-banner .sqs-cookie-banner-v2-cta-container button > span {
+  white-space: nowrap !important;
+}
+@media (max-width: 600px) {
+  .gdpr-cookie-banner .sqs-cookie-banner-v2-cta-container button {
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+  }
+}
+
 
 /* ==========================================================================
    GLOBAL MOBILE RULES
