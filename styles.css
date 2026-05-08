@@ -2355,9 +2355,12 @@ body.lyric-page-home-v2 #header:not(:hover) .header-burger-btn {
   color: var(--primaryButtonTextColor) !important;
 }
 
-/* Decline hover — mirror the sage-green hover the primary Accept button
-   already shows. Squarespace doesn't reliably expose a hover token, so
-   fall back to --teal-light, which is the brand's existing sage. */
+/* Shared hover — Accept and Decline get the identical sage-green hover
+   so the two equal-weight CTAs also behave identically on interaction.
+   Squarespace doesn't reliably expose a hover token, so fall back to
+   --teal-light, the brand's existing sage. */
+.gdpr-cookie-banner .sqs-cookie-banner-v2-accept:hover,
+.gdpr-cookie-banner .sqs-cookie-banner-v2-accept:focus,
 .gdpr-cookie-banner .sqs-cookie-banner-v2-deny.sqs-button-element--secondary:hover,
 .gdpr-cookie-banner .sqs-cookie-banner-v2-deny.sqs-button-element--secondary:focus {
   background-color: var(--primaryButtonBackgroundColorOnHover, var(--teal-light)) !important;
