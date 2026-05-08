@@ -2337,6 +2337,27 @@ body.lyric-page-home-v2 #header:not(:hover) .header-burger-btn {
 
 
 /* ==========================================================================
+   COOKIE BANNER — equal visual weight for Accept / Decline
+   Squarespace renders Decline as a secondary (outline) button, which gives
+   Accept disproportionate prominence. GDPR/EDPB guidance treats unequal
+   prominence between Accept and Reject as a deceptive-design pattern, so
+   we re-skin Decline to match the primary Accept button. Manage stays as
+   the quieter tertiary action.
+   ========================================================================== */
+.gdpr-cookie-banner .sqs-cookie-banner-v2-deny.sqs-button-element--secondary,
+.gdpr-cookie-banner .sqs-cookie-banner-v2-deny.sqs-button-element--secondary:hover,
+.gdpr-cookie-banner .sqs-cookie-banner-v2-deny.sqs-button-element--secondary:focus {
+  background-color: var(--primaryButtonBackgroundColor) !important;
+  color: var(--primaryButtonTextColor) !important;
+  border-color: var(--primaryButtonBackgroundColor) !important;
+}
+
+.gdpr-cookie-banner .sqs-cookie-banner-v2-deny.sqs-button-element--secondary > span {
+  color: var(--primaryButtonTextColor) !important;
+}
+
+
+/* ==========================================================================
    GLOBAL MOBILE RULES
    Apply to every section except where explicitly excluded.
    ========================================================================== */
