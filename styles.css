@@ -2344,15 +2344,24 @@ body.lyric-page-home-v2 #header:not(:hover) .header-burger-btn {
    we re-skin Decline to match the primary Accept button. Manage stays as
    the quieter tertiary action.
    ========================================================================== */
-.gdpr-cookie-banner .sqs-cookie-banner-v2-deny.sqs-button-element--secondary,
-.gdpr-cookie-banner .sqs-cookie-banner-v2-deny.sqs-button-element--secondary:hover,
-.gdpr-cookie-banner .sqs-cookie-banner-v2-deny.sqs-button-element--secondary:focus {
+.gdpr-cookie-banner .sqs-cookie-banner-v2-deny.sqs-button-element--secondary {
   background-color: var(--primaryButtonBackgroundColor) !important;
   color: var(--primaryButtonTextColor) !important;
   border-color: var(--primaryButtonBackgroundColor) !important;
+  transition: background-color 200ms ease, border-color 200ms ease !important;
 }
 
 .gdpr-cookie-banner .sqs-cookie-banner-v2-deny.sqs-button-element--secondary > span {
+  color: var(--primaryButtonTextColor) !important;
+}
+
+/* Decline hover — mirror the sage-green hover the primary Accept button
+   already shows. Squarespace doesn't reliably expose a hover token, so
+   fall back to --teal-light, which is the brand's existing sage. */
+.gdpr-cookie-banner .sqs-cookie-banner-v2-deny.sqs-button-element--secondary:hover,
+.gdpr-cookie-banner .sqs-cookie-banner-v2-deny.sqs-button-element--secondary:focus {
+  background-color: var(--primaryButtonBackgroundColorOnHover, var(--teal-light)) !important;
+  border-color: var(--primaryButtonBackgroundColorOnHover, var(--teal-light)) !important;
   color: var(--primaryButtonTextColor) !important;
 }
 
@@ -2371,12 +2380,23 @@ body.lyric-page-home-v2 #header:not(:hover) .header-burger-btn {
   border-radius: 8px !important;
 }
 
-/* Manage button — Squarespace's tertiary skin uses justify-content: space-between
-   so the text hugs the left edge and the arrow drifts to the right. Center the
-   contents instead and add a small gap so "Manage cookies →" reads as a unit. */
+/* Manage button — Squarespace's tertiary skin pins the arrow to the far
+   right (often via an absolutely-positioned ::after, so flex justify alone
+   doesn't move it). Force the button into a centered inline-flex layout
+   AND neutralise any absolute positioning on its pseudo-elements so the
+   text and arrow sit side-by-side as a single centered group. */
 .gdpr-cookie-banner .sqs-cookie-banner-v2-cta-container button.manage {
+  display: inline-flex !important;
+  align-items: center !important;
   justify-content: center !important;
   gap: 8px !important;
+}
+.gdpr-cookie-banner .sqs-cookie-banner-v2-cta-container button.manage::before,
+.gdpr-cookie-banner .sqs-cookie-banner-v2-cta-container button.manage::after {
+  position: static !important;
+  inset: auto !important;
+  margin: 0 !important;
+  transform: none !important;
 }
 
 
