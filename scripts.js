@@ -425,3 +425,346 @@
     init();
   }
 })();
+
+
+/* --------------------------------------------------------------------------
+   HOMEPAGE — "Lyric 42" → "Lyric42"
+   The Squarespace editor refuses to open this block, so we patch the text
+   at runtime. Targeted by block id; safe no-op on every other page.
+   -------------------------------------------------------------------------- */
+
+(function () {
+  function init() {
+    const strong = document.querySelector('#block-a61a3c66d5baeefec41c h2 strong');
+    if (!strong) return;
+    strong.textContent = strong.textContent.replace(/Lyric\s+42/g, 'Lyric42');
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
+
+/* --------------------------------------------------------------------------
+   COOKIE BANNER + CONSENT MODE v2
+   Renders a bottom-left card on first visit asking the user to accept or
+   decline cookies (with a "Manage cookies" panel for per-category toggles).
+   Bootstraps Google Consent Mode v2 defaults (set in Squarespace head injection
+   before gtag.js loads), then on user choice calls gtag('consent','update',…)
+   so GA4 starts/stops collecting, and lazy-loads the LinkedIn Insight Tag
+   only when marketing consent is granted.
+
+   Also writes Squarespace's native consent cookies (ss_performanceCookiesAllowed,
+   ss_marketingCookiesAllowed) so any Squarespace built-in integrations honour
+   the same choice (existing window.getSquarespaceCookies reads these).
+
+   Re-open: any anchor with href ending in "#cookie-settings" re-opens the
+   preferences modal.
+
+   Exposes a small API on window.LyricCookies for debugging.
+   -------------------------------------------------------------------------- */
+
+(function () {
+  const STORAGE_KEY = 'lyric_consent';
+  const ONE_YEAR = 60 * 60 * 24 * 365;
+  const LINKEDIN_PARTNER_ID = '6502196';
+
+  const COPY = {
+    body:
+      'Select "Accept all" to agree to our use of cookies and similar technologies to ' +
+      'enhance your browsing experience, security, analytics and customization. ' +
+      'Select "Manage cookies" to make more choices or opt out.',
+    acceptAll: 'Accept all',
+    decline: 'Decline non-essential',
+    manage: 'Manage cookies →',
+    prefsTitle: 'Manage cookies',
+    prefsIntro:
+      'Choose which categories of cookies you allow us to use. Strictly necessary ' +
+      'cookies are always on. You can change this at any time from the footer.',
+    save: 'Save preferences',
+    categories: [
+      {
+        key: 'essential',
+        label: 'Strictly necessary',
+        desc: 'Required for the site to function. Always on.',
+        locked: true,
+      },
+      {
+        key: 'analytics',
+        label: 'Analytics',
+        desc: 'Helps us understand how visitors use the site (Google Analytics).',
+      },
+      {
+        key: 'marketing',
+        label: 'Marketing',
+        desc: 'Used to measure ad performance (LinkedIn Insight Tag).',
+      },
+    ],
+  };
+
+  function readState() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      if (!parsed || typeof parsed !== 'object') return null;
+      return {
+        essential: true,
+        analytics: !!parsed.analytics,
+        marketing: !!parsed.marketing,
+        ts: parsed.ts || 0,
+      };
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function writeState(state) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        essential: true,
+        analytics: !!state.analytics,
+        marketing: !!state.marketing,
+        ts: Date.now(),
+      }));
+    } catch (e) {}
+  }
+
+  function setCookie(name, value) {
+    document.cookie =
+      name + '=' + value + '; path=/; max-age=' + ONE_YEAR + '; samesite=lax';
+  }
+
+  function ensureGtag() {
+    // Mirror the bootstrap in Squarespace head injection so this script is
+    // safe even if the head snippet is missing (e.g. local dev preview).
+    window.dataLayer = window.dataLayer || [];
+    if (typeof window.gtag !== 'function') {
+      window.gtag = function () { window.dataLayer.push(arguments); };
+    }
+  }
+
+  function applyConsent(state) {
+    ensureGtag();
+    window.gtag('consent', 'update', {
+      analytics_storage:  state.analytics ? 'granted' : 'denied',
+      ad_storage:         state.marketing ? 'granted' : 'denied',
+      ad_user_data:       state.marketing ? 'granted' : 'denied',
+      ad_personalization: state.marketing ? 'granted' : 'denied',
+    });
+
+    setCookie('ss_performanceCookiesAllowed', state.analytics ? 'true' : 'false');
+    setCookie('ss_marketingCookiesAllowed',   state.marketing ? 'true' : 'false');
+
+    if (state.marketing && !window.__lyricLinkedInLoaded) {
+      window.__lyricLinkedInLoaded = true;
+      window._linkedin_partner_id = LINKEDIN_PARTNER_ID;
+      window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+      window._linkedin_data_partner_ids.push(LINKEDIN_PARTNER_ID);
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://snap.licdn.com/li.lms-analytics/insight.min.js';
+      document.head.appendChild(s);
+    }
+  }
+
+  function makeBtn(label, variant, onClick) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'lyric-cookie-btn lyric-cookie-btn--' + variant;
+    b.textContent = label;
+    b.addEventListener('click', onClick);
+    return b;
+  }
+
+  function renderBanner() {
+    if (document.querySelector('.lyric-cookie-banner')) return;
+    const el = document.createElement('div');
+    el.className = 'lyric-cookie-banner';
+    el.setAttribute('role', 'dialog');
+    el.setAttribute('aria-label', 'Cookie preferences');
+
+    const p = document.createElement('p');
+    p.className = 'lyric-cookie-banner__copy';
+    p.textContent = COPY.body;
+    el.appendChild(p);
+
+    const row1 = document.createElement('div');
+    row1.className = 'lyric-cookie-banner__row';
+    row1.appendChild(makeBtn(COPY.acceptAll, 'primary', function () {
+      acceptAll();
+    }));
+    row1.appendChild(makeBtn(COPY.decline, 'primary', function () {
+      declineAll();
+    }));
+    el.appendChild(row1);
+
+    const row2 = document.createElement('div');
+    row2.className = 'lyric-cookie-banner__row';
+    row2.appendChild(makeBtn(COPY.manage, 'outline', function () {
+      openPrefs();
+    }));
+    el.appendChild(row2);
+
+    document.body.appendChild(el);
+  }
+
+  function hideBanner() {
+    const el = document.querySelector('.lyric-cookie-banner');
+    if (el && el.parentNode) el.parentNode.removeChild(el);
+  }
+
+  function closePrefs() {
+    const el = document.querySelector('.lyric-cookie-prefs');
+    if (el && el.parentNode) el.parentNode.removeChild(el);
+  }
+
+  function openPrefs() {
+    closePrefs();
+    const current = readState() || { essential: true, analytics: false, marketing: false };
+
+    const overlay = document.createElement('div');
+    overlay.className = 'lyric-cookie-prefs';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', COPY.prefsTitle);
+
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closePrefs();
+    });
+
+    const panel = document.createElement('div');
+    panel.className = 'lyric-cookie-prefs__panel';
+
+    const h = document.createElement('h2');
+    h.className = 'lyric-cookie-prefs__title';
+    h.textContent = COPY.prefsTitle;
+    panel.appendChild(h);
+
+    const intro = document.createElement('p');
+    intro.className = 'lyric-cookie-prefs__intro';
+    intro.textContent = COPY.prefsIntro;
+    panel.appendChild(intro);
+
+    const list = document.createElement('ul');
+    list.className = 'lyric-cookie-prefs__list';
+
+    const inputs = {};
+    COPY.categories.forEach(function (cat) {
+      const li = document.createElement('li');
+      li.className = 'lyric-cookie-prefs__item';
+
+      const text = document.createElement('div');
+      const lab = document.createElement('span');
+      lab.className = 'lyric-cookie-prefs__label';
+      lab.textContent = cat.label;
+      const desc = document.createElement('span');
+      desc.className = 'lyric-cookie-prefs__desc';
+      desc.textContent = cat.desc;
+      text.appendChild(lab);
+      text.appendChild(desc);
+
+      const toggle = document.createElement('label');
+      toggle.className = 'lyric-cookie-toggle';
+      const input = document.createElement('input');
+      input.type = 'checkbox';
+      input.checked = cat.locked ? true : !!current[cat.key];
+      if (cat.locked) input.disabled = true;
+      const slider = document.createElement('span');
+      slider.className = 'lyric-cookie-toggle__slider';
+      toggle.appendChild(input);
+      toggle.appendChild(slider);
+      inputs[cat.key] = input;
+
+      li.appendChild(text);
+      li.appendChild(toggle);
+      list.appendChild(li);
+    });
+    panel.appendChild(list);
+
+    const actions = document.createElement('div');
+    actions.className = 'lyric-cookie-prefs__actions';
+
+    const saveRow = document.createElement('div');
+    saveRow.className = 'lyric-cookie-banner__row';
+    saveRow.appendChild(makeBtn(COPY.save, 'outline', function () {
+      const state = {
+        essential: true,
+        analytics: !!inputs.analytics.checked,
+        marketing: !!inputs.marketing.checked,
+      };
+      writeState(state);
+      applyConsent(state);
+      closePrefs();
+      hideBanner();
+    }));
+    actions.appendChild(saveRow);
+
+    const quickRow = document.createElement('div');
+    quickRow.className = 'lyric-cookie-banner__row';
+    quickRow.appendChild(makeBtn(COPY.acceptAll, 'primary', function () {
+      acceptAll();
+      closePrefs();
+    }));
+    quickRow.appendChild(makeBtn(COPY.decline, 'primary', function () {
+      declineAll();
+      closePrefs();
+    }));
+    actions.appendChild(quickRow);
+
+    panel.appendChild(actions);
+    overlay.appendChild(panel);
+    document.body.appendChild(overlay);
+  }
+
+  function acceptAll() {
+    const state = { essential: true, analytics: true, marketing: true };
+    writeState(state);
+    applyConsent(state);
+    hideBanner();
+  }
+
+  function declineAll() {
+    const state = { essential: true, analytics: false, marketing: false };
+    writeState(state);
+    applyConsent(state);
+    hideBanner();
+  }
+
+  function bindReopenLinks() {
+    document.addEventListener('click', function (e) {
+      const a = e.target.closest && e.target.closest('a[href*="#cookie-settings"]');
+      if (!a) return;
+      e.preventDefault();
+      openPrefs();
+    });
+  }
+
+  function init() {
+    bindReopenLinks();
+    const saved = readState();
+    if (saved) {
+      // Re-apply on every page load so consent state is in sync with gtag
+      // and the LinkedIn tag is injected on pages where it's needed.
+      applyConsent(saved);
+    } else {
+      renderBanner();
+    }
+  }
+
+  window.LyricCookies = {
+    open: openPrefs,
+    accept: acceptAll,
+    decline: declineAll,
+    state: readState,
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
