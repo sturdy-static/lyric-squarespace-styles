@@ -2476,7 +2476,7 @@ body.lyric-page-home-v2 #header:not(:hover) .header-burger-btn {
   font-size: 0.95rem;
   font-weight: 500;
   line-height: 1.2;
-  border-radius: 999px;
+  border-radius: 8px;
   border: 1px solid transparent;
   cursor: pointer;
   text-align: center;
