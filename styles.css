@@ -1266,16 +1266,42 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
   }
 }
 
-/* Mobile: right image (laptop) — flush against the viewport's left edge
-   with the right side bleeding off-screen. Mirrors the desktop intent.
-   The block stays in the stacked grid flow vertically; width:130vw +
-   negative margin-left pulls the left edge to the viewport edge and lets
-   the right portion bleed past, clipped by Squarespace's section overflow. */
+/* Mobile: right image (laptop) — mirrors the desktop intent. The photo is
+   anchored slightly off the left of the column; its width is derived from
+   the natural 1360×537 aspect ratio at a clamped mobile-friendly height,
+   so the right edge bleeds past the viewport. overflow: visible at every
+   wrapper between the section and <img> keeps the bleed from being clipped
+   by Squarespace's nested containers. Height is bounded by the clamp, so
+   the bleed doesn't grow the image (or section) taller. */
 @media (max-width: 767px) {
+  [data-section-id="69e8c799d278121d8d40dc76"] .fluid-engine,
+  [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1776863276072_11431,
+  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431,
+  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .sqs-block-content,
+  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .sqs-image,
+  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .sqs-image-content,
+  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .fluid-image-container {
+    overflow: visible !important;
+  }
+
+  /* Cancel the previous block-level 130vw width / centered margin —
+     width is now driven by the inner image's aspect ratio. */
   [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1776863276072_11431 {
-    width: 130vw !important;
+    width: auto !important;
     max-width: none !important;
-    margin-left: calc(50% - 50vw) !important;
+    margin-left: 0 !important;
+  }
+
+  /* Inner image: height-clamped, aspect-ratio-derived width, anchored
+     slightly past the column's left edge. */
+  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .sqs-image-content,
+  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .fluid-image-container,
+  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 img {
+    width: auto !important;
+    max-width: none !important;
+    height: clamp(180px, 50vw, 300px) !important;
+    aspect-ratio: 1360 / 537 !important;
+    margin-left: -10px !important;
   }
 }
 
