@@ -1243,6 +1243,19 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
   }
 }
 
+/* Mobile: right image (laptop) — flush against the viewport's left edge
+   with the right side bleeding off-screen. Mirrors the desktop intent.
+   The block stays in the stacked grid flow vertically; width:130vw +
+   negative margin-left pulls the left edge to the viewport edge and lets
+   the right portion bleed past, clipped by Squarespace's section overflow. */
+@media (max-width: 767px) {
+  [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1776863276072_11431 {
+    width: 130vw !important;
+    max-width: none !important;
+    margin-left: calc(50% - 50vw) !important;
+  }
+}
+
 /* ==========================================================================
    OUR SOLUTIONS — Section ID: 666aedda921ca01d6c442c7e
    "Our Solutions" header + Lyric42 Platform + module descriptions
