@@ -1301,7 +1301,7 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     max-width: none !important;
     height: clamp(180px, 50vw, 300px) !important;
     aspect-ratio: 1360 / 537 !important;
-    margin-left: -10px !important;
+    margin-left: calc(20vw - 10px) !important;
   }
 }
 
