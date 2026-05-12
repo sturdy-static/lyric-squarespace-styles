@@ -1266,16 +1266,27 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
   }
 }
 
-/* Mobile: right image (laptop) — flush against the viewport's left edge
-   with the right side bleeding off-screen. Mirrors the desktop intent.
-   The block stays in the stacked grid flow vertically; width:130vw +
-   negative margin-left pulls the left edge to the viewport edge and lets
-   the right portion bleed past, clipped by Squarespace's section overflow. */
+/* Mobile: right image (laptop) — bleeds off the right edge naturally.
+   Height is driven by the grid row, not by a viewport-width calc, so the
+   bleed doesn't grow the section taller. The image keeps its natural
+   aspect ratio at that height; its excess width spills past the column /
+   viewport on the right. Left edge stays at the column start. */
 @media (max-width: 767px) {
-  [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1776863276072_11431 {
-    width: 130vw !important;
+  [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1776863276072_11431,
+  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431,
+  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .sqs-block-content,
+  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .sqs-image,
+  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .sqs-image-content,
+  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .fluid-image-container {
+    overflow: visible !important;
+  }
+
+  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .sqs-image-content,
+  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .fluid-image-container,
+  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 img {
+    width: auto !important;
     max-width: none !important;
-    margin-left: calc(50% - 50vw) !important;
+    height: 100% !important;
   }
 }
 
