@@ -500,7 +500,7 @@
       {
         key: 'marketing',
         label: 'Marketing',
-        desc: 'Used to measure ad performance (LinkedIn Insight Tag).',
+        desc: 'Used to measure ad performance and identify visitors (LinkedIn Insight Tag, Demandbase).',
       },
     ],
   };
@@ -538,6 +538,39 @@
       name + '=' + value + '; path=/; max-age=' + ONE_YEAR + '; samesite=lax';
   }
 
+  function deleteCookie(name) {
+    const expires = 'Thu, 01 Jan 1970 00:00:00 GMT';
+    const host = location.hostname;
+    const parts = host.split('.');
+    const roots = new Set([host, '.' + host]);
+    if (parts.length > 2) {
+      const root = parts.slice(-2).join('.');
+      roots.add(root);
+      roots.add('.' + root);
+    }
+    roots.forEach(function (d) {
+      document.cookie = name + '=; path=/; domain=' + d + '; expires=' + expires;
+    });
+    document.cookie = name + '=; path=/; expires=' + expires;
+  }
+
+  function deleteCookiesMatching(prefixes) {
+    document.cookie.split(';').forEach(function (c) {
+      const name = c.split('=')[0].trim();
+      if (!name) return;
+      if (prefixes.some(function (p) { return name === p || name.indexOf(p) === 0; })) {
+        deleteCookie(name);
+      }
+    });
+  }
+
+  const ANALYTICS_COOKIES = ['_ga', '_gid', '_gat', '_ga_', '_gcl_', '__utm'];
+  const MARKETING_COOKIES = [
+    'li_sugr', 'li_gc', 'li_mc', 'bcookie', 'lidc', 'UserMatchHistory',
+    'AnalyticsSyncHistory', 'bscookie',
+    '_dbef', '_dbid', '_dbtid', 'Demandbase'
+  ];
+
   function ensureGtag() {
     // Mirror the bootstrap in Squarespace head injection so this script is
     // safe even if the head snippet is missing (e.g. local dev preview).
@@ -569,6 +602,21 @@
       s.src = 'https://snap.licdn.com/li.lms-analytics/insight.min.js';
       document.head.appendChild(s);
     }
+
+    if (state.marketing && !window.__lyricDemandbaseLoaded) {
+      window.__lyricDemandbaseLoaded = true;
+      (function (d, b, a, s, e) {
+        const t = b.createElement(a);
+        const fs = b.getElementsByTagName(a)[0];
+        t.async = 1; t.id = e; t.src = s;
+        fs.parentNode.insertBefore(t, fs);
+      })(window, document, 'script',
+         'https://tag.demandbase.com/bb092490e9689b69.min.js',
+         'demandbase_js_lib');
+    }
+
+    if (!state.analytics) deleteCookiesMatching(ANALYTICS_COOKIES);
+    if (!state.marketing) deleteCookiesMatching(MARKETING_COOKIES);
   }
 
   function makeBtn(label, variant, onClick) {
