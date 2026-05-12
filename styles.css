@@ -1266,48 +1266,17 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
   }
 }
 
-/* Mobile: right image (laptop) — mirrors the desktop intent. The photo is
-   anchored slightly off the left of the column; its width is derived from
-   the natural 1360×537 aspect ratio at a clamped mobile-friendly height,
-   so the right edge bleeds past the viewport. overflow: visible at every
-   wrapper between the section and <img> keeps the bleed from being clipped
-   by Squarespace's nested containers. Height is bounded by the clamp, so
-   the bleed doesn't grow the image (or section) taller. */
+/* Mobile: right image (laptop) — about 45% of the viewport wide, anchored
+   to the right edge of the section's grid. A teal gap sits to its left,
+   so the laptop's full body (including the curved/rounded left side) is
+   visible. No bleed off-screen on mobile. */
 @media (max-width: 767px) {
-  [data-section-id="69e8c799d278121d8d40dc76"] .fluid-engine,
-  [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1776863276072_11431,
-  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431,
-  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .sqs-block-content,
-  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .sqs-image,
-  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .sqs-image-content,
-  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .fluid-image-container {
-    overflow: visible !important;
-  }
-
-  /* Cancel the previous block-level 130vw width / centered margin —
-     width is now driven by the inner image's aspect ratio. */
   [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1776863276072_11431 {
-    width: auto !important;
+    width: 45vw !important;
     max-width: none !important;
-    margin-left: 0 !important;
-  }
-
-  /* Inner image: height-clamped, aspect-ratio-derived width.
-     Sizing applies at every layer so each wrapper grows with the image. */
-  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .sqs-image-content,
-  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .fluid-image-container,
-  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 img {
-    width: auto !important;
-    max-width: none !important;
-    height: clamp(180px, 50vw, 300px) !important;
-    aspect-ratio: 1360 / 537 !important;
-  }
-
-  /* Horizontal shift lives on a single (outermost) wrapper so it doesn't
-     compound across nested elements. Anchors the laptop's left edge a
-     short distance into the viewport from the left. */
-  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .sqs-image-content {
-    margin-left: calc(5vw - 10px) !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    justify-self: end !important;
   }
 }
 
