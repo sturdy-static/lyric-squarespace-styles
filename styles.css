@@ -1236,12 +1236,13 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     aspect-ratio: 792 / 537 !important;
   }
 
-  /* Right image — left edge sits ~30px before center. Natural aspect ratio
-     so the laptop renders at its real size; if the right side extends past
-     the section edge on narrower viewports, it gets clipped by the section's
-     overflow:hidden (acceptable bleed). */
+  /* Right image — left edge pinned to a fixed pixel position so the laptop
+     doesn't slide horizontally when the viewport resizes. 690px matches the
+     position the prior viewport-relative formula resolved to at a 1440px
+     design target. Natural aspect ratio; right side bleeds past the section
+     edge on narrower viewports and is clipped by overflow:hidden. */
   [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1776863276072_11431 {
-    left: calc(50% - 30px) !important;
+    left: 690px !important;
     right: auto !important;
     aspect-ratio: 787 / 537 !important;
   }
