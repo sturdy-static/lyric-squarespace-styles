@@ -1246,6 +1246,16 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     aspect-ratio: 787 / 537 !important;
   }
 
+  /* Anchor the photo's content to its left edge inside the block, so the
+     laptop body (and the baked-in rounded corners on the left of the photo)
+     is what's visible first. If the block's rendered aspect drifts even
+     slightly from the natural 787/537, cover fills the box and crops the
+     right side rather than the left. */
+  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 img {
+    object-fit: cover !important;
+    object-position: left center !important;
+  }
+
   /* Scroll-driven parallax targets (driven by scripts.js, desktop only):
      left frame drifts up subtly, right photo drifts down subtly. will-change
      pre-promotes a layer so the JS-driven transforms are cheap. */
