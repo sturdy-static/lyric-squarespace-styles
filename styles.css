@@ -1277,6 +1277,16 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     margin-left: auto !important;
     margin-right: 0 !important;
     justify-self: end !important;
+    align-self: end !important;
+    aspect-ratio: 1360 / 537 !important;
+    height: auto !important;
+  }
+
+  /* Defensive: if any cropping happens, anchor to the laptop's left side
+     so the curved corner stays visible. */
+  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 img {
+    object-fit: cover !important;
+    object-position: left center !important;
   }
 }
 
