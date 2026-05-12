@@ -1292,8 +1292,8 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     margin-left: 0 !important;
   }
 
-  /* Inner image: height-clamped, aspect-ratio-derived width, anchored
-     slightly past the column's left edge. */
+  /* Inner image: height-clamped, aspect-ratio-derived width.
+     Sizing applies at every layer so each wrapper grows with the image. */
   [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .sqs-image-content,
   [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .fluid-image-container,
   [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 img {
@@ -1301,7 +1301,13 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     max-width: none !important;
     height: clamp(180px, 50vw, 300px) !important;
     aspect-ratio: 1360 / 537 !important;
-    margin-left: calc(20vw - 10px) !important;
+  }
+
+  /* Horizontal shift lives on a single (outermost) wrapper so it doesn't
+     compound across nested elements. Anchors the laptop's left edge a
+     short distance into the viewport from the left. */
+  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .sqs-image-content {
+    margin-left: calc(5vw - 10px) !important;
   }
 }
 
