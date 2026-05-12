@@ -1224,35 +1224,14 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     aspect-ratio: 792 / 537 !important;
   }
 
-  /* Right image — left edge sits ~30px before center (stays put on resize);
-     right edge tracks the section's right edge so the image bleeds to the
-     viewport edge without being clipped by overflow:hidden. The container
-     widens with viewport; the inner <img> uses object-fit:cover with
-     left anchoring so the laptop body stays visible and the extra width
-     reveals more of the photo's right side. */
+  /* Right image — left edge sits ~30px before center. Natural aspect ratio
+     so the laptop renders at its real size; if the right side extends past
+     the section edge on narrower viewports, it gets clipped by the section's
+     overflow:hidden (acceptable bleed). */
   [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1776863276072_11431 {
     left: calc(50% - 30px) !important;
-    right: 0 !important;
-    aspect-ratio: auto !important;
-  }
-
-  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431,
-  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .sqs-block-content,
-  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .fluid-image-component-root,
-  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .fluid-image-animation-wrapper,
-  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .fluid-image-container,
-  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .js-content-mode-element-wrapper,
-  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 .js-content-mode-element {
-    width: 100% !important;
-    height: 100% !important;
-    max-width: none !important;
-  }
-
-  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1776863276072_11431 img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: left center !important;
+    right: auto !important;
+    aspect-ratio: 787 / 537 !important;
   }
 
   /* Scroll-driven parallax targets (driven by scripts.js, desktop only):
