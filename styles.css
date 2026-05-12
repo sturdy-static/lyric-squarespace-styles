@@ -714,6 +714,18 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     will-change: transform;
   }
 
+  /* Per-card line (HR) + text drift — JS writes transforms on each block's
+     .sqs-block-content. Promote those to their own layer so the scroll
+     handler isn't paying for re-layout each frame. */
+  #block-yui_3_17_2_1_1776851009516_48133 .sqs-block-content,
+  #block-938406f5a8c02521d23e .sqs-block-content,
+  #block-ac1cac37975a83eee249 .sqs-block-content,
+  #block-cedc6dbb118a0eea01e7 .sqs-block-content,
+  #block-187c407f3a8ebe0c5f8b .sqs-block-content,
+  #block-df5141c29c5d7e4a3356 .sqs-block-content {
+    will-change: transform;
+  }
+
   /* Typography — force teal-dark on the heading + subheading + paragraph,
      and bold the "intelligence is in how it's built" H3 (theme un-bolds
      the inner <strong> by default). */

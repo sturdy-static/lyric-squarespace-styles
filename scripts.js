@@ -339,11 +339,19 @@
     { blockId: 'block-e5c8b5c5acdf222aff43',             factor: 40 }, // mobile image  → down
 
     // Homepage "How we use AI" — 3-card row, desktop only. Staggered
-    // upward drift escalating left → right (1× / 2× / 3× of baseline).
+    // upward drift escalating left → right (1× / 2× / 3× of baseline),
+    // with each card's line + text drifting at their own rates so all
+    // three layers move independently. Line ≈ image × 0.4, text ≈ image × 0.7.
     // Mobile shows a different trio (c83e10/b82721/3ea2fe), untouched.
-    { blockId: 'block-yui_3_17_2_1_1776853087754_37379', factor: -20, desktopOnly: true }, // card 1 → up, subtle
-    { blockId: 'block-c9f790750fa40a2d7eb4',             factor: -40, desktopOnly: true }, // card 2 → up, baseline
-    { blockId: 'block-17f4dd96e5ae8200df45',             factor: -60, desktopOnly: true }, // card 3 → up, strong
+    { blockId: 'block-yui_3_17_2_1_1776853087754_37379', factor: -20, desktopOnly: true }, // card 1 image → up, subtle
+    { blockId: 'block-yui_3_17_2_1_1776851009516_48133', factor:  -8, desktopOnly: true }, // card 1 line
+    { blockId: 'block-cedc6dbb118a0eea01e7',             factor: -14, desktopOnly: true }, // card 1 text
+    { blockId: 'block-c9f790750fa40a2d7eb4',             factor: -40, desktopOnly: true }, // card 2 image → up, baseline
+    { blockId: 'block-938406f5a8c02521d23e',             factor: -16, desktopOnly: true }, // card 2 line
+    { blockId: 'block-187c407f3a8ebe0c5f8b',             factor: -28, desktopOnly: true }, // card 2 text
+    { blockId: 'block-17f4dd96e5ae8200df45',             factor: -60, desktopOnly: true }, // card 3 image → up, strong
+    { blockId: 'block-ac1cac37975a83eee249',             factor: -24, desktopOnly: true }, // card 3 line
+    { blockId: 'block-df5141c29c5d7e4a3356',             factor: -42, desktopOnly: true }, // card 3 text
 
     // Careers hero "Come build better healthcare" (69e902e00701ed0ac1cb8154)
     // — counter-motion pair, replaces the prior floating-loop animations.
@@ -374,7 +382,8 @@
         const container =
           block.querySelector('.fluid-image-container') ||
           block.querySelector('.intrinsic') ||
-          block.querySelector('.sqs-code-container');
+          block.querySelector('.sqs-code-container') ||
+          block.querySelector('.sqs-block-content');
         if (!container) return null;
         return { container: container, factor: t.factor, desktopOnly: !!t.desktopOnly };
       })
