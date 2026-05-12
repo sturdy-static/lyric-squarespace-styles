@@ -1272,9 +1272,9 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
    visible. No bleed off-screen on mobile. */
 @media (max-width: 767px) {
   [data-section-id="69e8c799d278121d8d40dc76"] .fe-block-yui_3_17_2_1_1776863276072_11431 {
-    width: 100vw !important;
+    width: 102vw !important;
     max-width: none !important;
-    margin-left: calc(50% - 50vw) !important;
+    margin-left: calc(50% - 52vw) !important;
   }
 
   /* Hide the decorative line/vector image (sits above the laptop on mobile). */
