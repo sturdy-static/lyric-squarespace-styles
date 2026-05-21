@@ -1236,6 +1236,12 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     aspect-ratio: 792 / 537 !important;
   }
 
+  /* The left image is a transparent PNG drawn in dark teal, which disappears
+     against the dark gradient background. Invert it to white so it reads. */
+  [data-section-id="69e8c799d278121d8d40dc76"] #block-yui_3_17_2_1_1777795191934_14510 img {
+    filter: brightness(0) invert(1) !important;
+  }
+
   /* Right image — left edge sits ~30px before center. Container width is
      derived from the image's natural aspect ratio (Lyric42+Product+Image.png
      is 1360×537), so at the shared 540px height the container is ~1367px
