@@ -1176,6 +1176,15 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
   background-image: var(--gradient-teal) !important;
 }
 
+/* Stack this section above the "How we use AI" section below it, so the
+   tucked-up parallax image from that section sits behind. (Previously the
+   PROOF BAR section handled this; now Lyric42 is the section directly above
+   "How we use AI" and needs to own the stacking.) */
+[data-section-id="69e8c799d278121d8d40dc76"] {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
 /* White text across the section's H2 + body + button. */
 [data-section-id="69e8c799d278121d8d40dc76"] #block-a61a3c66d5baeefec41c :is(h1, h2, h3, h4, h5, h6, p, strong, em, span, a),
 [data-section-id="69e8c799d278121d8d40dc76"] #block-b8fed555b51213c22798 :is(h1, h2, h3, h4, h5, h6, p, strong, em, span, a) {
