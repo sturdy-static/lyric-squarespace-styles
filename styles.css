@@ -1168,12 +1168,12 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
      #block-yui_3_17_2_1_1776863276072_11431 — right image (787x537)
    ========================================================================== */
 
-/* Section background — teal gradient (mid → dark), matching the PROOF BAR below. */
+/* Section background — teal gradient, dark top → mid bottom. */
 [data-section-id="69e8c799d278121d8d40dc76"],
 [data-section-id="69e8c799d278121d8d40dc76"] .section-border,
 [data-section-id="69e8c799d278121d8d40dc76"] .section-background {
-  background: var(--gradient-teal-inverse) !important;
-  background-image: var(--gradient-teal-inverse) !important;
+  background: var(--gradient-teal) !important;
+  background-image: var(--gradient-teal) !important;
 }
 
 /* White text across the section's H2 + body + button. */
