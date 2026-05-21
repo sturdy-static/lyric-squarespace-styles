@@ -176,7 +176,7 @@ a.sqs-block-button-element {
   /* Body paragraph */
   #block-0f7370d5819d960dc21c p {
     font-family: 'Inter', sans-serif !important;
-    font-size: 1rem !important; /* 16px */
+    font-size: 1.125rem !important; /* 18px */
     font-weight: 400 !important;
     color: var(--white) !important;
   }
