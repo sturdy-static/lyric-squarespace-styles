@@ -2190,21 +2190,19 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     color: var(--teal-dark) !important;
   }
 
-  /* Placeholders — teal-dark at 40% opacity */
+  /* Placeholders — full teal-dark to match label colour. */
   #block-3c38afa3b6ad6299992e .field-element::placeholder,
   #block-3c38afa3b6ad6299992e input::placeholder,
   #block-3c38afa3b6ad6299992e textarea::placeholder {
     color: var(--teal-dark) !important;
-    opacity: 0.4 !important;
+    opacity: 1 !important;
   }
 
-  /* Select placeholder — selects can't use ::placeholder, so fade only the
-     text + chevron via color/alpha (NOT opacity, which would fade the
-     border too). The chevron tracks currentColor so it follows the text.
-     Once the user picks a real option the rule stops matching and the
-     control snaps back to full teal-dark from the form-fields rule above. */
+  /* Select placeholder — selects can't use ::placeholder, so set the text
+     + chevron via color (NOT opacity, which would fade the border too).
+     The chevron tracks currentColor so it follows the text. */
   #block-3c38afa3b6ad6299992e select:has(option:first-of-type:checked) {
-    color: rgba(0, 84, 97, 0.4) !important; /* --teal-dark @ 40% */
+    color: var(--teal-dark) !important;
   }
 
   /* Field labels — teal-dark to match the field borders/text */
