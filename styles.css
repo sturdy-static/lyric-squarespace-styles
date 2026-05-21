@@ -469,9 +469,10 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     text-align: left !important;
   }
 
-  /* Body paragraph */
+  /* Body paragraph — keep <strong> out of the selector so its native bold
+     weight survives. font-family/size/line-height inherit down via the
+     cascade from p, so strong stays visually consistent. */
   #block-fb77cbc0c669ad827d77 p,
-  #block-fb77cbc0c669ad827d77 p strong,
   #block-fb77cbc0c669ad827d77 p span {
     font-family: 'Inter', sans-serif !important;
     font-size: 1.125rem !important; /* 18px */
@@ -492,7 +493,7 @@ body.lyric-page-home-v2 [data-section-id="69e09e3cc2426d72a3b2a97b"] {
     #block-yui_3_17_2_1_1776695389595_14584 h2 strong {
       font-size: 2rem !important; /* 32px */
     }
-    #block-fb77cbc0c669ad827d77 :is(p, strong, span) {
+    #block-fb77cbc0c669ad827d77 :is(p, span) {
       font-size: 1rem !important; /* 16px */
     }
 
